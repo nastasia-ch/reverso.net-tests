@@ -21,6 +21,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.jsoup.Jsoup.parse;
 
 public class APITests {
@@ -288,6 +289,77 @@ public class APITests {
                 replace("</em>","")));;
 
         System.out.println();
+
+    }
+
+
+    @Test
+    void deleteFromFavourites() {
+
+        AddInFavouritesRequestModel requestBody = new AddInFavouritesRequestModel();
+        requestBody.setSrcContext(date.srcContext);
+        requestBody.setSrcLang(date.srcLang);
+        requestBody.setSrcText(date.srcText);
+        requestBody.setTrgContext(date.trgContext);
+        requestBody.setTrgLang(date.trgLang);
+        requestBody.setTrgText(date.trgText);
+
+        AddInFavouritesResponseModel response = given()
+                .log().all()
+                .cookie("reverso.net.ReversoRefreshToken",
+                        auth.getRefreshToken(date.accountURL,date.email,date.password,date.returnURL))
+                .body(requestBody)
+                .contentType("application/json; charset=utf-8")
+                .header("user-agent","")
+                .when()
+                .post("https://context.reverso.net/bst-web-user/user/favourites")
+                .then()
+                .statusCode(200)
+                .log().all()
+                .extract().as(AddInFavouritesResponseModel.class);
+
+        assertThat(response.getUserID()).isEqualTo(utils.getUserID(date.accountURL,date.email,date.password,date.returnURL));
+        assertThat(response.getSrcContext()).isEqualTo(date.srcContext);
+        assertThat(response.getTrgContext()).isEqualTo(date.trgContext);
+
+        int dataId = response.getId();
+
+        int num = given()
+                .log().all()
+                .cookie("reverso.net.ReversoRefreshToken",
+                        auth.getRefreshToken(date.accountURL,date.email,date.password,date.returnURL))
+                .queryParam("length",25)
+                .header("user-agent","")
+                .when()
+                .get("https://context.reverso.net/bst-web-user/user/favourites")
+                .then()
+                .statusCode(200)
+                .extract().body().path("numTotalResults");
+
+        given()
+                .log().all()
+                .cookie("reverso.net.ReversoRefreshToken",
+                        auth.getRefreshToken(date.accountURL,date.email,date.password,date.returnURL))
+                .queryParam("ids",dataId)
+                .header("user-agent","")
+                .when()
+                .delete("https://context.reverso.net/bst-web-user/user/favourites")
+                .then()
+                .log().all()
+                .statusCode(200)
+                .body("numUpdatedResults", is(1));
+
+        given()
+                .log().all()
+                .cookie("reverso.net.ReversoRefreshToken",
+                        auth.getRefreshToken(date.accountURL,date.email,date.password,date.returnURL))
+                .queryParam("length",25)
+                .header("user-agent","")
+                .when()
+                .get("https://context.reverso.net/bst-web-user/user/favourites")
+                .then()
+                .statusCode(200)
+                .body("numTotalResults",is(num-1));
 
     }
 
