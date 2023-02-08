@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+    id "io.freefair.lombok" version "6.5.1"
+    id 'io.qameta.allure' version '2.11.2'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenCentral()
+}
+
+allure {
+    report {
+        version.set("2.20.1")
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set("2.20.1")
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation 'org.jetbrains:annotations:20.1.0'
+    testImplementation (
+            'com.codeborne:selenide:6.10.3',
+            'io.qameta.allure:allure-selenide:2.20.0',
+            'io.rest-assured:rest-assured:5.3.0',
+            "io.qameta.allure:allure-rest-assured:2.20.1",
+            'org.junit.jupiter:junit-jupiter:5.9.1',
+            'com.fasterxml.jackson.core:jackson-databind:2.14.1',
+            'com.fasterxml.jackson.core:jackson-annotations:2.13.2',
+            'org.assertj:assertj-core:3.23.1',
+            'org.jsoup:jsoup:1.7.2',
+            'org.aeonbits.owner:owner:1.0.12'
+    )
+}
+
+test {
+    useJUnitPlatform()
+}
