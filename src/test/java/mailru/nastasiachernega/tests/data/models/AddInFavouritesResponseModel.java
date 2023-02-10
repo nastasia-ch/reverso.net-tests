@@ -1,4 +1,4 @@
-package mailru.nastasiachernega.tests.models;
+package mailru.nastasiachernega.tests.data.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;

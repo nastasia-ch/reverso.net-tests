@@ -2,7 +2,7 @@ package mailru.nastasiachernega.tests.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
-import mailru.nastasiachernega.tests.testdata.TestDataApi;
+import mailru.nastasiachernega.tests.data.testData.TestDataApi;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;

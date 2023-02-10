@@ -1,4 +1,4 @@
-package mailru.nastasiachernega.tests.testdata;
+package mailru.nastasiachernega.tests.data.testData;
 
 import mailru.nastasiachernega.tests.config.LoginConfig;
 import mailru.nastasiachernega.tests.utils.GetContextExample;

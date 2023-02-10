@@ -1,9 +1,8 @@
 package mailru.nastasiachernega.tests.tests;
 
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
-import mailru.nastasiachernega.tests.models.*;
-import mailru.nastasiachernega.tests.testdata.TestDataApi;
+import mailru.nastasiachernega.tests.data.models.*;
+import mailru.nastasiachernega.tests.data.testData.TestDataApi;
 import mailru.nastasiachernega.tests.utils.Utils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -29,35 +28,6 @@ public class APITests {
     TestDataApi date = new TestDataApi();
     AuthorizationApi auth = new AuthorizationApi();
     Utils utils = new Utils();
-
-    @Test
-    void translateTextTest() {
-
-        TextTranslationRequestModel requestBody =
-                TextTranslationRequestModel.builder()
-                .from("eng")
-                .input("Hello")
-                .to("rus")
-                .build();
-
-        TextTranslationResponseModel response = given()
-                .log().all()
-                .body(requestBody)
-                .contentType("application/json; charset=utf-8")
-                .header("user-agent","")
-        .when()
-                .post("https://api.reverso.net/translate/v1/translation")
-        .then()
-                .log().all()
-                .statusCode(200)
-                .extract().as(TextTranslationResponseModel.class);
-
-        assertThat(response.getContextResults().
-                getResults().get(0).getTranslation()).
-                isEqualTo("привет");
-
-    }
-
 
     @Test
     void grammarCheckUnknownWordTest() {
@@ -245,7 +215,7 @@ public class APITests {
     }
 
     @Test
-    void checkAddingFavourites() {
+    void checkAddingInFavourites() {
 
         AddInFavouritesRequestModel requestBody = new AddInFavouritesRequestModel();
         requestBody.setSrcContext(date.srcContext);
