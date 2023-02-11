@@ -16,5 +16,6 @@ public class AddInFavouritesResponseModel {
     String srcLang;
     String trgLang;
     String creationDate;
+    String comment;
 
 }

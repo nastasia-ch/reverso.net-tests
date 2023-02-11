@@ -1,5 +1,6 @@
 package mailru.nastasiachernega.tests.data.specs;
 
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
@@ -12,6 +13,7 @@ import static org.hamcrest.Matchers.notNullValue;
 public class TextTranslationSpec {
 
     public static RequestSpecification translateRequestSpec = with()
+            .filter(new AllureRestAssured())
             .baseUri("https://api.reverso.net")
             .basePath("/translate/v1/translation")
             .contentType("application/json; charset=utf-8")
