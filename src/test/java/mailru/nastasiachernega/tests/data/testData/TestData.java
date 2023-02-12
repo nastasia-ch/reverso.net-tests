@@ -6,7 +6,7 @@ import org.aeonbits.owner.ConfigFactory;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class TestDataApi {
+public class TestData {
 
     ThreadLocalRandom random = ThreadLocalRandom.current();
 
@@ -18,8 +18,11 @@ public class TestDataApi {
             password = config.getPassword(),
             returnURL = "https://www.reverso.net/text-translation";
 
+    public String translationPath = "/translation";
     public int exampleNumber = random.nextInt(1,21);
-    public String languageFromTo = "english-russian",
+    public String languageFrom = "english",
+            languageTo = "russian",
+            languageFromTo = languageFrom + "-" + languageTo,
             textForTranslation = "quality assurance",
             srcContext = util.getSrcContext(languageFromTo,textForTranslation,exampleNumber),
             srcLang = "en",

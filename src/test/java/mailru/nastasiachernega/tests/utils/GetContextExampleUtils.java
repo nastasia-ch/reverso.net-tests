@@ -1,6 +1,6 @@
 package mailru.nastasiachernega.tests.utils;
 
-import mailru.nastasiachernega.tests.tests.AuthorizationApi;
+import mailru.nastasiachernega.tests.tests.components.AuthorizationApi;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;

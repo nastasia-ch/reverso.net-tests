@@ -3,8 +3,8 @@ package mailru.nastasiachernega.tests.tests.testsAPI;
 import mailru.nastasiachernega.tests.data.models.AddInFavouritesRequestModel;
 import mailru.nastasiachernega.tests.data.models.AddInFavouritesResponseModel;
 import mailru.nastasiachernega.tests.data.models.CommentRequestModel;
-import mailru.nastasiachernega.tests.data.testData.TestDataApi;
-import mailru.nastasiachernega.tests.tests.AuthorizationApi;
+import mailru.nastasiachernega.tests.data.testData.TestData;
+import mailru.nastasiachernega.tests.tests.components.AuthorizationApi;
 import mailru.nastasiachernega.tests.utils.GetContextExampleUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ import static org.hamcrest.Matchers.is;
 
 public class FavouritesTests {
 
-    TestDataApi date = new TestDataApi();
+    TestData date = new TestData();
     AuthorizationApi auth = new AuthorizationApi();
     GetContextExampleUtils utils = new GetContextExampleUtils();
 

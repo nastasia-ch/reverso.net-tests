@@ -2,7 +2,8 @@ package mailru.nastasiachernega.tests.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
-import mailru.nastasiachernega.tests.data.testData.TestDataApi;
+import mailru.nastasiachernega.tests.data.testData.TestData;
+import mailru.nastasiachernega.tests.tests.components.AuthorizationApi;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
@@ -17,7 +18,7 @@ import static org.jsoup.Jsoup.parse;
 
 public class LoginTests {
 
-    TestDataApi date = new TestDataApi();
+    TestData date = new TestData();
     AuthorizationApi authorizationApi = new AuthorizationApi();
 
     @Test

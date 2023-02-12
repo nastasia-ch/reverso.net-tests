@@ -1,7 +1,6 @@
 package mailru.nastasiachernega.tests.tests.testsAPI;
 
-import io.qameta.allure.restassured.AllureRestAssured;
-import mailru.nastasiachernega.tests.data.testData.TestDataApi;
+import mailru.nastasiachernega.tests.data.testData.TestData;
 import mailru.nastasiachernega.tests.utils.GetContextTranslationUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ContextTranslationTests {
 
     GetContextTranslationUtils util = new GetContextTranslationUtils();
-    TestDataApi data = new TestDataApi();
+    TestData data = new TestData();
 
     @DisplayName("Проверка перевода словосочетания в разделе контекстного перевода")
     @Test

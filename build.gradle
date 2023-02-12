@@ -41,10 +41,13 @@ dependencies {
             'com.fasterxml.jackson.core:jackson-annotations:2.13.2',
             'org.assertj:assertj-core:3.23.1',
             'org.jsoup:jsoup:1.7.2',
-            'org.aeonbits.owner:owner:1.0.12'
+            'org.aeonbits.owner:owner:1.0.12',
+            'com.github.javafaker:javafaker:1.0.2',
+            'org.slf4j:slf4j-simple:2.0.4'
     )
 }
 
 test {
+    systemProperties(System.getProperties())
     useJUnitPlatform()
 }
