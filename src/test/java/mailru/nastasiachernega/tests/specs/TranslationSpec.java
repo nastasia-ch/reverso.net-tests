@@ -1,4 +1,4 @@
-package mailru.nastasiachernega.tests.data.specs;
+package mailru.nastasiachernega.tests.specs;
 
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.ResponseSpecBuilder;
@@ -8,7 +8,7 @@ import io.restassured.specification.ResponseSpecification;
 import static io.restassured.RestAssured.with;
 import static io.restassured.filter.log.LogDetail.STATUS;
 
-public class ContextTranslationSpec {
+public class TranslationSpec {
 
     public static RequestSpecification contextTranslationRequestSpec = with()
             .filter(new AllureRestAssured())
@@ -21,6 +21,5 @@ public class ContextTranslationSpec {
             .log(STATUS)
             .expectStatusCode(200)
             .build();
-
 
 }

@@ -10,6 +10,9 @@ public interface LoginConfig extends Config {
     @Key("login.email")
     String getEmail();
 
+    @Key("login.username")
+    String getUsername();
+
     @Key("login.password")
     String getPassword();
 

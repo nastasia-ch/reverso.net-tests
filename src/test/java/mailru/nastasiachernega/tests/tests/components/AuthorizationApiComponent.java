@@ -11,7 +11,7 @@ import org.openqa.selenium.Cookie;
 import static com.codeborne.selenide.Selenide.open;
 import static io.restassured.RestAssured.given;
 
-public class AuthorizationApi {
+public class AuthorizationApiComponent {
 
     public String getRefreshToken(String accountURL,
                                   String email,

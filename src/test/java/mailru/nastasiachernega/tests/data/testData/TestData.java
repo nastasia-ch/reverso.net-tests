@@ -1,40 +1,65 @@
 package mailru.nastasiachernega.tests.data.testData;
 
+import com.codeborne.xlstest.XLS;
+import com.github.javafaker.Faker;
 import mailru.nastasiachernega.tests.config.LoginConfig;
-import mailru.nastasiachernega.tests.utils.GetContextExampleUtils;
 import org.aeonbits.owner.ConfigFactory;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class TestData {
 
     ThreadLocalRandom random = ThreadLocalRandom.current();
+    Faker faker = new Faker(new Locale("en"));
 
-    private final GetContextExampleUtils util = new GetContextExampleUtils();
     LoginConfig config = ConfigFactory.create(LoginConfig.class,System.getProperties());
 
-    public String accountURL = "https://account.reverso.net/Account/Login",
-            email = config.getEmail(),
-            password = config.getPassword(),
-            returnURL = "https://www.reverso.net/text-translation";
+    public final String accountURL = "https://account.reverso.net/Account/Login",
+            returnURL = "https://www.reverso.net/text-translation",
+            emailValid = config.getEmail(),
+            username = config.getUsername(),
+            passwordValid = config.getPassword(),
+            emailInvalid = faker.internet().emailAddress(),
+            passwordInvalid = faker.internet().password(1,10),
+            errorLoginInfo = "Your login information was incorrect. Please try again.";
 
-    public String translationPath = "/translation";
+    public String translationPath = "/translation",
+                  historyPath = "/history";
+
+    public String[] reversoHeaders = {"Translation","Context","Grammar Check","Synonyms","Conjugation"};
+
     public int exampleNumber = random.nextInt(1,21);
+
     public String languageFrom = "english",
             languageTo = "russian",
-            languageFromTo = languageFrom + "-" + languageTo,
-            textForTranslation = "quality assurance",
-            srcContext = util.getSrcContext(languageFromTo,textForTranslation,exampleNumber),
-            srcLang = "en",
-            srcText = util.getSrcText(languageFromTo,textForTranslation,exampleNumber),
-            trgContext = util.getTrgContext(languageFromTo,textForTranslation,exampleNumber),
-            trgLang = "ru",
-            trgText = util.getTrgText(languageFromTo,textForTranslation,exampleNumber);
+            textForTranslation = "quality assurance";
 
     public String[] translations = {"обеспечение качества", "гарантия качества",
             "контроль качества", "качество"};
 
     public String commentText = "Good example";
 
+    public String getExampleText(int exampleNumber) throws IOException {
+        ClassLoader cl = TestData.class.getClassLoader();
+        try (InputStream is = cl.getResourceAsStream("Examples.xlsx")) {
+            XLS xls = new XLS(is);
+            return xls.excel.getSheetAt(0).getRow(exampleNumber + 1).getCell(0).
+                getStringCellValue();
+        }
+    }
+
+    public String getExampleTranslatedText(int exampleNumber) throws IOException {
+        ClassLoader cl = TestData.class.getClassLoader();
+        try (InputStream is = cl.getResourceAsStream("Examples.xlsx")) {
+            XLS xls = new XLS(is);
+            return xls.excel.getSheetAt(0).getRow(exampleNumber + 1).getCell(1).
+                    getStringCellValue();
+        }
+    }
+
+    public String languageFromTo = languageFrom + "-" + languageTo;
 
 }
