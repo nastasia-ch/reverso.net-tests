@@ -1,12 +1,10 @@
-package mailru.nastasiachernega.tests.tests.components;
+package mailru.nastasiachernega.tests.data.apiSteps;
 
 import static io.restassured.RestAssured.given;
-import static mailru.nastasiachernega.tests.specs.TranslationSpec.contextTranslationRequestSpec;
-import static mailru.nastasiachernega.tests.specs.TranslationSpec.contextTranslationResponseSpec;
 
-public class HistoryApiComponent {
+public class HistoryApiSteps {
 
-    public HistoryApiComponent sendRequestToClearHistory(String refreshToken) {
+    public HistoryApiSteps apiClearHistory(String refreshToken) {
         given()
                 .log().all()
                 .cookie("reverso.net.ReversoRefreshToken", refreshToken)

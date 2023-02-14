@@ -1,15 +1,16 @@
 package mailru.nastasiachernega.tests.tests.testsUI;
 
+import com.codeborne.selenide.Configuration;
 import mailru.nastasiachernega.tests.config.ProjectProvider;
 import mailru.nastasiachernega.tests.data.pages.HistoryPage;
 import mailru.nastasiachernega.tests.data.pages.TranslationPage;
 import mailru.nastasiachernega.tests.data.pages.FavouritesPage;
 import mailru.nastasiachernega.tests.data.pages.LoginPage;
 import mailru.nastasiachernega.tests.data.testData.TestData;
-import mailru.nastasiachernega.tests.tests.components.AuthorizationApiComponent;
-import mailru.nastasiachernega.tests.tests.components.FavouritesApiComponent;
-import mailru.nastasiachernega.tests.tests.components.HistoryApiComponent;
-import mailru.nastasiachernega.tests.tests.components.TranslationApiComponent;
+import mailru.nastasiachernega.tests.data.apiSteps.AuthorizationApiSteps;
+import mailru.nastasiachernega.tests.data.apiSteps.FavouritesApiSteps;
+import mailru.nastasiachernega.tests.data.apiSteps.HistoryApiSteps;
+import mailru.nastasiachernega.tests.data.apiSteps.TranslationApiSteps;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,10 +18,10 @@ import static io.qameta.allure.Allure.step;
 
 public class testsUI extends ProjectProvider {
 
-    AuthorizationApiComponent authApi = new AuthorizationApiComponent();
-    TranslationApiComponent translationApi = new TranslationApiComponent();
-    FavouritesApiComponent favouritesApi = new FavouritesApiComponent();
-    HistoryApiComponent historyApi = new HistoryApiComponent();
+    AuthorizationApiSteps authApi = new AuthorizationApiSteps();
+    TranslationApiSteps translationApi = new TranslationApiSteps();
+    FavouritesApiSteps favouritesApi = new FavouritesApiSteps();
+    HistoryApiSteps historyApi = new HistoryApiSteps();
 
     LoginPage loginPage = new LoginPage();
     TranslationPage contextTranslationPage = new TranslationPage();
@@ -113,7 +114,7 @@ public class testsUI extends ProjectProvider {
     void checkTextTranslations() {
 
         step("Авторизуемся через Api", ()-> {
-            authApi.authApi(data.translationPath,
+            authApi.apiAuth(data.translationPath,
                             data.accountURL,
                             data.emailValid,
                             data.passwordValid,
@@ -125,9 +126,9 @@ public class testsUI extends ProjectProvider {
                     openPage(data.translationPath);
         });
 
-        step("Вводим текст для перевода: " + data.textForTranslation, ()-> {
+        step("Вводим текст для перевода: " + data.textToTranslate, ()-> {
             contextTranslationPage.
-                    setTextToTranslate(data.textForTranslation);
+                    setTextToTranslate(data.textToTranslate);
         });
 
         step("Устанавливаем язык введенного текста, " +
@@ -154,12 +155,12 @@ public class testsUI extends ProjectProvider {
 
     }
 
-    @DisplayName("Проверка отображение контекстных примеров с введенным текстом и его переводов")
+    @DisplayName("Проверка вывода контекстных примеров с введенным текстом и его переводов")
     @Test
     void checkExampleContent() {
 
         step("Авторизуемся через Api", ()-> {
-            authApi.authApi(data.translationPath,
+            authApi.apiAuth(data.translationPath,
                     data.accountURL,
                     data.emailValid,
                     data.passwordValid,
@@ -171,9 +172,9 @@ public class testsUI extends ProjectProvider {
                     openPage(data.translationPath);
         });
 
-        step("Вводим текст для перевода: " + data.textForTranslation, ()-> {
+        step("Вводим текст для перевода: " + data.textToTranslate, ()-> {
             contextTranslationPage.
-                    setTextToTranslate(data.textForTranslation);
+                    setTextToTranslate(data.textToTranslate);
         });
 
         step("Устанавливаем язык введенного текста, " +
@@ -194,15 +195,15 @@ public class testsUI extends ProjectProvider {
         });
 
         step("Проверямем содержание в " + data.exampleNumber +
-                "-м примере введенного текста '" + data.textForTranslation + "'", ()-> {
+                "-м примере введенного текста '" + data.textToTranslate + "'", ()-> {
             contextTranslationPage.
-                    checkExampleConsistInputText(data.exampleNumber, data.textForTranslation);
+                    checkExampleConsistInputText(data.exampleNumber, data.textToTranslate);
         });
 
         step("Проверямем содержание в " + data.exampleNumber +
-                "-м примере одного из вариантов перевода '" + data.textForTranslation + "'", ()-> {
+                "-м примере одного из вариантов перевода '" + data.textToTranslate + "'", ()-> {
             contextTranslationPage.
-                    checkExampleConsistInputText(data.exampleNumber, data.textForTranslation);
+                    checkExampleConsistInputText(data.exampleNumber, data.textToTranslate);
         });
 
     }
@@ -212,7 +213,7 @@ public class testsUI extends ProjectProvider {
     void addInFavourites() throws Exception {
 
         step("Авторизуемся через Api", ()-> {
-            authApi.authApi(data.translationPath,
+            authApi.apiAuth(data.translationPath,
                     data.accountURL,
                     data.emailValid,
                     data.passwordValid,
@@ -224,9 +225,9 @@ public class testsUI extends ProjectProvider {
                     openPage(data.translationPath);
         });
 
-        step("Вводим текст для перевода: " + data.textForTranslation, ()-> {
+        step("Вводим текст для перевода: " + data.textToTranslate, ()-> {
             contextTranslationPage.
-                    setTextToTranslate(data.textForTranslation);
+                    setTextToTranslate(data.textToTranslate);
         });
 
         step("Устанавливаем язык введенного текста, " +
@@ -260,32 +261,87 @@ public class testsUI extends ProjectProvider {
         step("Проверяем, добавлен ли " + data.exampleNumber +
                 "-й пример в раздел 'Избранное'", ()-> {
             favouritesPage.checkAddingExampleInFavourites
-                            (data.getExampleText(data.exampleNumber),
-                            data.getExampleTranslatedText(data.exampleNumber));
+                            (data.getText(),
+                            data.getTranslatedText());
         });
 
         step("Очищаем раздел 'Избранное' после теста через Api", ()-> {
             //favouritesPage.deleteAllFromFavourites();
-            favouritesApi.sendRequestToClearFavourites(authApi.
+            favouritesApi.apiClearFavourites(authApi.
                     getRefreshToken(data.accountURL, data.emailValid,
                     data.passwordValid, data.returnURL));
         });
 
+        System.out.println();
+
     };
+
+    @Test
+    void addComment() throws Exception {
+
+        step("Отправляем запрос на перевод через Api", ()-> {
+            favouritesApi.
+                    apiAddInFavourites
+                            (authApi.getRefreshToken(data.accountURL,
+                                                     data.emailValid,
+                                                     data.passwordValid,
+                                                     data.returnURL),
+                            data.getHTMLText(),
+                            data.langFromSymbol,
+                            data.textToTranslate,
+                            data.getHTMLTranslatedText(),
+                            data.langToSymbol,
+                            data.getTranslation());
+        });
+
+        step("Авторизуемся через Api", ()-> {
+            authApi.apiAuth(data.translationPath,
+                    data.accountURL,
+                    data.emailValid,
+                    data.passwordValid,
+                    data.returnURL);
+        });
+
+        step("Открываем страницу", ()-> {
+            favouritesPage.openPage(data.favouritesPath);
+            Configuration.holdBrowserOpen=true;
+        });
+
+        step("Проверяем, добавлен ли " + data.exampleNumber +
+                        "-й пример в раздел 'Избранное'", ()-> {
+            favouritesPage.
+                    checkAddingExampleInFavourites(data.getText(),
+                            data.getTranslatedText());
+        });
+
+        step("Удаляем пример из раздела 'Избранное'", ()-> {
+            favouritesPage.addCommentForExample(data.getText(),
+                    data.commentText);
+        });
+
+        step("Удаляем пример из раздела 'Избранное'", ()-> {
+            favouritesPage.checkAddingComment(data.getText(),
+                    data.commentText);
+        });
+
+        System.out.println();
+
+    }
+
 
     @DisplayName("Проверка добавления примера в раздел 'История'")
     @Test
     void addInHistory() {
 
         step("Отправляем запрос на перевод через Api", ()-> {
-            translationApi.sendRequestOnTranslation(authApi.
+            translationApi.apiTranslation(authApi.
                     getRefreshToken(data.accountURL, data.emailValid,
                             data.passwordValid, data.returnURL),
-                    data.languageFromTo, data.textForTranslation);
+                    data.languageFromTo, data.textToTranslate);
         });
 
         step("Авторизуемся через Api", ()-> {
-            authApi.authApi(data.translationPath,
+            authApi.apiAuth(data.translationPath,
                     data.accountURL,
                     data.emailValid,
                     data.passwordValid,
@@ -297,11 +353,11 @@ public class testsUI extends ProjectProvider {
         });
 
         step("Проверяем наличие текста перевода в разделе 'История'", ()-> {
-            historyPage.checkAddingExampleInHistory(data.textForTranslation);
+            historyPage.checkAddingExampleInHistory(data.textToTranslate);
         });
 
         step("Очищаем раздел 'История' после теста через Api", ()-> {
-            historyApi.sendRequestToClearHistory
+            historyApi.apiClearHistory
                     (authApi.getRefreshToken(data.accountURL, data.emailValid,
                             data.passwordValid, data.returnURL));
         });

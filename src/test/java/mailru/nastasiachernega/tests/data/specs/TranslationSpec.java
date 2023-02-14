@@ -1,4 +1,4 @@
-package mailru.nastasiachernega.tests.specs;
+package mailru.nastasiachernega.tests.data.specs;
 
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.ResponseSpecBuilder;

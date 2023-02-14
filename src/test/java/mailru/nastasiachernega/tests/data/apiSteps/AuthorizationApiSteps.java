@@ -1,4 +1,4 @@
-package mailru.nastasiachernega.tests.tests.components;
+package mailru.nastasiachernega.tests.data.apiSteps;
 
 import com.codeborne.selenide.WebDriverRunner;
 import io.restassured.RestAssured;
@@ -11,7 +11,7 @@ import org.openqa.selenium.Cookie;
 import static com.codeborne.selenide.Selenide.open;
 import static io.restassured.RestAssured.given;
 
-public class AuthorizationApiComponent {
+public class AuthorizationApiSteps {
 
     public String getRefreshToken(String accountURL,
                                   String email,
@@ -60,11 +60,11 @@ public class AuthorizationApiComponent {
 
     };
 
-    public void authApi(String path,
-                          String accountURL,
-                          String email,
-                          String password,
-                          String returnURL) {
+    public void apiAuth(String path,
+                        String accountURL,
+                        String email,
+                        String password,
+                        String returnURL) {
 
         open(path);
         Cookie cookie = new Cookie("reverso.net.ReversoRefreshToken",
