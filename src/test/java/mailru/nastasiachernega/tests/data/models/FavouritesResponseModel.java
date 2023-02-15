@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AddInFavouritesResponseModel {
+public class FavouritesResponseModel {
 
     int id;
     int userID;

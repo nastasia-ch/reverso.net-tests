@@ -1,6 +1,5 @@
 package mailru.nastasiachernega.tests.tests.testsUI;
 
-import com.codeborne.selenide.Configuration;
 import mailru.nastasiachernega.tests.config.ProjectProvider;
 import mailru.nastasiachernega.tests.data.pages.HistoryPage;
 import mailru.nastasiachernega.tests.data.pages.TranslationPage;
@@ -266,67 +265,16 @@ public class testsUI extends ProjectProvider {
         });
 
         step("Очищаем раздел 'Избранное' после теста через Api", ()-> {
-            //favouritesPage.deleteAllFromFavourites();
-            favouritesApi.apiClearFavourites(authApi.
-                    getRefreshToken(data.accountURL, data.emailValid,
-                    data.passwordValid, data.returnURL));
-        });
 
-        System.out.println();
+            favouritesApi.apiDeleteFromFavourites(authApi.
+                            getRefreshToken(data.accountURL,
+                            data.emailValid,
+                            data.passwordValid,
+                            data.returnURL),
+                            favouritesPage.getExampleId(data.getText()));
+        });
 
     };
-
-    @Test
-    void addComment() throws Exception {
-
-        step("Отправляем запрос на перевод через Api", ()-> {
-            favouritesApi.
-                    apiAddInFavourites
-                            (authApi.getRefreshToken(data.accountURL,
-                                                     data.emailValid,
-                                                     data.passwordValid,
-                                                     data.returnURL),
-                            data.getHTMLText(),
-                            data.langFromSymbol,
-                            data.textToTranslate,
-                            data.getHTMLTranslatedText(),
-                            data.langToSymbol,
-                            data.getTranslation());
-        });
-
-        step("Авторизуемся через Api", ()-> {
-            authApi.apiAuth(data.translationPath,
-                    data.accountURL,
-                    data.emailValid,
-                    data.passwordValid,
-                    data.returnURL);
-        });
-
-        step("Открываем страницу", ()-> {
-            favouritesPage.openPage(data.favouritesPath);
-            Configuration.holdBrowserOpen=true;
-        });
-
-        step("Проверяем, добавлен ли " + data.exampleNumber +
-                        "-й пример в раздел 'Избранное'", ()-> {
-            favouritesPage.
-                    checkAddingExampleInFavourites(data.getText(),
-                            data.getTranslatedText());
-        });
-
-        step("Удаляем пример из раздела 'Избранное'", ()-> {
-            favouritesPage.addCommentForExample(data.getText(),
-                    data.commentText);
-        });
-
-        step("Удаляем пример из раздела 'Избранное'", ()-> {
-            favouritesPage.checkAddingComment(data.getText(),
-                    data.commentText);
-        });
-
-        System.out.println();
-
-    }
 
 
     @DisplayName("Проверка добавления примера в раздел 'История'")
@@ -357,13 +305,14 @@ public class testsUI extends ProjectProvider {
         });
 
         step("Очищаем раздел 'История' после теста через Api", ()-> {
-            historyApi.apiClearHistory
-                    (authApi.getRefreshToken(data.accountURL, data.emailValid,
-                            data.passwordValid, data.returnURL));
+                    historyApi.apiDeleteFromHistory(authApi.
+                                    getRefreshToken(data.accountURL,
+                                    data.emailValid,
+                                    data.passwordValid,
+                                    data.returnURL),
+                                    historyPage.getHistoryId(data.textToTranslate));
         });
 
     };
-
-
 
 }

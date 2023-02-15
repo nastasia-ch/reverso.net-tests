@@ -1,19 +1,23 @@
 package mailru.nastasiachernega.tests.data.apiSteps;
 
+import io.restassured.response.ValidatableResponse;
+
 import static io.restassured.RestAssured.given;
+import static mailru.nastasiachernega.tests.data.specs.FavouritesAndHistorySpec.favouritesAndHistoryResponseSpec;
+import static mailru.nastasiachernega.tests.data.specs.FavouritesAndHistorySpec.favouritesAndHistoryRequestSpec;
 
 public class HistoryApiSteps {
 
-    public HistoryApiSteps apiClearHistory(String refreshToken) {
-        given()
-                .log().all()
+    public ValidatableResponse apiDeleteFromHistory (String refreshToken,
+                                                     String historyID) {
+        return given()
+                .spec(favouritesAndHistoryRequestSpec)
                 .cookie("reverso.net.ReversoRefreshToken", refreshToken)
-                .header("user-agent","")
+                .queryParam("ids", historyID)
                 .when()
-                .delete("https://context.reverso.net/bst-web-user/user/history/clear")
+                .delete("/history")
                 .then()
-                .log().status();
-        return this;
+                .spec(favouritesAndHistoryResponseSpec);
     }
 
 }

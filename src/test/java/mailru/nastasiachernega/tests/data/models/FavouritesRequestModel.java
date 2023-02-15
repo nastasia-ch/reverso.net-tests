@@ -3,7 +3,7 @@ package mailru.nastasiachernega.tests.data.models;
 import lombok.Data;
 
 @Data
-public class AddInFavouritesRequestModel {
+public class FavouritesRequestModel {
 
     private String srcContext;
     private String srcLang;

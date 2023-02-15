@@ -9,17 +9,17 @@ import static io.restassured.RestAssured.with;
 import static io.restassured.filter.log.LogDetail.BODY;
 import static io.restassured.filter.log.LogDetail.STATUS;
 
-public class FavouritesSpec {
+public class FavouritesAndHistorySpec {
 
-    public static RequestSpecification favouritesRequestSpec = with()
+    public static RequestSpecification favouritesAndHistoryRequestSpec = with()
             .filter(new AllureRestAssured())
             .baseUri("https://context.reverso.net")
-            .basePath("/bst-web-user/user/favourites")
+            .basePath("/bst-web-user/user")
             .contentType("application/json; charset=utf-8")
             .header("user-agent","")
             .log().all();
 
-    public static ResponseSpecification favouritesCheckResponseSpec = new ResponseSpecBuilder()
+    public static ResponseSpecification favouritesAndHistoryResponseSpec = new ResponseSpecBuilder()
             .log(STATUS)
             .log(BODY)
             .expectStatusCode(200)

@@ -27,10 +27,9 @@ public class HistoryPage {
         return this;
     };
 
-    public HistoryPage deleteHistory() {
-        clearHistoryButton.click();
-        acceptClearButton.click();
-        return this;
+    public String getHistoryId(String text) {
+        return $$(".entry .src").findBy(text(text)).parent().parent().parent().
+                parent().getAttribute("data-id");
     };
 
 

@@ -1,26 +1,26 @@
 package mailru.nastasiachernega.tests.data.apiSteps;
 
-import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
-import mailru.nastasiachernega.tests.data.models.AddInFavouritesRequestModel;
-import mailru.nastasiachernega.tests.data.models.AddInFavouritesResponseModel;
+import mailru.nastasiachernega.tests.data.models.FavouritesRequestModel;
+import mailru.nastasiachernega.tests.data.models.CommentRequestModel;
 
 import static io.restassured.RestAssured.given;
-import static mailru.nastasiachernega.tests.data.specs.FavouritesSpec.favouritesCheckResponseSpec;
-import static mailru.nastasiachernega.tests.data.specs.FavouritesSpec.favouritesRequestSpec;
+import static mailru.nastasiachernega.tests.data.specs.FavouritesAndHistorySpec.favouritesAndHistoryResponseSpec;
+import static mailru.nastasiachernega.tests.data.specs.FavouritesAndHistorySpec.favouritesAndHistoryRequestSpec;
 
 public class FavouritesApiSteps {
 
 
-    public Response apiAddInFavourites(String refreshToken,
+    public ValidatableResponse apiAddInFavourites(String refreshToken,
                                        String exampleText,
                                        String langFromSymbol,
                                        String textForTranslation,
                                        String exampleTranslation,
                                        String langToSymbol,
                                        String translatedText) {
-        AddInFavouritesRequestModel requestBody = new AddInFavouritesRequestModel();
+
+        FavouritesRequestModel requestBody = new FavouritesRequestModel();
         requestBody.setSrcContext(exampleText);
         requestBody.setSrcLang(langFromSymbol);
         requestBody.setSrcText(textForTranslation);
@@ -29,15 +29,59 @@ public class FavouritesApiSteps {
         requestBody.setTrgText(translatedText);
 
         return given()
-                .spec(favouritesRequestSpec)
+                .spec(favouritesAndHistoryRequestSpec)
                 .cookie("reverso.net.ReversoRefreshToken", refreshToken)
                 .body(requestBody)
                 .when()
-                .post("")
+                .post("/favourites")
                 .then()
-                .statusCode(200)
-                .spec(favouritesCheckResponseSpec)
-                .extract().response();
+                .spec(favouritesAndHistoryResponseSpec);
+    }
+
+
+    public ValidatableResponse apiWorkWithComment(String refreshToken,
+                                                  int exampleId,
+                                                  String commentText) {
+
+        CommentRequestModel commentRequestBody = new CommentRequestModel();
+        commentRequestBody.setComment(commentText);
+
+        return given()
+                .spec(favouritesAndHistoryRequestSpec)
+                .cookie("reverso.net.ReversoRefreshToken", refreshToken)
+                .pathParam("exampleId", exampleId)
+                .body(commentRequestBody)
+                .when()
+                .put("/favourites/{exampleId}")
+                .then()
+                .spec(favouritesAndHistoryResponseSpec);
+    }
+
+    public ValidatableResponse apiGetListOfFavourites(String refreshToken) {
+
+        return given()
+                .spec(favouritesAndHistoryRequestSpec)
+                .cookie("reverso.net.ReversoRefreshToken", refreshToken)
+                .queryParam("start", 0)
+                .queryParam("length",25)
+                .queryParam("order", 10)
+                .queryParam("includeSyn", "yes")
+                .when()
+                .get("/favourites")
+                .then()
+                .spec(favouritesAndHistoryResponseSpec);
+    }
+
+    public ValidatableResponse apiDeleteFromFavourites (String refreshToken,
+                                                        int exampleId) {
+        return given()
+                .spec(favouritesAndHistoryRequestSpec)
+                .cookie("reverso.net.ReversoRefreshToken", refreshToken)
+                .queryParam("ids",exampleId)
+                .when()
+                .delete("/favourites")
+                .then()
+                .spec(favouritesAndHistoryResponseSpec);
     }
 
     public Response apiClearFavourites(String refreshToken) {
