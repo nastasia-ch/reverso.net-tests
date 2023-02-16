@@ -1,6 +1,6 @@
-package mailru.nastasiachernega.tests.tests.testsUI;
+package mailru.nastasiachernega.tests.tests;
 
-import mailru.nastasiachernega.tests.config.ProjectProvider;
+import mailru.nastasiachernega.tests.config.WebDriverProvider;
 import mailru.nastasiachernega.tests.data.pages.HistoryPage;
 import mailru.nastasiachernega.tests.data.pages.TranslationPage;
 import mailru.nastasiachernega.tests.data.pages.FavouritesPage;
@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
 
-public class testsUI extends ProjectProvider {
+public class testsUI extends WebDriverProvider {
 
     AuthorizationApiSteps authApi = new AuthorizationApiSteps();
     TranslationApiSteps translationApi = new TranslationApiSteps();
@@ -209,7 +209,7 @@ public class testsUI extends ProjectProvider {
 
     @DisplayName("Проверка добавления примера в 'Избранное'")
     @Test
-    void addInFavourites() throws Exception {
+    void addInFavourites() {
 
         step("Авторизуемся через Api", ()-> {
             authApi.apiAuth(data.translationPath,
@@ -260,8 +260,8 @@ public class testsUI extends ProjectProvider {
         step("Проверяем, добавлен ли " + data.exampleNumber +
                 "-й пример в раздел 'Избранное'", ()-> {
             favouritesPage.checkAddingExampleInFavourites
-                            (data.getText(),
-                            data.getTranslatedText());
+                            (data.example,
+                            data.translatedExample);
         });
 
         step("Очищаем раздел 'Избранное' после теста через Api", ()-> {
@@ -271,7 +271,7 @@ public class testsUI extends ProjectProvider {
                             data.emailValid,
                             data.passwordValid,
                             data.returnURL),
-                            favouritesPage.getExampleId(data.getText()));
+                            favouritesPage.getExampleId(data.example));
         });
 
     };

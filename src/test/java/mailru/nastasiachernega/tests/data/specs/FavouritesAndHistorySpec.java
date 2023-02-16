@@ -8,11 +8,12 @@ import io.restassured.specification.ResponseSpecification;
 import static io.restassured.RestAssured.with;
 import static io.restassured.filter.log.LogDetail.BODY;
 import static io.restassured.filter.log.LogDetail.STATUS;
+import static mailru.nastasiachernega.tests.helpers.CustomApiListener.withCustomTemplates;
 
 public class FavouritesAndHistorySpec {
 
     public static RequestSpecification favouritesAndHistoryRequestSpec = with()
-            .filter(new AllureRestAssured())
+            .filter(withCustomTemplates())
             .baseUri("https://context.reverso.net")
             .basePath("/bst-web-user/user")
             .contentType("application/json; charset=utf-8")

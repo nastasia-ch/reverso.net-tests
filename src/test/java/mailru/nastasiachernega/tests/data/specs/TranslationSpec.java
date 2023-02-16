@@ -7,11 +7,12 @@ import io.restassured.specification.ResponseSpecification;
 
 import static io.restassured.RestAssured.with;
 import static io.restassured.filter.log.LogDetail.STATUS;
+import static mailru.nastasiachernega.tests.helpers.CustomApiListener.withCustomTemplates;
 
 public class TranslationSpec {
 
     public static RequestSpecification contextTranslationRequestSpec = with()
-            .filter(new AllureRestAssured())
+            .filter(withCustomTemplates())
             .baseUri("https://context.reverso.net")
             .basePath("/translation")
             .header("user-agent","")

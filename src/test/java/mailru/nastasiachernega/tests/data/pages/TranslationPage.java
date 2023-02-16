@@ -4,6 +4,8 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
+import java.util.List;
+
 import static com.codeborne.selenide.CollectionCondition.exactTextsCaseSensitiveInAnyOrder;
 import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.text;
@@ -59,7 +61,7 @@ public class TranslationPage {
     };
 
 
-    public TranslationPage checkTranslations(String[] translations) {
+    public TranslationPage checkTranslations(List<String> translations) {
         listOfTranslations.contains(texts(translations));
         return this;
     };

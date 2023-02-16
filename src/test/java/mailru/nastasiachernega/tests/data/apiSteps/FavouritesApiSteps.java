@@ -84,15 +84,4 @@ public class FavouritesApiSteps {
                 .spec(favouritesAndHistoryResponseSpec);
     }
 
-    public Response apiClearFavourites(String refreshToken) {
-        return given()
-                .log().all()
-                .cookie("reverso.net.ReversoRefreshToken", refreshToken)
-                .header("user-agent","")
-                .when()
-                .delete("https://context.reverso.net/bst-web-user/user/favourites/clear")
-                .then()
-                .extract().response();
-    }
-
 }

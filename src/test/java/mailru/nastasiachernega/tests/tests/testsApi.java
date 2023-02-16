@@ -1,4 +1,4 @@
-package mailru.nastasiachernega.tests.tests.testsUI;
+package mailru.nastasiachernega.tests.tests;
 
 import io.restassured.response.Response;
 import mailru.nastasiachernega.tests.data.apiSteps.AuthorizationApiSteps;
@@ -26,7 +26,7 @@ public class testsApi {
 
     @DisplayName("Проверка правильности получения контекстного примера и его перевода")
     @Test
-    void apiCheckExampleContent() throws Exception{
+    void apiCheckExampleContent() {
 
         step("Выполняем api запрос на перевод текста '" + data.textToTranslate + "'");
         Response response = translationApi.
@@ -50,16 +50,16 @@ public class testsApi {
                         "div.find{it.@class == 'trg ltr'}.span.find{it.@class == 'text'}.text()").trim();
 
         step("Проверяем корректность текста примера " + data.exampleNumber);
-        assertThat(exampleText).isEqualTo(data.getText());
+        assertThat(exampleText).isEqualTo(data.example);
 
         step("Проверяем корректность переведенного текста примера " + data.exampleNumber);
-        assertThat(exampleTranslatedText).isEqualTo(data.getTranslatedText());
+        assertThat(exampleTranslatedText).isEqualTo(data.translatedExample);
 
     }
 
     @DisplayName("Проверка добавления примера в 'Избранное'")
     @Test
-    void apiAddInFavourites() throws Exception {
+    void apiAddInFavourites() {
 
         step("Выполняем api запрос на добавление примера в 'Избраннное'");
         FavouritesResponseModel response = favouritesApi.
@@ -68,12 +68,12 @@ public class testsApi {
                                             data.emailValid,
                                             data.passwordValid,
                                             data.returnURL),
-                                            data.getHTMLText(),
+                                            data.exampleWithTags,
                                             data.langFromSymbol,
                                             data.textToTranslate,
-                                            data.getHTMLTranslatedText(),
+                                            data.translatedExampleWithTags,
                                             data.langToSymbol,
-                                            data.getTranslation())
+                                            data.contextTranslation)
                 .extract().response().as(FavouritesResponseModel.class);
 
         step("Проверяем добавление примере в 'Избраннное' пользователя с нужным id");
@@ -81,9 +81,9 @@ public class testsApi {
 
         step("Проверяем корректность добавления примера");
         assertThat(response.getSrcText()).isEqualTo(data.textToTranslate);
-        assertThat(response.getTrgText()).isEqualTo(data.getTranslation());
-        assertThat(response.getSrcContext()).isEqualTo(data.getHTMLText());
-        assertThat(response.getTrgContext()).isEqualTo(data.getHTMLTranslatedText());
+        assertThat(response.getTrgText()).isEqualTo(data.contextTranslation);
+        assertThat(response.getSrcContext()).isEqualTo(data.exampleWithTags);
+        assertThat(response.getTrgContext()).isEqualTo(data.translatedExampleWithTags);
 
         step("Очищаем данные после теста: выполняем api запрос на удаление примера");
         favouritesApi.apiDeleteFromFavourites(authApi.
@@ -97,7 +97,7 @@ public class testsApi {
 
     @DisplayName("Добавление комментария к примеру, сохраненному в 'Избранное'")
     @Test
-    void apiAddCommentInFavourites() throws Exception {
+    void apiAddCommentInFavourites() {
 
         step("Выполняем api запрос на добавление примера в 'Избраннное' и получаем id примера");
         int exampleId = favouritesApi.apiAddInFavourites(authApi.
@@ -105,12 +105,12 @@ public class testsApi {
                                         data.emailValid,
                                         data.passwordValid,
                                         data.returnURL),
-                                        data.getHTMLText(),
+                                        data.exampleWithTags,
                                         data.langFromSymbol,
                                         data.textToTranslate,
-                                        data.getHTMLTranslatedText(),
+                                        data.translatedExampleWithTags,
                                         data.langToSymbol,
-                                        data.getTranslation())
+                                        data.contextTranslation)
                                         .extract().path("id");
 
         step("Добавляем в пример с id " + exampleId + " комментарий: " + data.commentText);
@@ -153,7 +153,7 @@ public class testsApi {
 
     @DisplayName("Удаление примера из 'Избранное'")
     @Test
-    void apiDeleteFromFavourites() throws Exception {
+    void apiDeleteFromFavourites() {
 
         step("Выполняем api запрос на добавление примера в 'Избраннное' и получаем id примера");
         int exampleId = favouritesApi.apiAddInFavourites(authApi.
@@ -161,12 +161,12 @@ public class testsApi {
                           data.emailValid,
                           data.passwordValid,
                           data.returnURL),
-                          data.getHTMLText(),
+                          data.exampleWithTags,
                           data.langFromSymbol,
                           data.textToTranslate,
-                          data.getHTMLTranslatedText(),
+                          data.translatedExampleWithTags,
                           data.langToSymbol,
-                          data.getTranslation())
+                          data.contextTranslation)
                           .extract().path("id");
 
         step("Получаем количество сохраненных примеров в 'Избраннное'");
