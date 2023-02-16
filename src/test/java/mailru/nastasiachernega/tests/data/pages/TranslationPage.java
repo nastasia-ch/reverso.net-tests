@@ -11,6 +11,7 @@ import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byTextCaseInsensitive;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.SetValueOptions.withText;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TranslationPage {
@@ -74,42 +75,43 @@ public class TranslationPage {
     };
 
     public TranslationPage checkExampleConsistTranslatedText(int exampleNumber,
-                                                             String[] translations) {
+                                                             List<String> translations) {
+
         assertThat(listOfExamples.get(exampleNumber).$$(".text").last().getText()).
-                containsAnyOf(translations);
+                containsAnyOf(translations.toArray(new CharSequence[translations.size()]));
         return this;
     };
 
-    public TranslationPage addInFavourites(int exampleNumber) {
-        listOfExamples.get(exampleNumber).hover();
-        listOfExamples.get(exampleNumber).
-                $("button[title='Mark this example as favourite']").click();
-        return this;
-    };
+        public TranslationPage addInFavourites ( int exampleNumber){
+            listOfExamples.get(exampleNumber).hover();
+            listOfExamples.get(exampleNumber).
+                    $("button[title='Mark this example as favourite']").click();
+            return this;
+        };
 
-    public TranslationPage goToSectionFavourites() {
-        userMenuButton.click();
-        favouritesButton.click();
-        return this;
-    };
+        public TranslationPage goToSectionFavourites () {
+            userMenuButton.click();
+            favouritesButton.click();
+            return this;
+        };
 
-    public TranslationPage goToLoginSection() {
-        userMenuButton.click();
-        loginButton.click();
-        return this;
-    };
+        public TranslationPage goToLoginSection () {
+            userMenuButton.click();
+            loginButton.click();
+            return this;
+        };
 
-    public TranslationPage checkLogin(String username) {
-        userMenuButton.click();
-        usernameInfo.shouldHave(text(username));
-        return this;
-    };
+        public TranslationPage checkLogin (String username){
+            userMenuButton.click();
+            usernameInfo.shouldHave(text(username));
+            return this;
+        };
 
 
-    public TranslationPage checkReversoHeaders(String[] reversoHeaders) {
-        listOfReversoHeaders.
-                shouldHave(exactTextsCaseSensitiveInAnyOrder(reversoHeaders));
-        return this;
-    };
+        public TranslationPage checkReversoHeaders (String[]reversoHeaders){
+            listOfReversoHeaders.
+                    shouldHave(exactTextsCaseSensitiveInAnyOrder(reversoHeaders));
+            return this;
+        };
 
 }

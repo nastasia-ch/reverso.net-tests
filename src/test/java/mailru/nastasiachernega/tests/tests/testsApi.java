@@ -1,5 +1,6 @@
 package mailru.nastasiachernega.tests.tests;
 
+import io.qameta.allure.Epic;
 import io.restassured.response.Response;
 import mailru.nastasiachernega.tests.data.apiSteps.AuthorizationApiSteps;
 import mailru.nastasiachernega.tests.data.apiSteps.FavouritesApiSteps;
@@ -15,6 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static io.qameta.allure.Allure.step;
 import static org.hamcrest.Matchers.is;
 
+@Epic("API tests")
 public class testsApi {
 
     AuthorizationApiSteps authApi = new AuthorizationApiSteps();

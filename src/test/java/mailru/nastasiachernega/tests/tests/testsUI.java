@@ -1,5 +1,6 @@
 package mailru.nastasiachernega.tests.tests;
 
+import io.qameta.allure.Epic;
 import mailru.nastasiachernega.tests.config.WebDriverProvider;
 import mailru.nastasiachernega.tests.data.pages.HistoryPage;
 import mailru.nastasiachernega.tests.data.pages.TranslationPage;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
 
+@Epic("UI tests")
 public class testsUI extends WebDriverProvider {
 
     AuthorizationApiSteps authApi = new AuthorizationApiSteps();
@@ -154,7 +156,8 @@ public class testsUI extends WebDriverProvider {
 
     }
 
-    @DisplayName("Проверка вывода контекстных примеров с введенным текстом и его переводов")
+    @DisplayName("Проверка корректного отображения примеров: " +
+            "содержание в них введенного текста и его перевода")
     @Test
     void checkExampleContent() {
 
@@ -176,14 +179,12 @@ public class testsUI extends WebDriverProvider {
                     setTextToTranslate(data.textToTranslate);
         });
 
-        step("Устанавливаем язык введенного текста, " +
-                "с которого будем переводить: " + data.languageFrom, ()-> {
+        step("Устанавливаем язык текста, " + data.languageFrom, ()-> {
             contextTranslationPage.
                     chooseLanguageFromTranslate(data.languageFrom);
         });
 
-        step("Устанавливаем язык, на который " +
-                "будем переводить: " + data.languageTo, ()-> {
+        step("Устанавливаем язык перевода: " + data.languageTo, ()-> {
             contextTranslationPage.
                     chooseLanguageToTranslate(data.languageTo);
         });
@@ -193,16 +194,16 @@ public class testsUI extends WebDriverProvider {
                     clickOnSearchButton();
         });
 
-        step("Проверямем содержание в " + data.exampleNumber +
-                "-м примере введенного текста '" + data.textToTranslate + "'", ()-> {
+        step("Проверямем в " + data.exampleNumber + "-м примере содержание " +
+                "текста '" + data.textToTranslate + "'", ()-> {
             contextTranslationPage.
                     checkExampleConsistInputText(data.exampleNumber, data.textToTranslate);
         });
 
-        step("Проверямем содержание в " + data.exampleNumber +
-                "-м примере одного из вариантов перевода '" + data.textToTranslate + "'", ()-> {
+        step("Проверямем в " + data.exampleNumber + "-м примере содержание " +
+                "одного из вариантов перевода '" + data.translations + "'", ()-> {
             contextTranslationPage.
-                    checkExampleConsistInputText(data.exampleNumber, data.textToTranslate);
+                    checkExampleConsistTranslatedText(data.exampleNumber, data.translations);
         });
 
     }
