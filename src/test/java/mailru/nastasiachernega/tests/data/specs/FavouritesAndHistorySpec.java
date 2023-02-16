@@ -13,7 +13,6 @@ import static mailru.nastasiachernega.tests.helpers.CustomApiListener.withCustom
 public class FavouritesAndHistorySpec {
 
     public static RequestSpecification favouritesAndHistoryRequestSpec = with()
-            .filter(withCustomTemplates())
             .baseUri("https://context.reverso.net")
             .basePath("/bst-web-user/user")
             .contentType("application/json; charset=utf-8")

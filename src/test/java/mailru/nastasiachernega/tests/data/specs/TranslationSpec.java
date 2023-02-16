@@ -12,7 +12,6 @@ import static mailru.nastasiachernega.tests.helpers.CustomApiListener.withCustom
 public class TranslationSpec {
 
     public static RequestSpecification contextTranslationRequestSpec = with()
-            .filter(withCustomTemplates())
             .baseUri("https://context.reverso.net")
             .basePath("/translation")
             .header("user-agent","")

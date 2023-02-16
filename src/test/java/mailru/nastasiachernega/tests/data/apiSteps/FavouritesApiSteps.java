@@ -8,6 +8,7 @@ import mailru.nastasiachernega.tests.data.models.CommentRequestModel;
 import static io.restassured.RestAssured.given;
 import static mailru.nastasiachernega.tests.data.specs.FavouritesAndHistorySpec.favouritesAndHistoryResponseSpec;
 import static mailru.nastasiachernega.tests.data.specs.FavouritesAndHistorySpec.favouritesAndHistoryRequestSpec;
+import static mailru.nastasiachernega.tests.helpers.CustomApiListener.withCustomTemplates;
 
 public class FavouritesApiSteps {
 
@@ -29,6 +30,7 @@ public class FavouritesApiSteps {
         requestBody.setTrgText(translatedText);
 
         return given()
+                .filter(withCustomTemplates())
                 .spec(favouritesAndHistoryRequestSpec)
                 .cookie("reverso.net.ReversoRefreshToken", refreshToken)
                 .body(requestBody)
@@ -47,6 +49,7 @@ public class FavouritesApiSteps {
         commentRequestBody.setComment(commentText);
 
         return given()
+                .filter(withCustomTemplates())
                 .spec(favouritesAndHistoryRequestSpec)
                 .cookie("reverso.net.ReversoRefreshToken", refreshToken)
                 .pathParam("exampleId", exampleId)
@@ -60,6 +63,7 @@ public class FavouritesApiSteps {
     public ValidatableResponse apiGetListOfFavourites(String refreshToken) {
 
         return given()
+                .filter(withCustomTemplates())
                 .spec(favouritesAndHistoryRequestSpec)
                 .cookie("reverso.net.ReversoRefreshToken", refreshToken)
                 .queryParam("start", 0)
@@ -75,6 +79,7 @@ public class FavouritesApiSteps {
     public ValidatableResponse apiDeleteFromFavourites (String refreshToken,
                                                         int exampleId) {
         return given()
+                .filter(withCustomTemplates())
                 .spec(favouritesAndHistoryRequestSpec)
                 .cookie("reverso.net.ReversoRefreshToken", refreshToken)
                 .queryParam("ids",exampleId)

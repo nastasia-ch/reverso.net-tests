@@ -5,6 +5,8 @@ import io.restassured.response.ResponseBody;
 import io.restassured.response.ResponseBodyExtractionOptions;
 import io.restassured.response.ValidatableResponse;
 import org.jsoup.nodes.Document;
+
+import static mailru.nastasiachernega.tests.helpers.CustomApiListener.withCustomTemplates;
 import static org.jsoup.Jsoup.parse;
 
 import static io.restassured.RestAssured.given;
@@ -17,6 +19,7 @@ public class TranslationApiSteps {
                                               String languageFromTo,
                                               String textForTranslation) {
         return given()
+                .filter(withCustomTemplates())
                 .spec(contextTranslationRequestSpec)
                 .cookie("reverso.net.ReversoRefreshToken", refreshToken)
                 .pathParam("languagesFromTo", languageFromTo)
