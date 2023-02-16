@@ -29,23 +29,23 @@ public class WebDriverProviderUI {
             Configuration.remote = remoteUrl;
         }
 
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("enableVNC", true);
-        capabilities.setCapability("enableVideo", true);
-        Configuration.browserCapabilities = capabilities;
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability("enableVNC", true);
+//        capabilities.setCapability("enableVideo", true);
+//        Configuration.browserCapabilities = capabilities;
 
         SelenideLogger.addListener("allure", new AllureSelenide());
 
     }
 
 
-    @AfterEach
-    void addAttachments () {
-
-        Attach.screenshotAs("Last screenshot");
-        Attach.pageSource();
-        WebDriverConfig config = ConfigFactory.create(WebDriverConfig.class,System.getProperties());
-        Attach.addVideo();
-    }
+//    @AfterEach
+//    void addAttachments () {
+//
+//        Attach.screenshotAs("Last screenshot");
+//        Attach.pageSource();
+//        WebDriverConfig config = ConfigFactory.create(WebDriverConfig.class,System.getProperties());
+//        Attach.addVideo();
+//    }
 
 }
