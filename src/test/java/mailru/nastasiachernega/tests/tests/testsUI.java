@@ -1,7 +1,7 @@
 package mailru.nastasiachernega.tests.tests;
 
 import io.qameta.allure.Epic;
-import mailru.nastasiachernega.tests.config.WebDriverProvider;
+import mailru.nastasiachernega.tests.config.WebDriverProviderUI;
 import mailru.nastasiachernega.tests.data.pages.HistoryPage;
 import mailru.nastasiachernega.tests.data.pages.TranslationPage;
 import mailru.nastasiachernega.tests.data.pages.FavouritesPage;
@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import static io.qameta.allure.Allure.step;
 
 @Epic("UI tests")
-public class testsUI extends WebDriverProvider {
+public class testsUI extends WebDriverProviderUI {
 
     AuthorizationApiSteps authApi = new AuthorizationApiSteps();
     TranslationApiSteps translationApi = new TranslationApiSteps();

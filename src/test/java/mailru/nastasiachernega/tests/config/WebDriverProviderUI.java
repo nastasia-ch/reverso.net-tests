@@ -4,13 +4,14 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import mailru.nastasiachernega.tests.helpers.Attach;
 import org.aeonbits.owner.ConfigFactory;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 
 import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class WebDriverProvider {
+
+public class WebDriverProviderUI {
 
     @BeforeAll
     static void setUp() {
@@ -37,8 +38,10 @@ public class WebDriverProvider {
 
     }
 
-    @AfterEach
+
+    @AfterAll
     void addAttachments () {
+
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         WebDriverConfig config = ConfigFactory.create(WebDriverConfig.class,System.getProperties());
