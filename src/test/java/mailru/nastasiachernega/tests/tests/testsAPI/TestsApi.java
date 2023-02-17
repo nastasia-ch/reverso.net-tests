@@ -18,7 +18,7 @@ import static io.qameta.allure.Allure.step;
 import static org.hamcrest.Matchers.is;
 
 @Epic("API tests")
-public class TestsApi extends WebDriverProvider {
+public class TestsApi {
 
     AuthorizationApiSteps authApi = new AuthorizationApiSteps();
     TranslationApiSteps translationApi = new TranslationApiSteps();
