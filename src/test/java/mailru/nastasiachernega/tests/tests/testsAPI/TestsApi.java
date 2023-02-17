@@ -2,7 +2,6 @@ package mailru.nastasiachernega.tests.tests.testsAPI;
 
 import io.qameta.allure.Epic;
 import io.restassured.response.Response;
-import mailru.nastasiachernega.tests.config.WebDriverProvider;
 import mailru.nastasiachernega.tests.data.apiSteps.AuthorizationApiSteps;
 import mailru.nastasiachernega.tests.data.apiSteps.FavouritesApiSteps;
 import mailru.nastasiachernega.tests.data.apiSteps.HistoryApiSteps;
