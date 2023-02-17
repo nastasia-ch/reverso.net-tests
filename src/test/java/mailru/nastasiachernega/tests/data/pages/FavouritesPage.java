@@ -23,6 +23,7 @@ public class FavouritesPage {
 
     public FavouritesPage checkAddingExampleInFavourites(String exampleText,
                                                          String exampleTranslatedText) {
+        executeJavaScript("$('#blocked-rude-results-banner').hide();");
         listOfFavourites.contains(text(exampleText));
         listOfFavourites.contains(text(exampleTranslatedText));
         return this;
