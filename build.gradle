@@ -64,8 +64,8 @@ tasks.withType(Test) {
     }
 }
 
-task minimum_of_tests(type: Test) {
+task add_in_favourites(type: Test) {
     useJUnitPlatform {
-        includeTags "Add_in_favourites"
+        includeTags "add_in_favourites"
     }
 }

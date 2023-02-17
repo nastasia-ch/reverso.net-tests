@@ -203,9 +203,9 @@ public class TestsUI extends WebDriverProvider {
 
     }
 
-    @Tag("Add_in_favourites")
     @DisplayName("Проверка добавления примера в 'Избранное'")
     @Test
+    @Tag("add_in_favourites")
     void addInFavourites() {
 
         step("Авторизуемся через Api", ()-> {
