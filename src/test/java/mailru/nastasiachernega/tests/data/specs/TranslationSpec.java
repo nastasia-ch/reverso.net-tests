@@ -15,7 +15,10 @@ public class TranslationSpec {
             .baseUri("https://context.reverso.net")
             .basePath("/translation")
             .header("user-agent","")
-            .log().all();
+            .log().method()
+            .log().uri()
+            .log().headers()
+            .log().body();
 
     public static ResponseSpecification contextTranslationResponseSpec = new ResponseSpecBuilder()
             .log(STATUS)

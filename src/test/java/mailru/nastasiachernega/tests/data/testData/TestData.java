@@ -3,6 +3,7 @@ package mailru.nastasiachernega.tests.data.testData;
 import com.github.javafaker.Faker;
 import mailru.nastasiachernega.tests.config.DataConfig;
 import mailru.nastasiachernega.tests.config.LoginConfig;
+import mailru.nastasiachernega.tests.data.apiSteps.AuthorizationApiSteps;
 import org.aeonbits.owner.ConfigFactory;
 
 import java.util.List;
@@ -17,8 +18,7 @@ public class TestData {
     LoginConfig loginConfig = ConfigFactory.create(LoginConfig.class,System.getProperties());
     DataConfig dataConfig = ConfigFactory.create(DataConfig.class,System.getProperties());
 
-    public final String accountURL = "https://account.reverso.net/Account/Login",
-            returnURL = "https://www.reverso.net/text-translation",
+    public final String
             emailValid = loginConfig.getEmail(),
             passwordValid = loginConfig.getPassword(),
             username = loginConfig.getUsername(),
@@ -34,30 +34,29 @@ public class TestData {
 
     public String[] reversoHeaders = {"Translation","Context","Grammar Check","Synonyms","Conjugation"};
 
-    public int exampleNumber = random.nextInt(0,21);
+    public int exampleNumber = random.nextInt(0,20);
 
-    public String languageFrom = dataConfig.getLanguageFrom(),
-            languageTo = dataConfig.getLanguageTo(),
-            textToTranslate = dataConfig.getText();
-
-    public String commentText = "Good example";
-
-    public String languageFromTo = languageFrom + "-" + languageTo,
-            langFromSymbol = dataConfig.getLangFromSymbol(),
-            langToSymbol = dataConfig.getLangToSymbol();
+    public String
+            textToTranslate = dataConfig.getText(),
+            languageFrom = dataConfig.getLanguageFrom(),
+            languageTo = dataConfig.getLanguageTo();
 
     public List<String> translations = dataConfig.getTranslations();
 
-    public String example = dataConfig.getExamples().get(exampleNumber);
+    public String
+            example = dataConfig.getExamples().get(exampleNumber),
+            translatedExample = dataConfig.getTranslatedExamples().get(exampleNumber),
+            contextTranslation = dataConfig.getContextTranslations().get(exampleNumber);
 
-    public String translatedExample = dataConfig.getTranslatedExamples().get(exampleNumber);
+    public String commentText = "Good example";
 
-    public String contextTranslation = dataConfig.getContextTranslations().get(exampleNumber);
-
-
-    public String exampleWithTags = dataConfig.getExamplesWithTags().get(exampleNumber);
-
-    public String translatedExampleWithTags = dataConfig.getTranslatedExamplesWithTags().get(exampleNumber);
+    // special test data for API testing
+    public String
+            languageFromTo = languageFrom + "-" + languageTo,
+            langFromSymbol = dataConfig.getLangFromSymbol(),
+            langToSymbol = dataConfig.getLangToSymbol(),
+            exampleWithTags = dataConfig.getExamplesWithTags().get(exampleNumber),
+            translatedExampleWithTags = dataConfig.getTranslatedExamplesWithTags().get(exampleNumber);
 
 
 

@@ -1,76 +1,52 @@
 package mailru.nastasiachernega.tests.data.apiSteps;
 
-import com.codeborne.selenide.WebDriverRunner;
-import io.restassured.RestAssured;
-import io.restassured.config.EncoderConfig;
-import io.restassured.http.ContentType;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.openqa.selenium.Cookie;
 
-import static com.codeborne.selenide.Selenide.open;
 import static io.restassured.RestAssured.given;
+import static mailru.nastasiachernega.tests.data.specs.AuthorizationSpec.*;
 
 public class AuthorizationApiSteps {
 
-    public String getRefreshToken(String accountURL,
-                                  String email,
-                                  String password,
-                                  String returnURL) {
+    public String getRefreshToken(String email,
+                                  String password) {
 
         String accountAntiforgery = given()
-                .log().all()
+                .spec(openAuthPageRequestSpec)
                 .when()
-                .get(accountURL)
+                .get()
                 .then()
+                .spec(openAuthPageResponseSpec)
                 .extract().cookie("Reverso.Account.Antiforgery");
 
         String htmlResponse = given()
+                .spec(openAuthPageRequestSpec)
                 .cookie("Reverso.Account.Antiforgery",accountAntiforgery)
-                .log().all()
                 .when()
-                .get(accountURL)
+                .get()
                 .then()
+                .spec(openAuthPageResponseSpec)
                 .extract().response().asString();
 
         Document html = Jsoup.parse(htmlResponse);
-        String requestVerificationToken = html.body().getElementsByAttributeValue("name","__RequestVerificationToken").
+        String requestVerificationToken = html.body().
+                getElementsByAttributeValue("name","__RequestVerificationToken").
                 attr("value");
 
         return given()
-                .config(RestAssured.config()
-                .encoderConfig(EncoderConfig.encoderConfig()
-                .encodeContentTypeAs("x-www-form-urlencoded", ContentType.URLENC)))
-                .contentType("application/x-www-form-urlencoded; charset=UTF-8")
-                .queryParam("returnUrl",
-                        returnURL)
+                .spec(authRequestSpec)
                 .formParam("Email",email)
                 .formParam("Password",password)
                 .formParam("__RequestVerificationToken",requestVerificationToken)
                 .formParam("RememberMe","false")
                 .cookie("Reverso.Account.Antiforgery",accountAntiforgery)
                 .cookie("Reverso.Account.TempDataCookie","")
-                .log().all()
                 .when()
-                .post(accountURL)
+                .post()
                 .then()
-                .log().all()
-                .statusCode(302)
+                .spec(authResponseSpec)
                 .extract().cookie("reverso.net.ReversoRefreshToken");
 
-    };
-
-    public void apiAuth(String path,
-                        String accountURL,
-                        String email,
-                        String password,
-                        String returnURL) {
-
-        open(path);
-        Cookie cookie = new Cookie("reverso.net.ReversoRefreshToken",
-                getRefreshToken(accountURL, email, password, returnURL));
-
-        WebDriverRunner.getWebDriver().manage().addCookie(cookie);
     };
 
 }

@@ -2,7 +2,9 @@ package mailru.nastasiachernega.tests.data.pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 
 import java.util.List;
 
@@ -11,7 +13,6 @@ import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byTextCaseInsensitive;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.SetValueOptions.withText;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TranslationPage {
@@ -32,6 +33,14 @@ public class TranslationPage {
             listOfTranslations = $$("#translations-content .translation .display-term"),
             listOfExamples = $$("#examples-content .example"),
             listOfReversoHeaders = $(".reverso-links-wrapper").$$("a.product span");
+
+    public TranslationPage addAuthCookieToWebDriver(String path,
+                                   String refreshToken) {
+        open(path);
+        Cookie cookie = new Cookie("reverso.net.ReversoRefreshToken", refreshToken);
+        WebDriverRunner.getWebDriver().manage().addCookie(cookie);
+        return this;
+    };
 
     public TranslationPage openPage(String path) {
         open(path);

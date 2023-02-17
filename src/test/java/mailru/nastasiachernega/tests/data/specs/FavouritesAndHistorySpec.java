@@ -17,7 +17,10 @@ public class FavouritesAndHistorySpec {
             .basePath("/bst-web-user/user")
             .contentType("application/json; charset=utf-8")
             .header("user-agent","")
-            .log().all();
+            .log().method()
+            .log().uri()
+            .log().headers()
+            .log().body();
 
     public static ResponseSpecification favouritesAndHistoryResponseSpec = new ResponseSpecBuilder()
             .log(STATUS)

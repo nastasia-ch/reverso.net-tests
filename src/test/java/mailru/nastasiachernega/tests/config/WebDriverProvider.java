@@ -11,7 +11,7 @@ import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 
-public class WebDriverProviderUI {
+public class WebDriverProvider {
 
     @BeforeAll
     static void setUp() {
@@ -45,6 +45,9 @@ public class WebDriverProviderUI {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         WebDriverConfig config = ConfigFactory.create(WebDriverConfig.class,System.getProperties());
+        if(config.getBrowserName().equals("firefox") == false) {
+            Attach.browserConsoleLogs();
+        }
         Attach.addVideo();
     }
 
