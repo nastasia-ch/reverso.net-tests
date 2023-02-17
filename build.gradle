@@ -63,3 +63,9 @@ tasks.withType(Test) {
         }
     }
 }
+
+task minimum_of_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags "Add_in_favourites"
+    }
+}
