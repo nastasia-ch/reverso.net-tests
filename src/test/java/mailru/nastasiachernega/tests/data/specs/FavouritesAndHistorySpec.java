@@ -19,7 +19,6 @@ public class FavouritesAndHistorySpec {
             .header("user-agent","")
             .log().method()
             .log().uri()
-            .log().headers()
             .log().body();
 
     public static ResponseSpecification favouritesAndHistoryResponseSpec = new ResponseSpecBuilder()

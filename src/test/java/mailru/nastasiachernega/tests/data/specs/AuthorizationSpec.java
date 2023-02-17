@@ -18,8 +18,7 @@ public class AuthorizationSpec {
             .basePath("/Account/Login")
             .header("user-agent","")
             .log().method()
-            .log().uri()
-            .log().headers();
+            .log().uri();
 
     public static RequestSpecification authRequestSpec = with()
             .baseUri("https://account.reverso.net/")
@@ -32,8 +31,7 @@ public class AuthorizationSpec {
             .queryParam("returnUrl",
                     "https://context.reverso.net/translation/")
             .log().method()
-            .log().uri()
-            .log().headers();
+            .log().uri();
 
     public static ResponseSpecification openAuthPageResponseSpec = new ResponseSpecBuilder()
             .log(STATUS)

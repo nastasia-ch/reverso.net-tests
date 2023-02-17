@@ -17,7 +17,6 @@ public class TranslationSpec {
             .header("user-agent","")
             .log().method()
             .log().uri()
-            .log().headers()
             .log().body();
 
     public static ResponseSpecification contextTranslationResponseSpec = new ResponseSpecBuilder()

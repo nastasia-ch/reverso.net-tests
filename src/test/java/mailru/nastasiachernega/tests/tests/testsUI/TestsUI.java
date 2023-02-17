@@ -124,9 +124,9 @@ public class TestsUI extends WebDriverProvider {
                     openPage(data.translationPath);
         });
 
-        step("Вводим текст для перевода: " + data.textToTranslate, ()-> {
+        step("Вводим текст для перевода: " + data.text, ()-> {
             translationPage.
-                    setTextToTranslate(data.textToTranslate);
+                    setTextToTranslate(data.text);
         });
 
         step("Устанавливаем язык введенного текста, " +
@@ -168,9 +168,9 @@ public class TestsUI extends WebDriverProvider {
                     openPage(data.translationPath);
         });
 
-        step("Вводим текст для перевода: " + data.textToTranslate, ()-> {
+        step("Вводим текст для перевода: " + data.text, ()-> {
             translationPage.
-                    setTextToTranslate(data.textToTranslate);
+                    setTextToTranslate(data.text);
         });
 
         step("Устанавливаем язык текста, " + data.languageFrom, ()-> {
@@ -189,9 +189,9 @@ public class TestsUI extends WebDriverProvider {
         });
 
         step("Проверямем в " + data.exampleNumber + "-м примере содержание " +
-                "текста '" + data.textToTranslate + "'", ()-> {
+                "текста '" + data.text + "'", ()-> {
             translationPage.
-                    checkExampleConsistInputText(data.exampleNumber, data.textToTranslate);
+                    checkExampleConsistInputText(data.exampleNumber, data.text);
         });
 
         step("Проверямем в " + data.exampleNumber + "-м примере содержание " +
@@ -216,9 +216,9 @@ public class TestsUI extends WebDriverProvider {
                     openPage(data.translationPath);
         });
 
-        step("Вводим текст для перевода: " + data.textToTranslate, ()-> {
+        step("Вводим текст для перевода: " + data.text, ()-> {
             translationPage.
-                    setTextToTranslate(data.textToTranslate);
+                    setTextToTranslate(data.text);
         });
 
         step("Устанавливаем язык введенного текста, " +
@@ -272,7 +272,7 @@ public class TestsUI extends WebDriverProvider {
         step("Отправляем запрос на перевод через Api", ()-> {
             translationApi.
                     apiTranslation(authApi.getRefreshToken(data.emailValid, data.passwordValid),
-                            data.languageFromTo, data.textToTranslate);
+                            data.languageFromTo, data.text);
         });
 
         step("Авторизуемся через Api", ()-> {
@@ -285,13 +285,13 @@ public class TestsUI extends WebDriverProvider {
         });
 
         step("Проверяем наличие текста перевода в разделе 'История'", ()-> {
-            historyPage.checkAddingExampleInHistory(data.textToTranslate);
+            historyPage.checkAddingExampleInHistory(data.text);
         });
 
         step("Очищаем раздел 'История' после теста через Api", ()-> {
             historyApi.
                     apiDeleteFromHistory(authApi.getRefreshToken(data.emailValid, data.passwordValid),
-                                    historyPage.getHistoryId(data.textToTranslate));
+                                    historyPage.getHistoryId(data.text));
         });
 
     };

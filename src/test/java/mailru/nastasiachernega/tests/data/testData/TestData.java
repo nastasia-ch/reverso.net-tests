@@ -1,23 +1,21 @@
 package mailru.nastasiachernega.tests.data.testData;
 
 import com.github.javafaker.Faker;
-import mailru.nastasiachernega.tests.config.DataConfig;
+import mailru.nastasiachernega.tests.config.DataProvider;
 import mailru.nastasiachernega.tests.config.LoginConfig;
-import mailru.nastasiachernega.tests.data.apiSteps.AuthorizationApiSteps;
 import org.aeonbits.owner.ConfigFactory;
 
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class TestData {
+public class TestData extends DataProvider {
 
     ThreadLocalRandom random = ThreadLocalRandom.current();
     Faker faker = new Faker(new Locale("en"));
-
     LoginConfig loginConfig = ConfigFactory.create(LoginConfig.class,System.getProperties());
-    DataConfig dataConfig = ConfigFactory.create(DataConfig.class,System.getProperties());
 
+    // login test data
     public final String
             emailValid = loginConfig.getEmail(),
             passwordValid = loginConfig.getPassword(),
@@ -28,36 +26,36 @@ public class TestData {
 
     public final int userID = loginConfig.getUserID();
 
-    public String translationPath = "/translation",
-                  historyPath = "/history",
-                  favouritesPath = "/favourites";
-
+    // test data for actions with translations
     public String[] reversoHeaders = {"Translation","Context","Grammar Check","Synonyms","Conjugation"};
 
     public int exampleNumber = random.nextInt(0,20);
 
     public String
-            textToTranslate = dataConfig.getText(),
-            languageFrom = dataConfig.getLanguageFrom(),
-            languageTo = dataConfig.getLanguageTo();
+            translationPath = "/translation",
+            historyPath = "/history",
+            favouritesPath = "/favourites",
+            text = getText(),
+            languageFrom = getLanguageFrom(),
+            languageTo = getLanguageTo(),
+            commentText = "Good example";
 
-    public List<String> translations = dataConfig.getTranslations();
+    public List<String> translations = getTranslations();
 
     public String
-            example = dataConfig.getExamples().get(exampleNumber),
-            translatedExample = dataConfig.getTranslatedExamples().get(exampleNumber),
-            contextTranslation = dataConfig.getContextTranslations().get(exampleNumber);
+            example = getExamples().get(exampleNumber).
+                    replace("<em>","").replace("</em>",""),
+            translatedExample = getTranslatedExamples().get(exampleNumber).
+                    replace("<em>","").replace("</em>",""),
+            contextTranslation = getContextTranslations().get(exampleNumber);
 
-    public String commentText = "Good example";
-
-    // special test data for API testing
+    // special test data for API testing favourites
     public String
             languageFromTo = languageFrom + "-" + languageTo,
-            langFromSymbol = dataConfig.getLangFromSymbol(),
-            langToSymbol = dataConfig.getLangToSymbol(),
-            exampleWithTags = dataConfig.getExamplesWithTags().get(exampleNumber),
-            translatedExampleWithTags = dataConfig.getTranslatedExamplesWithTags().get(exampleNumber);
-
+            langFromSymbol = getLangFromSymbol(),
+            langToSymbol = getLangToSymbol(),
+            exampleWithTags = getExamples().get(exampleNumber),
+            translatedExampleWithTags = getTranslatedExamples().get(exampleNumber);
 
 
 }

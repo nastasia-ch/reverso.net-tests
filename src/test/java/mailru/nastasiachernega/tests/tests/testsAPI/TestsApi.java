@@ -2,6 +2,7 @@ package mailru.nastasiachernega.tests.tests.testsAPI;
 
 import io.qameta.allure.Epic;
 import io.restassured.response.Response;
+import mailru.nastasiachernega.tests.config.WebDriverProvider;
 import mailru.nastasiachernega.tests.data.apiSteps.AuthorizationApiSteps;
 import mailru.nastasiachernega.tests.data.apiSteps.FavouritesApiSteps;
 import mailru.nastasiachernega.tests.data.apiSteps.HistoryApiSteps;
@@ -17,7 +18,7 @@ import static io.qameta.allure.Allure.step;
 import static org.hamcrest.Matchers.is;
 
 @Epic("API tests")
-public class TestsApi {
+public class TestsApi extends WebDriverProvider {
 
     AuthorizationApiSteps authApi = new AuthorizationApiSteps();
     TranslationApiSteps translationApi = new TranslationApiSteps();
@@ -30,12 +31,12 @@ public class TestsApi {
     @Test
     void apiCheckExampleContent() {
 
-        step("Выполняем api запрос на перевод текста '" + data.textToTranslate + "'");
+        step("Выполняем api запрос на перевод текста '" + data.text + "'");
         String refreshToken = authApi.
                 getRefreshToken(data.emailValid, data.passwordValid);
 
         Response response = translationApi
-                .apiTranslation(refreshToken, data.languageFromTo, data.textToTranslate)
+                .apiTranslation(refreshToken, data.languageFromTo, data.text)
                 .extract().response();
 
         step("Извлекаем из api ответа текст примера " + data.exampleNumber);
@@ -68,14 +69,14 @@ public class TestsApi {
                 apiAddInFavourites(refreshToken,
                                    data.exampleWithTags,
                                    data.langFromSymbol,
-                                   data.textToTranslate,
+                                   data.text,
                                    data.translatedExampleWithTags,
                                    data.langToSymbol,
                                    data.contextTranslation)
                 .extract().response().as(FavouritesResponseModel.class);
 
         assertThat(response.getUserID()).isEqualTo(data.userID);
-        assertThat(response.getSrcText()).isEqualTo(data.textToTranslate);
+        assertThat(response.getSrcText()).isEqualTo(data.text);
         assertThat(response.getTrgText()).isEqualTo(data.contextTranslation);
         assertThat(response.getSrcContext()).isEqualTo(data.exampleWithTags);
         assertThat(response.getTrgContext()).isEqualTo(data.translatedExampleWithTags);
@@ -97,7 +98,7 @@ public class TestsApi {
                 apiAddInFavourites(refreshToken,
                                    data.exampleWithTags,
                                    data.langFromSymbol,
-                                   data.textToTranslate,
+                                   data.text,
                                    data.translatedExampleWithTags,
                                    data.langToSymbol,
                                    data.contextTranslation)
@@ -136,7 +137,7 @@ public class TestsApi {
                 apiAddInFavourites(refreshToken,
                                    data.exampleWithTags,
                                    data.langFromSymbol,
-                                   data.textToTranslate,
+                                   data.text,
                                    data.translatedExampleWithTags,
                                    data.langToSymbol,
                                    data.contextTranslation)

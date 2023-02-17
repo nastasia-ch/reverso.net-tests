@@ -5,48 +5,40 @@ import org.aeonbits.owner.Config;
 import java.util.LinkedList;
 
 @Config.Sources({
-        "classpath:datafile.properties"
+        "classpath:${testdata}.properties",
+        "classpath:data-quality-assurance.properties"
 })
 public interface DataConfig extends Config {
 
-    @Config.Key("datafile.text")
+    @Config.Key("data.text")
     String getText();
 
-    @Config.Key("datafile.languageFrom")
+    @Config.Key("data.languageFrom")
     String getLanguageFrom();
 
-    @Config.Key("datafile.languageTo")
+    @Config.Key("data.languageTo")
     String getLanguageTo();
 
-    @Config.Separator(" / ")
-    @Config.Key("datafile.translations")
-    LinkedList<String> getTranslations();
-
-    @Config.Separator(" / ")
-    @Config.Key("datafile.examples")
-    LinkedList<String> getExamples();
-
-    @Config.Separator(" / ")
-    @Config.Key("datafile.translatedExamples")
-    LinkedList<String> getTranslatedExamples();
-
-    @Config.Separator(" / ")
-    @Config.Key("datafile.contextTranslations")
-    LinkedList<String> getContextTranslations();
-
-    @Config.Key("datafile.langFromSymbol")
+    @Config.Key("data.langFromSymbol")
     String getLangFromSymbol();
 
-    @Config.Key("datafile.langToSymbol")
+    @Config.Key("data.langToSymbol")
     String getLangToSymbol();
 
     @Config.Separator(" / ")
-    @Config.Key("datafile.examplesWithTags")
-    LinkedList<String> getExamplesWithTags();
+    @Config.Key("data.translations")
+    LinkedList<String> getTranslations();
 
     @Config.Separator(" / ")
-    @Config.Key("datafile.translatedExamplesWithTags")
-    LinkedList<String> getTranslatedExamplesWithTags();
+    @Config.Key("data.examples")
+    LinkedList<String> getExamples();
 
+    @Config.Separator(" / ")
+    @Config.Key("data.translatedExamples")
+    LinkedList<String> getTranslatedExamples();
+
+    @Config.Separator(" / ")
+    @Config.Key("data.contextTranslations")
+    LinkedList<String> getContextTranslations();
 
 }
