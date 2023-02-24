@@ -18,7 +18,6 @@ public class FavouritesPage {
 
     public FavouritesPage openPage(String path) {
         open(path);
-        executeJavaScript("$('aside').hide();");
         return this;
     };
 
