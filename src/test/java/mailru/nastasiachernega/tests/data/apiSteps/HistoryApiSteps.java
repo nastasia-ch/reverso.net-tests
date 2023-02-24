@@ -9,7 +9,7 @@ import static mailru.nastasiachernega.tests.helpers.CustomApiListener.withCustom
 
 public class HistoryApiSteps {
 
-    public ValidatableResponse apiGetListOfHistory(String refreshToken) {
+    public ValidatableResponse getListOfHistory(String refreshToken) {
 
         return given()
                 .filter(withCustomTemplates())
@@ -25,8 +25,8 @@ public class HistoryApiSteps {
                 .spec(favouritesAndHistoryResponseSpec);
     }
 
-    public ValidatableResponse apiDeleteFromHistory (String refreshToken,
-                                                     String historyID) {
+    public ValidatableResponse deleteFromHistory(String refreshToken,
+                                                 String historyID) {
         return given()
                 .filter(withCustomTemplates())
                 .spec(favouritesAndHistoryRequestSpec)

@@ -34,5 +34,11 @@ public class FavouritesPage {
                 parent().getAttribute("data-id"));
     };
 
+    public FavouritesPage checkMessageOpenPageWithoutAuth() {
+        $("#not-logged").
+                shouldHave(text("You should be logged in to save and view your favourites."));
+        return this;
+    };
+
 
 }

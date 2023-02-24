@@ -1,6 +1,5 @@
 package mailru.nastasiachernega.tests.data.apiSteps;
 
-import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import mailru.nastasiachernega.tests.data.models.FavouritesRequestModel;
 import mailru.nastasiachernega.tests.data.models.CommentRequestModel;
@@ -13,13 +12,13 @@ import static mailru.nastasiachernega.tests.helpers.CustomApiListener.withCustom
 public class FavouritesApiSteps {
 
 
-    public ValidatableResponse apiAddInFavourites(String refreshToken,
-                                       String exampleText,
-                                       String langFromSymbol,
-                                       String textForTranslation,
-                                       String exampleTranslation,
-                                       String langToSymbol,
-                                       String translatedText) {
+    public ValidatableResponse addInFavourites(String refreshToken,
+                                               String exampleText,
+                                               String langFromSymbol,
+                                               String textForTranslation,
+                                               String exampleTranslation,
+                                               String langToSymbol,
+                                               String translatedText) {
 
         FavouritesRequestModel requestBody = new FavouritesRequestModel();
         requestBody.setSrcContext(exampleText);
@@ -41,9 +40,9 @@ public class FavouritesApiSteps {
     }
 
 
-    public ValidatableResponse apiWorkWithComment(String refreshToken,
-                                                  int exampleId,
-                                                  String commentText) {
+    public ValidatableResponse updateComment(String refreshToken,
+                                             int exampleId,
+                                             String commentText) {
 
         CommentRequestModel commentRequestBody = new CommentRequestModel();
         commentRequestBody.setComment(commentText);
@@ -60,7 +59,7 @@ public class FavouritesApiSteps {
                 .spec(favouritesAndHistoryResponseSpec);
     }
 
-    public ValidatableResponse apiGetListOfFavourites(String refreshToken) {
+    public ValidatableResponse getListOfFavourites(String refreshToken) {
 
         return given()
                 .filter(withCustomTemplates())
@@ -76,8 +75,8 @@ public class FavouritesApiSteps {
                 .spec(favouritesAndHistoryResponseSpec);
     }
 
-    public ValidatableResponse apiDeleteFromFavourites (String refreshToken,
-                                                        int exampleId) {
+    public ValidatableResponse deleteFromFavourites(String refreshToken,
+                                                    int exampleId) {
         return given()
                 .filter(withCustomTemplates())
                 .spec(favouritesAndHistoryRequestSpec)

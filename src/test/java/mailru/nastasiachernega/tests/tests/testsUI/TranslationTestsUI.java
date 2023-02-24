@@ -20,7 +20,7 @@ public class TranslationTestsUI extends WebDriverProvider {
     TranslationPage translationPage = new TranslationPage();
     TestData data = new TestData();
 
-    @DisplayName("Проверка перевода введенного текста")
+    @DisplayName("Проверка перевода текста")
     @Test
     void checkTextTranslations() {
 
@@ -39,14 +39,12 @@ public class TranslationTestsUI extends WebDriverProvider {
                     setTextToTranslate(data.text);
         });
 
-        step("Устанавливаем язык введенного текста, " +
-                "с которого будем переводить: " + data.languageFrom, ()-> {
+        step("Устанавливаем язык оригинала: " + data.languageFrom, ()-> {
             translationPage.
                     chooseLanguageFromTranslate(data.languageFrom);
         });
 
-        step("Устанавливаем язык, на который " +
-                "будем переводить: " + data.languageTo, ()-> {
+        step("Устанавливаем язык перевода: " + data.languageTo, ()-> {
             translationPage.
                     chooseLanguageToTranslate(data.languageTo);
         });
@@ -56,14 +54,13 @@ public class TranslationTestsUI extends WebDriverProvider {
                     clickOnSearchButton();
         });
 
-        step("Результаты перевода должны содержать " +
-                "следующие варианты: " + data.translations.toString(), ()-> {
+        step("Проверяем содержание в результатах перевода " +
+                "вариантов перевода", ()-> {
             translationPage.checkTranslations(data.translations);
         });
     }
 
-    @DisplayName("Проверка корректного отображения примеров: " +
-            "содержание в них введенного текста и его перевода")
+    @DisplayName("Проверка отображения примеров")
     @Test
     void checkExampleContent() {
 
@@ -82,7 +79,7 @@ public class TranslationTestsUI extends WebDriverProvider {
                     setTextToTranslate(data.text);
         });
 
-        step("Устанавливаем язык текста, " + data.languageFrom, ()-> {
+        step("Устанавливаем язык оригинала, " + data.languageFrom, ()-> {
             translationPage.
                     chooseLanguageFromTranslate(data.languageFrom);
         });
@@ -104,7 +101,7 @@ public class TranslationTestsUI extends WebDriverProvider {
         });
 
         step("Проверямем в " + data.exampleNumber + "-м примере содержание " +
-                "одного из вариантов перевода '" + data.translations + "'", ()-> {
+                "одного из вариантов перевода", ()-> {
             translationPage.
                     checkExampleConsistTranslatedText(data.exampleNumber, data.translations);
         });

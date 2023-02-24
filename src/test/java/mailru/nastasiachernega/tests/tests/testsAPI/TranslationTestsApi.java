@@ -24,48 +24,60 @@ public class TranslationTestsApi {
     TestData data = new TestData();
 
     @Severity(SeverityLevel.BLOCKER)
-    @DisplayName("Проверка перевода текста")
+    @DisplayName("Перевод текста")
     @Test
     void apiCheckTranslation() {
-        step("Выполняем api-запрос на перевод текста и проверяем наличие " +
-                "в html-ответе вариантов его перевода");
 
-        String refreshToken = authApi.
-                getRefreshToken(data.emailValid, data.passwordValid);
+        String refreshToken = step("Выполняем api-запрос на получение " +
+                "авторизационной куки", () -> authApi
+                .getRefreshToken(data.emailValid, data.passwordValid));
 
-        List<String> translations = translationApi
-                .apiTranslation(refreshToken, data.languageFromTo, data.text)
+        List<String> translations = step("Выполняем api-запрос на перевод текста " +
+                "и извлекаем из html-ответа варианты его перевода", () -> translationApi
+                .translateText(refreshToken, data.languageFromTo, data.text)
                 .extract().response()
                 .htmlPath().get("**.find{it.@id == 'translations-content'}.**.findAll" +
-                        "{it.@class.toString().contains('translation')}.@data-term");
+                        "{it.@class.toString().contains('translation')}.@data-term"));
 
-        assertThat(translations).containsSequence(data.translations);
+        step("Проверяем наличие в html-ответе вариантов перевода", ()-> {
+            assertThat(translations).containsSequence(data.translations);
+        });
     }
 
     @Severity(SeverityLevel.BLOCKER)
-    @DisplayName("Проверка контекстного перевода текста")
+    @DisplayName("Контекстный перевод текста")
     @Test
     void apiCheckExampleContent() {
-        step("Выполняем api-запрос на перевод текста и проверяем наличие " +
-                "в html-ответе соответствующего примера и его перевода");
 
-        String refreshToken = authApi.
-                getRefreshToken(data.emailValid, data.passwordValid);
+        String refreshToken = step("Выполняем api-запрос на получение " +
+                "авторизационной куки", () -> authApi
+                .getRefreshToken(data.emailValid, data.passwordValid));
 
-        Response response = translationApi
-                .apiTranslation(refreshToken, data.languageFromTo, data.text)
-                .extract().response();
+        Response response = step("Выполняем api-запрос на перевод текста",
+                () -> translationApi
+                .translateText(refreshToken, data.languageFromTo, data.text)
+                .extract().response());
 
-        String example = response.body().htmlPath().
-                getString("**.findAll{it.@class == 'example'}["+ data.exampleNumber + "]." +
-                        "**.findAll{it.@class == 'text'}[0].text()").trim();
+        String example = step("Извлекаем из html-ответа текст примера", () ->
+                response.body()
+                        .htmlPath()
+                        .getString("**.findAll{it.@class == 'example'}" +
+                        "["+ data.exampleNumber + "].**" +
+                        ".findAll{it.@class == 'text'}[0].text()").trim());
 
-        String translatedExample = response.body().htmlPath().
-                getString("**.findAll{it.@class == 'example'}["+ data.exampleNumber + "]." +
-                        "**.findAll{it.@class == 'text'}[1].text()").trim();
+        String translatedExample = step("Извлекаем из html-ответа перевод примера", () ->
+                response.body()
+                        .htmlPath()
+                        .getString("**.findAll{it.@class == 'example'}" +
+                        "["+ data.exampleNumber + "].**" +
+                        ".findAll{it.@class == 'text'}[1].text()").trim());
 
-        assertThat(example).isEqualTo(data.example);
-        assertThat(translatedExample).isEqualTo(data.translatedExample);
+        step("Проверяем текст примера", ()-> {
+            assertThat(example).isEqualTo(data.example);
+        });
+
+        step("Проверяем перевод примера", ()-> {
+            assertThat(translatedExample).isEqualTo(data.translatedExample);
+        });
     }
-
 }

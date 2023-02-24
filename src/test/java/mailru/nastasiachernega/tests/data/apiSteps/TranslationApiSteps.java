@@ -1,23 +1,16 @@
 package mailru.nastasiachernega.tests.data.apiSteps;
 
-import io.restassured.response.Response;
-import io.restassured.response.ResponseBody;
-import io.restassured.response.ResponseBodyExtractionOptions;
 import io.restassured.response.ValidatableResponse;
-import org.jsoup.nodes.Document;
-
 import static mailru.nastasiachernega.tests.helpers.CustomApiListener.withCustomTemplates;
-import static org.jsoup.Jsoup.parse;
-
 import static io.restassured.RestAssured.given;
 import static mailru.nastasiachernega.tests.data.specs.TranslationSpec.contextTranslationRequestSpec;
 import static mailru.nastasiachernega.tests.data.specs.TranslationSpec.contextTranslationResponseSpec;
 
 public class TranslationApiSteps {
 
-    public ValidatableResponse apiTranslation(String refreshToken,
-                                              String languageFromTo,
-                                              String textForTranslation) {
+    public ValidatableResponse translateText(String refreshToken,
+                                             String languageFromTo,
+                                             String textForTranslation) {
         return given()
                 .filter(withCustomTemplates())
                 .spec(contextTranslationRequestSpec)

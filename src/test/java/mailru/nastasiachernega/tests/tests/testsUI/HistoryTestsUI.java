@@ -35,7 +35,7 @@ public class HistoryTestsUI extends WebDriverProvider {
 
         step("Отправляем запрос на перевод через Api", ()-> {
             translationApi.
-                    apiTranslation(authApi.getRefreshToken(data.emailValid, data.passwordValid),
+                    translateText(authApi.getRefreshToken(data.emailValid, data.passwordValid),
                             data.languageFromTo, data.text);
         });
 
@@ -55,7 +55,7 @@ public class HistoryTestsUI extends WebDriverProvider {
         step("Очищаем раздел 'История' после теста через Api: " +
                 "удаляем сохраненный запрос", ()-> {
             historyApi.
-                    apiDeleteFromHistory(authApi.getRefreshToken(data.emailValid, data.passwordValid),
+                    deleteFromHistory(authApi.getRefreshToken(data.emailValid, data.passwordValid),
                                     historyPage.getHistoryId(data.text));
         });
     };
@@ -67,7 +67,7 @@ public class HistoryTestsUI extends WebDriverProvider {
 
         step("Отправляем запрос на перевод через Api", ()-> {
             translationApi.
-                    apiTranslation(authApi.getRefreshToken(data.emailValid, data.passwordValid),
+                    translateText(authApi.getRefreshToken(data.emailValid, data.passwordValid),
                             data.languageFromTo, data.text);
         });
 
@@ -107,7 +107,7 @@ public class HistoryTestsUI extends WebDriverProvider {
 
         step("Очищаем раздел 'История' после теста через Api: " +
                 "удаляем сохраненный запрос", ()-> {
-            historyApi.apiDeleteFromHistory
+            historyApi.deleteFromHistory
                     (authApi.getRefreshToken(data.emailValid, data.passwordValid),
                             historyPage.getHistoryId(data.text));
         });

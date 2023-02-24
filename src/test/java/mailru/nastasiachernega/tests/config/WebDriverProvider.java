@@ -10,8 +10,9 @@ import org.junit.jupiter.api.BeforeAll;
 import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import static com.codeborne.selenide.Selenide.closeWebDriver;
+import java.util.Locale;
 
+import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class WebDriverProvider {
 

@@ -27,6 +27,24 @@ public class FavouritesTestsUI extends WebDriverProvider {
 
     TestData data = new TestData();
 
+    @Severity(SeverityLevel.NORMAL)
+    @DisplayName("Проверка добавления примера в 'Избранное'")
+    @Test
+    void openPageWithoutAuth() {
+
+        step("Открываем страницу 'Избранное' без авторизации", ()-> {
+            favouritesPage.
+                    openPage(data.favouritesPath);
+        });
+
+        step("Проверяем на страницы наличие сообщения " +
+                "о необходимости авторизации для пользования контентом", ()-> {
+            favouritesPage.
+                    checkMessageOpenPageWithoutAuth();
+        });
+
+    }
+
     @Severity(SeverityLevel.CRITICAL)
     @DisplayName("Проверка добавления примера в 'Избранное'")
     @Test
@@ -84,10 +102,10 @@ public class FavouritesTestsUI extends WebDriverProvider {
 
         step("Очищаем раздел 'Избранное' после теста через Api", ()-> {
             int exampleId = favouritesPage.getExampleId(data.example);
-            favouritesApi.apiDeleteFromFavourites(authApi.getRefreshToken
+            favouritesApi.deleteFromFavourites(authApi.getRefreshToken
                             (data.emailValid, data.passwordValid),
                             exampleId);
         });
-    };
+    }
 
 }

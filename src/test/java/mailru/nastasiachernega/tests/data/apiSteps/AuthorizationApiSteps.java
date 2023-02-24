@@ -5,6 +5,7 @@ import org.jsoup.nodes.Document;
 
 import static io.restassured.RestAssured.given;
 import static mailru.nastasiachernega.tests.data.specs.AuthorizationSpec.*;
+import static mailru.nastasiachernega.tests.helpers.CustomApiListener.withCustomTemplates;
 
 public class AuthorizationApiSteps {
 
@@ -46,7 +47,6 @@ public class AuthorizationApiSteps {
                 .then()
                 .spec(authResponseSpec)
                 .extract().cookie("reverso.net.ReversoRefreshToken");
-
     };
 
 }
