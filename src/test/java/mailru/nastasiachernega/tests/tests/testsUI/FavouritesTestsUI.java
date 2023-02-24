@@ -82,9 +82,10 @@ public class FavouritesTestsUI extends WebDriverProvider {
         });
 
         step("Очищаем раздел 'Избранное' после теста через Api", ()-> {
-            favouritesApi.
-                    apiDeleteFromFavourites(authApi.getRefreshToken(data.emailValid, data.passwordValid),
-                            favouritesPage.getExampleId(data.example));
+            int exampleId = favouritesPage.getExampleId(data.example);
+            favouritesApi.apiDeleteFromFavourites(authApi.getRefreshToken
+                            (data.emailValid, data.passwordValid),
+                            exampleId);
         });
     };
 

@@ -11,6 +11,8 @@ import static com.codeborne.selenide.Selenide.$;
 public class HistoryPage {
 
     private SelenideElement
+            filterTextInput = $("#filter-text"),
+            filterButton = $("#filter"),
             clearHistoryButton = $("#remove"),
             acceptClearButton = $(".delete-alert").$(byText("Accept"));
 
@@ -23,7 +25,7 @@ public class HistoryPage {
     };
 
     public HistoryPage setFilteredText(String textForTranslate) {
-        $("#filter-text").setValue(textForTranslate);
+        filterTextInput.setValue(textForTranslate);
         return this;
     }
 
@@ -42,7 +44,7 @@ public class HistoryPage {
     }
 
     public HistoryPage clickFilterButton() {
-        $("#filter").click();
+        filterButton.click();
         return this;
     }
 
