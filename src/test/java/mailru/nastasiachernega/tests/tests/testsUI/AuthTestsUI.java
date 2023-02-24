@@ -26,7 +26,7 @@ public class AuthTestsUI extends WebDriverProvider {
     static TestData data = new TestData();
 
     @Severity(SeverityLevel.BLOCKER)
-    @DisplayName("Проверка авторизации с валидными электронным адресом и паролем")
+    @DisplayName("Проверка авторизации с валидными данными")
     @Test
     void loginTestWithValidData() {
 
@@ -41,7 +41,7 @@ public class AuthTestsUI extends WebDriverProvider {
                     .goToLoginSection();
         });
 
-        step("Вводим электронный адрес зарегистрированного пользователя", ()-> {
+        step("Вводим валидный электронный адрес", ()-> {
             loginPage.setEmail(data.emailValid);
         });
 
@@ -63,15 +63,18 @@ public class AuthTestsUI extends WebDriverProvider {
 
     static Stream<Arguments> loginTestWithInvalidData(){
         return Stream.of(
-                Arguments.of(data.emailValid,data.passwordInvalid),
-                Arguments.of(data.emailInvalid,data.passwordInvalid)
+                Arguments.of("валидный",data.emailValid,
+                        "невалидный",data.passwordInvalid),
+                Arguments.of("невалидный",data.emailInvalid,
+                        "невалидный",data.passwordInvalid)
         );
     }
     @Severity(SeverityLevel.BLOCKER)
-    @DisplayName("Проверка авторизации с валидными электронным адресом и невалидным паролем")
+    @DisplayName("Проверка авторизации с невалидными данными")
     @MethodSource()
     @ParameterizedTest
-    void loginTestWithInvalidData(String email, String password) {
+    void loginTestWithInvalidData(String emailType,String email,
+                                  String passwordType,String password) {
 
         step("Открываем страницу", ()-> {
             translationPage.
@@ -84,11 +87,11 @@ public class AuthTestsUI extends WebDriverProvider {
                     .goToLoginSection();
         });
 
-        step("Вводим валидный электронный адрес", ()-> {
+        step("Вводим " + emailType + " электронный адрес", ()-> {
             loginPage.setEmail(email);
         });
 
-        step("Вводим невалидный пароль", ()-> {
+        step("Вводим " + passwordType + " пароль", ()-> {
             loginPage.setPassword(password);
         });
 
@@ -96,8 +99,7 @@ public class AuthTestsUI extends WebDriverProvider {
             loginPage.clickLoginButton();
         });
 
-        step("Проверяем отображение информации об ошибке: '" +
-                data.errorLoginInfo + "'", ()-> {
+        step("Проверяем отображение информации об ошибке", ()-> {
             loginPage.checkLoginError(data.errorLoginInfo);
         });
     }

@@ -51,6 +51,10 @@ public class WebDriverProvider {
             Attach.browserConsoleLogs();
         }
         Attach.addVideo();
+    }
+
+    @AfterEach
+    void closeWebDriver () {
         closeWebDriver();
     }
 

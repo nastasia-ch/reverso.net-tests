@@ -29,7 +29,7 @@ public class HistoryTestsUI extends WebDriverProvider {
     TestData data = new TestData();
 
     @Severity(SeverityLevel.CRITICAL)
-    @DisplayName("Проверка добавления примера в раздел 'История'")
+    @DisplayName("Проверка добавления в раздел 'История'")
     @Test
     void addInHistory() {
 
@@ -44,15 +44,16 @@ public class HistoryTestsUI extends WebDriverProvider {
                     authApi.getRefreshToken(data.emailValid, data.passwordValid));
         });
 
-        step("Открываем страницу", ()-> {
+        step("Открываем страницу раздела 'История'", ()-> {
             historyPage.openPage(data.historyPath);
         });
 
-        step("Проверяем в разделе 'История' наличие текста перевода: '" + data.text + "'", ()-> {
+        step("Проверяем в результатах наличие текста перевода", ()-> {
             historyPage.checkAddingTextInHistory(data.text);
         });
 
-        step("Очищаем раздел 'История' после теста через Api: удаляем сохраненный запрос", ()-> {
+        step("Очищаем раздел 'История' после теста через Api: " +
+                "удаляем сохраненный запрос", ()-> {
             historyApi.
                     apiDeleteFromHistory(authApi.getRefreshToken(data.emailValid, data.passwordValid),
                                     historyPage.getHistoryId(data.text));
@@ -75,7 +76,7 @@ public class HistoryTestsUI extends WebDriverProvider {
                     authApi.getRefreshToken(data.emailValid, data.passwordValid));
         });
 
-        step("Открываем страницу", ()-> {
+        step("Открываем страницу раздела 'История'", ()-> {
             historyPage.openPage(data.historyPath);
         });
 
@@ -84,30 +85,30 @@ public class HistoryTestsUI extends WebDriverProvider {
         });
 
         step("Выбираем язык оригинала", ()-> {
-            historyPage.chooseSourceLanguage(data.languageFrom);
+            historyPage.chooseSourceLanguage(data.langFromSymbol);
         });
 
         step("Выбираем язык перевода", ()-> {
-            historyPage.chooseTargetLanguage(data.languageTo);
+            historyPage.chooseTargetLanguage(data.langToSymbol);
         });
 
         step("Нажимаем кнопку применения фильтра", ()-> {
             historyPage.clickFilterButton();
         });
 
-        step("Проверяем в первой строке текст перевода:" +
-                " '" + data.text + "'", ()-> {
+        step("Проверяем в первом результате текст перевода", ()-> {
             historyPage.checkAddingTextInHistory(data.text);
         });
 
-        step("Проверяем в первой строке дату сохранения в историю " +
-                "(текущая дата): " + data.currentDate, ()-> {
+        step("Проверяем в первом результате дату сохранения в " +
+                "историю (текущая дата)", ()-> {
             historyPage.checkDateOfAddingInHistory(data.currentDate);
         });
 
-        step("Очищаем раздел 'История' после теста через Api", ()-> {
-            historyApi.
-                    apiDeleteFromHistory(authApi.getRefreshToken(data.emailValid, data.passwordValid),
+        step("Очищаем раздел 'История' после теста через Api: " +
+                "удаляем сохраненный запрос", ()-> {
+            historyApi.apiDeleteFromHistory
+                    (authApi.getRefreshToken(data.emailValid, data.passwordValid),
                             historyPage.getHistoryId(data.text));
         });
 

@@ -27,15 +27,17 @@ public class HistoryPage {
         return this;
     }
 
-    public HistoryPage chooseSourceLanguage(String sourceLanguage) {
+    public HistoryPage chooseSourceLanguage(String langFromSymbol) {
         $(byText("Source language")).click();
-        $(".src.lang").$(".drop-down").$("span[data-value='en']").$("span").click();
+        $(".src.lang").$(".drop-down").
+                $("span[data-value='"+langFromSymbol+"']").$("span").click();
         return this;
     }
 
-    public HistoryPage chooseTargetLanguage(String targetLanguage) {
+    public HistoryPage chooseTargetLanguage(String langToSymbol) {
         $(byText("Target language")).click();
-        $(".trg.lang").$(".drop-down").$("span[data-value='ru']").$("span").click();
+        $(".trg.lang").$(".drop-down").
+                $("span[data-value='"+langToSymbol+"']").$("span").click();
         return this;
     }
 

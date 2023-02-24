@@ -33,7 +33,7 @@ public class MenuTestsUI extends WebDriverProvider {
         });
 
         step("Проверяем наличие в меню следующих заголовков разделов " +
-                "сайта Reverso Context: " + data.reversoHeaders, ()-> {
+                "сайта Reverso Context", ()-> {
             translationPage.checkReversoHeaders(data.reversoHeaders);
         });
     }

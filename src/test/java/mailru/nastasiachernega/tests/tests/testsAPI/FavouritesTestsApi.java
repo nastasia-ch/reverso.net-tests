@@ -25,7 +25,7 @@ public class FavouritesTestsApi {
     TestData data = new TestData();
 
     @Severity(SeverityLevel.BLOCKER)
-    @DisplayName("Проверка добавления примера в 'Избранное'")
+    @DisplayName("Проверка добавления примера в 'Избранное' с авторизацией")
     @Test
     void apiAddInFavourites() {
 
@@ -109,7 +109,8 @@ public class FavouritesTestsApi {
     @Test
     void apiAddCommentInFavourites() {
 
-        step("Выполняем api запрос на добавление примера и получаем id примера");
+        step("Выполняем api запрос на добавление примера в 'Избранное' " +
+                "и получаем id примера");
         String refreshToken = authApi.
                 getRefreshToken(data.emailValid, data.passwordValid);
 
@@ -123,9 +124,9 @@ public class FavouritesTestsApi {
                                    data.contextTranslation)
                 .extract().path("id");
 
-        step("Добавляем к примеру с id " + exampleId + " комментарий: '" + data.commentText + "' " +
-                "и проверяем, что комментарий добавлен в 'Избраннное' пользователя с " + data.userID + "," +
-                        " к примеру с " + exampleId + ", c переданным в запросе текстом");
+        step("Добавляем к примеру комментарий: '" + data.commentText + "' " +
+                "и проверяем, что комментарий добавлен в 'Избраннное' соответствующего " +
+                "пользователя, к соответствующему примеру, c переданным в запросе текстом");
         FavouritesResponseModel response = favouritesApi.
                 apiWorkWithComment(refreshToken, exampleId, data.commentText)
                 .extract().response().as(FavouritesResponseModel.class);

@@ -27,8 +27,8 @@ public class TranslationTestsApi {
     @DisplayName("Проверка перевода текста")
     @Test
     void apiCheckTranslation() {
-        step("Выполняем api-запрос на перевод текста '" + data.text + "' " +
-                "и проверяем наличие в html-ответе вариантов его перевода '" + data.translations);
+        step("Выполняем api-запрос на перевод текста и проверяем наличие " +
+                "в html-ответе вариантов его перевода");
 
         String refreshToken = authApi.
                 getRefreshToken(data.emailValid, data.passwordValid);
@@ -46,9 +46,8 @@ public class TranslationTestsApi {
     @DisplayName("Проверка контекстного перевода текста")
     @Test
     void apiCheckExampleContent() {
-        step("Выполняем api-запрос на перевод текста '" + data.text + "' " +
-                "и проверяем наличие в html-ответе примера '" + data.example + "' " +
-                "и его перевода '" + data.translatedExample + "'");
+        step("Выполняем api-запрос на перевод текста и проверяем наличие " +
+                "в html-ответе соответствующего примера и его перевода");
 
         String refreshToken = authApi.
                 getRefreshToken(data.emailValid, data.passwordValid);

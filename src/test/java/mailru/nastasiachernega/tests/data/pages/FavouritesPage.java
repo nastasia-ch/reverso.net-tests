@@ -18,6 +18,7 @@ public class FavouritesPage {
 
     public FavouritesPage openPage(String path) {
         open(path);
+        executeJavaScript("$('aside').hide();");
         return this;
     };
 
@@ -29,7 +30,8 @@ public class FavouritesPage {
     };
 
     public int getExampleId(String exampleText) {
-        return Integer.parseInt($$(".examples .src").findBy(text(exampleText)).parent().
+        return Integer.parseInt($$(".examples .src").
+                findBy(text(exampleText)).parent().
                 parent().getAttribute("data-id"));
     };
 
