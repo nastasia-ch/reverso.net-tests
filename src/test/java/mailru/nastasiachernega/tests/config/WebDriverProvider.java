@@ -43,7 +43,6 @@ public class WebDriverProvider {
 
     @AfterEach
     void addAttachments () {
-
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         WebDriverConfig config = ConfigFactory.create(WebDriverConfig.class,System.getProperties());
@@ -51,10 +50,6 @@ public class WebDriverProvider {
             Attach.browserConsoleLogs();
         }
         Attach.addVideo();
-    }
-
-    @AfterEach
-    void closeDriver () {
         closeWebDriver();
     }
 
