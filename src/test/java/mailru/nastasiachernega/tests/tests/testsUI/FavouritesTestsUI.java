@@ -70,8 +70,9 @@ public class FavouritesTestsUI extends WebDriverProvider {
         });
 
         step("Переходим в раздел 'Избранное'", ()-> {
-            translationPage.
-                    goToSectionFavourites();
+            translationPage
+                    .openUserMenu()
+                    .goToSectionFavourites();
         });
 
         step("Проверяем, добавлен ли " + data.exampleNumber +
@@ -82,7 +83,7 @@ public class FavouritesTestsUI extends WebDriverProvider {
         });
 
         step("Очищаем раздел 'Избранное' после теста через Api", ()-> {
-            String exampleId = favouritesPage.getExampleId(data.example);
+            int exampleId = favouritesPage.getExampleId(data.example);
             favouritesApi.apiDeleteFromFavourites(authApi.getRefreshToken
                             (data.emailValid, data.passwordValid),
                             exampleId);

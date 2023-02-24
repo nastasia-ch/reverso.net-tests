@@ -28,11 +28,11 @@ public class FavouritesPage {
         return this;
     };
 
-    public String getExampleId(String exampleText) {
+    public int getExampleId(String exampleText) {
         executeJavaScript("$('aside').hide();");
-        return ($$(".examples .src").
+        return Integer.parseInt($$(".examples .src").
                 findBy(text(exampleText)).parent().
-                parent().getAttribute("data-id")).toString();
+                parent().getAttribute("data-id"));
     };
 
 
