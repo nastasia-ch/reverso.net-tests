@@ -67,7 +67,7 @@ public class FavouritesApiSteps {
                 .spec(favouritesAndHistoryRequestSpec)
                 .cookie("reverso.net.ReversoRefreshToken", refreshToken)
                 .queryParam("start", 0)
-                .queryParam("length",25)
+                .queryParam("length",50)
                 .queryParam("order", 10)
                 .queryParam("includeSyn", "yes")
                 .when()

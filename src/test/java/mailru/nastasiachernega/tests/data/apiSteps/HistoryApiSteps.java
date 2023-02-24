@@ -9,6 +9,22 @@ import static mailru.nastasiachernega.tests.helpers.CustomApiListener.withCustom
 
 public class HistoryApiSteps {
 
+    public ValidatableResponse apiGetListOfHistory(String refreshToken) {
+
+        return given()
+                .filter(withCustomTemplates())
+                .spec(favouritesAndHistoryRequestSpec)
+                .cookie("reverso.net.ReversoRefreshToken", refreshToken)
+                .queryParam("start", 0)
+                .queryParam("length",100)
+                .queryParam("order", 6)
+                .queryParam("includeSyn", "yes")
+                .when()
+                .get("/history")
+                .then()
+                .spec(favouritesAndHistoryResponseSpec);
+    }
+
     public ValidatableResponse apiDeleteFromHistory (String refreshToken,
                                                      String historyID) {
         return given()

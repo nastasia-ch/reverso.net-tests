@@ -3,12 +3,12 @@ package mailru.nastasiachernega.tests.data.pages;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
+import mailru.nastasiachernega.tests.data.pages.components.MenuComponents;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 
 import java.util.List;
 
-import static com.codeborne.selenide.CollectionCondition.exactTextsCaseSensitiveInAnyOrder;
 import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byTextCaseInsensitive;
@@ -16,6 +16,8 @@ import static com.codeborne.selenide.Selenide.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TranslationPage {
+
+    MenuComponents menuComponents = new MenuComponents();
 
     private SelenideElement
             textToTranslateInput = $("#search-input input"),
@@ -44,6 +46,7 @@ public class TranslationPage {
 
     public TranslationPage openPage(String path) {
         open(path);
+        executeJavaScript("$('aside').hide();");
         return this;
     };
 
@@ -69,7 +72,6 @@ public class TranslationPage {
         searchButton.click();
         return this;
     };
-
 
     public TranslationPage checkTranslations(List<String> translations) {
         listOfTranslations.contains(texts(translations));
@@ -99,28 +101,38 @@ public class TranslationPage {
             return this;
         };
 
+        public TranslationPage openUserMenu () {
+            menuComponents.openUserMenu();
+            return this;
+        };
+
         public TranslationPage goToSectionFavourites () {
-            userMenuButton.click();
-            favouritesButton.click();
+            menuComponents.goToFavouritesSection();
             return this;
         };
 
         public TranslationPage goToLoginSection () {
-            userMenuButton.click();
-            loginButton.click();
+            menuComponents.goToLoginSection();
             return this;
         };
 
-        public TranslationPage checkLogin (String username){
-            userMenuButton.click();
-            usernameInfo.shouldHave(text(username));
+        public TranslationPage checkReversoHeaders (String[] reversoHeaders){
+            menuComponents.checkHeaders(reversoHeaders);
             return this;
         };
 
+        public TranslationPage IsThereSectionInMenu(String sectionName) {
+            menuComponents.IsThereSectionInMenu(sectionName);
+            return this;
+        }
 
-        public TranslationPage checkReversoHeaders (String[]reversoHeaders){
-            listOfReversoHeaders.
-                    shouldHave(exactTextsCaseSensitiveInAnyOrder(reversoHeaders));
+        public TranslationPage IsThereNotSectionInMenu(String sectionName) {
+            menuComponents.IsThereNotSectionInMenu(sectionName);
+            return this;
+        }
+
+        public TranslationPage logOut() {
+            menuComponents.logOut();
             return this;
         };
 

@@ -3,7 +3,7 @@ package mailru.nastasiachernega.tests.data.pages;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
@@ -22,8 +22,35 @@ public class HistoryPage {
         return this;
     };
 
-    public HistoryPage checkAddingExampleInHistory(String exampleText) {
-        listOfHistoryResults.contains(text(exampleText));
+    public HistoryPage setFilteredText(String textForTranslate) {
+        $("#filter-text").setValue(textForTranslate);
+        return this;
+    }
+
+    public HistoryPage chooseSourceLanguage(String sourceLanguage) {
+        $(byText("Source language")).click();
+        $(".src.lang").$(".drop-down").$("span[data-value='en']").$("span").click();
+        return this;
+    }
+
+    public HistoryPage chooseTargetLanguage(String targetLanguage) {
+        $(byText("Target language")).click();
+        $(".trg.lang").$(".drop-down").$("span[data-value='ru']").$("span").click();
+        return this;
+    }
+
+    public HistoryPage clickFilterButton() {
+        $("#filter").click();
+        return this;
+    }
+
+    public HistoryPage checkAddingTextInHistory(String text) {
+        listOfHistoryResults.get(0).$(".src").equals(text(text));
+        return this;
+    };
+
+    public HistoryPage checkDateOfAddingInHistory(String date) {
+        listOfHistoryResults.get(0).$(".date").equals(text(date));
         return this;
     };
 

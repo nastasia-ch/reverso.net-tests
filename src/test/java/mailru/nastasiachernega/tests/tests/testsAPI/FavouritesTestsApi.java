@@ -1,11 +1,9 @@
 package mailru.nastasiachernega.tests.tests.testsAPI;
 
-import io.qameta.allure.Epic;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import mailru.nastasiachernega.tests.data.apiSteps.AuthorizationApiSteps;
 import mailru.nastasiachernega.tests.data.apiSteps.FavouritesApiSteps;
-import mailru.nastasiachernega.tests.data.apiSteps.HistoryApiSteps;
-import mailru.nastasiachernega.tests.data.apiSteps.TranslationApiSteps;
 import mailru.nastasiachernega.tests.data.models.FavouritesResponseModel;
 import mailru.nastasiachernega.tests.data.testData.TestData;
 import org.junit.jupiter.api.DisplayName;
@@ -16,51 +14,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static io.qameta.allure.Allure.step;
 import static org.hamcrest.Matchers.is;
 
-@Epic("API tests")
-public class TestsApi {
+@Epic("Тесты API")
+@Feature("Favourites")
+@Owner("Anastasia Chernega")
+@Link(value = "Ссылка на тестируемый ресурс", url = "https://context.reverso.net/favourites")
+public class FavouritesTestsApi {
 
     AuthorizationApiSteps authApi = new AuthorizationApiSteps();
-    TranslationApiSteps translationApi = new TranslationApiSteps();
     FavouritesApiSteps favouritesApi = new FavouritesApiSteps();
-    HistoryApiSteps historyApi = new HistoryApiSteps();
-
     TestData data = new TestData();
 
-    @DisplayName("Проверка правильности получения контекстного примера и его перевода")
-    @Test
-    void apiCheckExampleContent() {
-
-        step("Выполняем api запрос на перевод текста '" + data.text + "'");
-        String refreshToken = authApi.
-                getRefreshToken(data.emailValid, data.passwordValid);
-
-        Response response = translationApi
-                .apiTranslation(refreshToken, data.languageFromTo, data.text)
-                .extract().response();
-
-        step("Извлекаем из api ответа текст примера " + data.exampleNumber);
-        String example = response.body().htmlPath().
-                getString("**.findAll{it.@class == 'example'}["+ data.exampleNumber + "]." +
-                        "div.find{it.@class == 'src ltr'}.span.find{it.@class == 'text'}.text()").trim();
-
-        step("Извлекаем из api ответа переведенный текст примера " + data.exampleNumber);
-        String translatedExample = response.body().htmlPath().
-                getString("**.findAll{it.@class == 'example'}["+ data.exampleNumber + "]." +
-                        "div.find{it.@class == 'trg ltr'}.span.find{it.@class == 'text'}.text()").trim();
-
-        step("Проверяем корректность текста примера " + data.exampleNumber);
-        assertThat(example).isEqualTo(data.example);
-
-        step("Проверяем корректность переведенного текста примера " + data.exampleNumber);
-        assertThat(translatedExample).isEqualTo(data.translatedExample);
-    }
-
+    @Story("Добавление в 'Избранное'")
+    @Severity(SeverityLevel.BLOCKER)
     @DisplayName("Проверка добавления примера в 'Избранное'")
     @Test
     void apiAddInFavourites() {
 
         step("Выполняем api запрос на добавление примера в 'Избраннное' " +
-                "и проверяем корректность добавления пример");
+                "и проверяем корректность добавления примера");
         String refreshToken = authApi.
                 getRefreshToken(data.emailValid, data.passwordValid);
 
@@ -85,6 +56,59 @@ public class TestsApi {
                 .body("numUpdatedResults", is(1));
     }
 
+    @Story("Добавление в 'Избранное'")
+    @Severity(SeverityLevel.MINOR)
+    @DisplayName("Проверка добавления примера с невалидными данными в 'Избранное'")
+    @Test
+    void apiAddInFavouritesWithInvalidData() {
+
+        step("Выполняем api запрос на добавление примера с невалидными данными " +
+                "и проверяем получение в ответе сообщения об ошибке");
+        String refreshToken = authApi.
+                getRefreshToken(data.emailValid, data.passwordValid);
+
+        Response response = favouritesApi.
+                apiAddInFavourites(refreshToken,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "")
+                .statusCode(400)
+                .extract().response();
+
+        String errorText = response.htmlPath()
+                .getString("**.find{it.@id == 'error-content'}.p[0].text()");
+
+        assertThat(errorText).isEqualTo("Your request contains a malformed syntax " +
+                "and cannot be fulfilled. Please, try again.");
+    }
+
+    @Story("Добавление в 'Избранное'")
+    @Severity(SeverityLevel.NORMAL)
+    @DisplayName("Проверка добавления примера в 'Избранное' без авторизации")
+    @Test
+    void apiInFavouritesWithoutAuth() {
+
+        step("Выполняем api запрос на добавление примера в 'Избраннное' " +
+                "без авторизации и проверяем получение в ответе информации об ошибке");
+        String refreshToken = "";
+        favouritesApi.
+                apiAddInFavourites(refreshToken,
+                        data.exampleWithTags,
+                        data.langFromSymbol,
+                        data.text,
+                        data.translatedExampleWithTags,
+                        data.langToSymbol,
+                        data.contextTranslation)
+                .statusCode(403)
+                .body("error", is("Forbidden"))
+                .body("message", is("Access Denied"));
+    }
+
+    @Story("Добавление комментария")
+    @Severity(SeverityLevel.NORMAL)
     @DisplayName("Добавление комментария к примеру, сохраненному в 'Избранное'")
     @Test
     void apiAddCommentInFavourites() {
@@ -124,6 +148,8 @@ public class TestsApi {
 
     }
 
+    @Story("Удаление из 'Избранное'")
+    @Severity(SeverityLevel.MINOR)
     @DisplayName("Удаление примера из 'Избранное'")
     @Test
     void apiDeleteFromFavourites() {
@@ -154,12 +180,6 @@ public class TestsApi {
         step("Проверяем количество сохраненных примеров в 'Избраннное': должно уменьшиться на 1");
         favouritesApi.apiGetListOfFavourites(refreshToken).
                 body("numTotalResults", is(numOfFavourites-1));
-
-
     }
-
-
-
-
 
 }

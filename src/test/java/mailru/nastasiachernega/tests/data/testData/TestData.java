@@ -3,6 +3,7 @@ package mailru.nastasiachernega.tests.data.testData;
 import com.github.javafaker.Faker;
 import mailru.nastasiachernega.tests.config.DataProvider;
 import mailru.nastasiachernega.tests.config.LoginConfig;
+import mailru.nastasiachernega.tests.utils.DateUtil;
 import org.aeonbits.owner.ConfigFactory;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public class TestData extends DataProvider {
     ThreadLocalRandom random = ThreadLocalRandom.current();
     Faker faker = new Faker(new Locale("en"));
     LoginConfig loginConfig = ConfigFactory.create(LoginConfig.class,System.getProperties());
+    DateUtil dateUtil = new DateUtil();
 
     // login test data
     public final String
@@ -38,7 +40,8 @@ public class TestData extends DataProvider {
             text = getText(),
             languageFrom = getLanguageFrom(),
             languageTo = getLanguageTo(),
-            commentText = "Good example";
+            commentText = "Good example",
+            currentDate = dateUtil.getCurrentDate();
 
     public List<String> translations = getTranslations();
 
@@ -56,6 +59,4 @@ public class TestData extends DataProvider {
             langToSymbol = getLangToSymbol(),
             exampleWithTags = getExamples().get(exampleNumber),
             translatedExampleWithTags = getTranslatedExamples().get(exampleNumber);
-
-
 }

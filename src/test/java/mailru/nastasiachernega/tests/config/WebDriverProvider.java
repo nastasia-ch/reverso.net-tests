@@ -1,5 +1,6 @@
 package mailru.nastasiachernega.tests.config;
 
+import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import mailru.nastasiachernega.tests.helpers.Attach;
@@ -49,6 +50,7 @@ public class WebDriverProvider {
             Attach.browserConsoleLogs();
         }
         Attach.addVideo();
+        WebDriverRunner.getWebDriver().close();
     }
 
 }

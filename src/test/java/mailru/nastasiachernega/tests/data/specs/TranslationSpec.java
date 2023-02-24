@@ -7,7 +7,6 @@ import io.restassured.specification.ResponseSpecification;
 
 import static io.restassured.RestAssured.with;
 import static io.restassured.filter.log.LogDetail.STATUS;
-import static mailru.nastasiachernega.tests.helpers.CustomApiListener.withCustomTemplates;
 
 public class TranslationSpec {
 

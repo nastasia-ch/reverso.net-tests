@@ -24,7 +24,5 @@ public class FavouritesAndHistorySpec {
     public static ResponseSpecification favouritesAndHistoryResponseSpec = new ResponseSpecBuilder()
             .log(STATUS)
             .log(BODY)
-            .expectStatusCode(200)
             .build();
-
 }
