@@ -54,7 +54,7 @@ public class WebDriverProvider {
     }
 
     @AfterEach
-    void closeWebDriver () {
+    void closeDriver () {
         closeWebDriver();
     }
 
