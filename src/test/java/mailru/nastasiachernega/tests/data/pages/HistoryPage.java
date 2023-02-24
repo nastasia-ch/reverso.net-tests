@@ -59,7 +59,8 @@ public class HistoryPage {
     };
 
     public String getHistoryId(String text) {
-        return $$(".entry .src").findBy(text(text)).parent().parent().parent().
+        return $$(".entry .src").
+                findBy(text(text)).parent().parent().parent().
                 parent().getAttribute("data-id");
     };
 

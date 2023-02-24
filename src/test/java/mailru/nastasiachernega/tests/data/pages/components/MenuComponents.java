@@ -2,7 +2,6 @@ package mailru.nastasiachernega.tests.data.pages.components;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.CollectionCondition.exactTextsCaseSensitiveInAnyOrder;
 import static com.codeborne.selenide.Condition.text;

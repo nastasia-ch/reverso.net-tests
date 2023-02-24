@@ -64,6 +64,12 @@ tasks.withType(Test) {
     }
 }
 
+task auth_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags "auth_tests"
+    }
+}
+
 task add_in_favourites(type: Test) {
     useJUnitPlatform {
         includeTags "add_in_favourites"

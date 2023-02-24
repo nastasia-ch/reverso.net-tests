@@ -6,6 +6,7 @@ import mailru.nastasiachernega.tests.data.pages.LoginPage;
 import mailru.nastasiachernega.tests.data.pages.TranslationPage;
 import mailru.nastasiachernega.tests.data.testData.TestData;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -28,6 +29,7 @@ public class AuthTestsUI extends WebDriverProvider {
     @Severity(SeverityLevel.BLOCKER)
     @DisplayName("Проверка авторизации с валидными данными")
     @Test
+    @Tag("auth_tests")
     void loginTestWithValidData() {
 
         step("Открываем страницу", ()-> {
@@ -73,6 +75,7 @@ public class AuthTestsUI extends WebDriverProvider {
     @DisplayName("Проверка авторизации с невалидными данными")
     @MethodSource()
     @ParameterizedTest
+    @Tag("auth_tests")
     void loginTestWithInvalidData(String emailType,String email,
                                   String passwordType,String password) {
 
