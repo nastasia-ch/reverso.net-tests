@@ -22,7 +22,6 @@ public class WebDriverProvider {
 
         WebDriverConfig config = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
 
-        Configuration.holdBrowserOpen=true;
         Configuration.browser = config.getBrowserName();
         Configuration.browserVersion = config.getBrowserVersion();
         Configuration.browserSize = config.getBrowserSize();
