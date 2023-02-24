@@ -77,7 +77,7 @@ public class FavouritesApiSteps {
     }
 
     public ValidatableResponse apiDeleteFromFavourites (String refreshToken,
-                                                        int exampleId) {
+                                                        String exampleId) {
         return given()
                 .filter(withCustomTemplates())
                 .spec(favouritesAndHistoryRequestSpec)
