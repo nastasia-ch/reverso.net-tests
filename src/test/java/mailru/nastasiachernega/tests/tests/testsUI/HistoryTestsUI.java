@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import static io.qameta.allure.Allure.step;
 
 @Epic("Тесты UI")
-@Feature("History")
+@Feature("История")
 @Owner("Anastasia Chernega")
 @Link(value = "Ссылка на тестируемый ресурс", url = "https://context.reverso.net/history")
 public class HistoryTestsUI extends WebDriverProvider {
@@ -28,7 +28,6 @@ public class HistoryTestsUI extends WebDriverProvider {
 
     TestData data = new TestData();
 
-    @Story("Добавление в раздел 'История'")
     @Severity(SeverityLevel.CRITICAL)
     @DisplayName("Проверка добавления примера в раздел 'История'")
     @Test
@@ -60,7 +59,6 @@ public class HistoryTestsUI extends WebDriverProvider {
         });
     };
 
-    @Story("Фильтрация в разделе 'История'")
     @Severity(SeverityLevel.CRITICAL)
     @DisplayName("Проверка фильтрации в разделе 'История'")
     @Test

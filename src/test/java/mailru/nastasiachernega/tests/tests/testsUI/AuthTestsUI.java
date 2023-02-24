@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 import static io.qameta.allure.Allure.step;
 
 @Epic("Тесты UI")
-@Feature("Authorization")
+@Feature("Авторизация")
 @Owner("Anastasia Chernega")
 @Link(value = "Ссылка на тестируемый ресурс", url = "https://context.reverso.net/translation/")
 public class AuthTestsUI extends WebDriverProvider {
@@ -25,7 +25,6 @@ public class AuthTestsUI extends WebDriverProvider {
     TranslationPage translationPage = new TranslationPage();
     static TestData data = new TestData();
 
-    @Story("Авторизация")
     @Severity(SeverityLevel.BLOCKER)
     @DisplayName("Проверка авторизации с валидными электронным адресом и паролем")
     @Test
@@ -68,7 +67,6 @@ public class AuthTestsUI extends WebDriverProvider {
                 Arguments.of(data.emailInvalid,data.passwordInvalid)
         );
     }
-    @Story("Авторизация")
     @Severity(SeverityLevel.BLOCKER)
     @DisplayName("Проверка авторизации с валидными электронным адресом и невалидным паролем")
     @MethodSource()

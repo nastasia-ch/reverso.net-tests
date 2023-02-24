@@ -25,16 +25,11 @@ public class TranslationPage {
             languageFromChoice = $$(".languages").first(),
             languageToButton = $("#trg-selector"),
             languageToChoice = $$(".languages").last(),
-            searchButton = $("#search-button"),
-            userMenuButton = $("#reverso-user-menu"),
-            favouritesButton = $(By.linkText("Favourites")),
-            loginButton = $(By.linkText("Log in")),
-            usernameInfo = $(".username");
+            searchButton = $("#search-button");
 
     private ElementsCollection
             listOfTranslations = $$("#translations-content .translation .display-term"),
-            listOfExamples = $$("#examples-content .example"),
-            listOfReversoHeaders = $(".reverso-links-wrapper").$$("a.product span");
+            listOfExamples = $$("#examples-content .example");
 
     public TranslationPage addAuthCookieToWebDriver(String path,
                                    String refreshToken) {

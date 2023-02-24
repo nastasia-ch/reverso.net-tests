@@ -15,7 +15,7 @@ import static io.qameta.allure.Allure.step;
 import static org.hamcrest.Matchers.is;
 
 @Epic("Тесты API")
-@Feature("Favourites")
+@Feature("Избранное")
 @Owner("Anastasia Chernega")
 @Link(value = "Ссылка на тестируемый ресурс", url = "https://context.reverso.net/favourites")
 public class FavouritesTestsApi {
@@ -24,7 +24,6 @@ public class FavouritesTestsApi {
     FavouritesApiSteps favouritesApi = new FavouritesApiSteps();
     TestData data = new TestData();
 
-    @Story("Добавление в 'Избранное'")
     @Severity(SeverityLevel.BLOCKER)
     @DisplayName("Проверка добавления примера в 'Избранное'")
     @Test
@@ -56,7 +55,6 @@ public class FavouritesTestsApi {
                 .body("numUpdatedResults", is(1));
     }
 
-    @Story("Добавление в 'Избранное'")
     @Severity(SeverityLevel.MINOR)
     @DisplayName("Проверка добавления примера с невалидными данными в 'Избранное'")
     @Test
@@ -85,7 +83,6 @@ public class FavouritesTestsApi {
                 "and cannot be fulfilled. Please, try again.");
     }
 
-    @Story("Добавление в 'Избранное'")
     @Severity(SeverityLevel.NORMAL)
     @DisplayName("Проверка добавления примера в 'Избранное' без авторизации")
     @Test
@@ -107,7 +104,6 @@ public class FavouritesTestsApi {
                 .body("message", is("Access Denied"));
     }
 
-    @Story("Добавление комментария")
     @Severity(SeverityLevel.NORMAL)
     @DisplayName("Добавление комментария к примеру, сохраненному в 'Избранное'")
     @Test
@@ -148,7 +144,6 @@ public class FavouritesTestsApi {
 
     }
 
-    @Story("Удаление из 'Избранное'")
     @Severity(SeverityLevel.MINOR)
     @DisplayName("Удаление примера из 'Избранное'")
     @Test

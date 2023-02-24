@@ -14,7 +14,7 @@ import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Epic("Тесты API")
-@Feature("Translation")
+@Feature("Перевод текста")
 @Owner("Anastasia Chernega")
 @Link(value = "Ссылка на тестируемый ресурс", url = "https://context.reverso.net/translation/")
 public class TranslationTestsApi {
@@ -23,7 +23,6 @@ public class TranslationTestsApi {
     TranslationApiSteps translationApi = new TranslationApiSteps();
     TestData data = new TestData();
 
-    @Story("Перевод текста")
     @Severity(SeverityLevel.BLOCKER)
     @DisplayName("Проверка перевода текста")
     @Test
@@ -43,7 +42,6 @@ public class TranslationTestsApi {
         assertThat(translations).containsSequence(data.translations);
     }
 
-    @Story("Контекстный перевод текста")
     @Severity(SeverityLevel.BLOCKER)
     @DisplayName("Проверка контекстного перевода текста")
     @Test

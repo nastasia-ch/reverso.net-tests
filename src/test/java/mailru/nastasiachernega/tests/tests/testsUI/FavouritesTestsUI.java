@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import static io.qameta.allure.Allure.step;
 
 @Epic("Тесты UI")
-@Feature("Favourites")
+@Feature("Избранное")
 @Owner("Anastasia Chernega")
 @Link(value = "Ссылка на тестируемый ресурс", url = "https://context.reverso.net/favourites")
 public class FavouritesTestsUI extends WebDriverProvider {
@@ -27,7 +27,6 @@ public class FavouritesTestsUI extends WebDriverProvider {
 
     TestData data = new TestData();
 
-    @Story("Добавление в 'Избранное'")
     @Severity(SeverityLevel.CRITICAL)
     @DisplayName("Проверка добавления примера в 'Избранное'")
     @Test
