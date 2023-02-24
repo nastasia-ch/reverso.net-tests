@@ -88,7 +88,7 @@ public class TranslationPage {
         return this;
     };
 
-        public TranslationPage addInFavourites ( int exampleNumber){
+        public TranslationPage addInFavourites (int exampleNumber){
             executeJavaScript("$('#blocked-rude-results-banner').hide();");
             listOfExamples.get(exampleNumber).hover();
             listOfExamples.get(exampleNumber).

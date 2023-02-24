@@ -29,7 +29,6 @@ public class FavouritesPage {
     };
 
     public int getExampleId(String exampleText) {
-        executeJavaScript("$('aside').hide();");
         return Integer.parseInt($$(".examples .src").
                 findBy(text(exampleText)).parent().
                 parent().getAttribute("data-id"));

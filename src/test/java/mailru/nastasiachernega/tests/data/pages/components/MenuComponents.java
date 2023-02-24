@@ -28,12 +28,12 @@ public class MenuComponents {
     };
 
     public MenuComponents goToLoginSection () {
-        userMenuButton.$(By.linkText("Log in")).click();
+        userMenuButton.$(byText("Log in")).click();
         return this;
     };
 
     public MenuComponents goToFavouritesSection () {
-        userMenuButton.$(By.linkText("Favourites"));
+        userMenuButton.$(byText("Favourites")).click();
         return this;
     };
 
