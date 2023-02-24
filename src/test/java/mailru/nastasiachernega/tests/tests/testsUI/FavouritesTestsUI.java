@@ -1,5 +1,6 @@
 package mailru.nastasiachernega.tests.tests.testsUI;
 
+import com.codeborne.selenide.Configuration;
 import io.qameta.allure.*;
 import mailru.nastasiachernega.tests.config.WebDriverProvider;
 import mailru.nastasiachernega.tests.data.apiSteps.AuthorizationApiSteps;
@@ -28,7 +29,7 @@ public class FavouritesTestsUI extends WebDriverProvider {
     TestData data = new TestData();
 
     @Severity(SeverityLevel.NORMAL)
-    @DisplayName("Проверка добавления примера в 'Избранное'")
+    @DisplayName("Открытие раздела в 'Избранное' без авторизации")
     @Test
     void openPageWithoutAuth() {
 

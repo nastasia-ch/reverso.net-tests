@@ -92,6 +92,7 @@ public class TranslationPage {
         public TranslationPage addInFavourites (int exampleNumber){
             executeJavaScript("$('#blocked-rude-results-banner').hide();");
             listOfExamples.get(exampleNumber).hover();
+            executeJavaScript("$('#blocked-rude-results-banner').hide();");
             listOfExamples.get(exampleNumber).
                     $("button[title='Mark this example as favourite']").click();
             return this;
