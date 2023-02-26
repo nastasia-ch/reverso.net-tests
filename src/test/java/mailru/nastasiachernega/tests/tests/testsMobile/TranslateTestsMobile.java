@@ -88,13 +88,13 @@ public class TranslateTestsMobile extends TestBaseMobile {
         step("Проверяем в результатах наличие примера с текстом: '" +
                 data.exampleMobile + "'", () -> {
             $$(id("com.softissimo.reverso.context:id/text_source"))
-                    .get(data.exampleNumberMobile)
+                    .get(data.exampleNumberMobile).scrollTo()
                     .shouldHave(text(data.exampleMobile));
         });
         step("Проверяем в результатах наличие перевода примера с текстом: '" +
                 data.translatedExampleMobile + "'", () -> {
             $$(id("com.softissimo.reverso.context:id/text_target"))
-                    .get(data.exampleNumberMobile)
+                    .get(data.exampleNumberMobile).scrollTo()
                     .shouldHave(text(data.translatedExampleMobile));
         });
     }
