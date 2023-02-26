@@ -76,3 +76,8 @@ task add_in_favourites(type: Test) {
         includeTags "add_in_favourites"
     }
 }
+task mobile_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags "mobile_tests"
+    }
+}
