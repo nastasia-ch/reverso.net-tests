@@ -32,7 +32,7 @@ public class TestBaseMobile {
     void addAttachments() throws IOException {
         String sessionId = Attach.getSessionId();
 
-        //Attach.screenshotAs("Last screenshot");
+        Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
 
         closeWebDriver();
