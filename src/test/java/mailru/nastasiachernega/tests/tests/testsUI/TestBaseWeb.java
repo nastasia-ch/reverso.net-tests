@@ -1,7 +1,8 @@
-package mailru.nastasiachernega.tests.config;
+package mailru.nastasiachernega.tests.tests.testsUI;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
+import mailru.nastasiachernega.tests.config.WebDriverConfig;
 import mailru.nastasiachernega.tests.helpers.Attach;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
@@ -10,16 +11,14 @@ import org.junit.jupiter.api.BeforeAll;
 import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.util.Locale;
-
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
-public class WebDriverProvider {
+public class TestBaseWeb {
 
     @BeforeAll
     static void setUp() {
 
-        System.getProperty("environment");
+        System.getProperty("environmentWeb");
 
         WebDriverConfig config = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
 
@@ -50,7 +49,7 @@ public class WebDriverProvider {
         if(config.getBrowserName().equals("firefox") == false) {
             Attach.browserConsoleLogs();
         }
-        Attach.addVideo();
+        Attach.addVideoSelenoid();
         closeWebDriver();
     }
 

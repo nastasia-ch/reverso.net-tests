@@ -1,17 +1,10 @@
 package mailru.nastasiachernega.tests.data.pages;
 
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
-
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class FavouritesPage {
-
-    private SelenideElement
-            clearAllFavouritesButton = $("#remove"),
-            acceptClearButton = $(".delete-alert").$(byText("Accept"));
 
     private ElementsCollection
             listOfFavourites = $$(".examples");
@@ -21,17 +14,19 @@ public class FavouritesPage {
         return this;
     };
 
-    public FavouritesPage checkAddingExampleInFavourites(String exampleText,
-                                                         String exampleTranslatedText) {
-
-        listOfFavourites.contains(text(exampleText));
-        listOfFavourites.contains(text(exampleTranslatedText));
+    public FavouritesPage checkAddingExample(String example) {
+        listOfFavourites.contains(text(example));
         return this;
     };
 
-    public int getExampleId(String exampleText) {
+    public FavouritesPage checkAddingTranslatedExample(String translatedExample) {
+        listOfFavourites.contains(text(translatedExample));
+        return this;
+    };
+
+    public int getExampleId(String example) {
         return Integer.parseInt($$(".examples .src").
-                findBy(text(exampleText)).parent().
+                findBy(text(example)).parent().
                 parent().getAttribute("data-id"));
     };
 
@@ -40,6 +35,4 @@ public class FavouritesPage {
                 shouldHave(text("You should be logged in to save and view your favourites."));
         return this;
     };
-
-
 }

@@ -1,12 +1,10 @@
 package mailru.nastasiachernega.tests.data.testData;
 
 import com.github.javafaker.Faker;
-import mailru.nastasiachernega.tests.config.DataProvider;
 import mailru.nastasiachernega.tests.config.LoginConfig;
 import mailru.nastasiachernega.tests.utils.DateUtil;
 import org.aeonbits.owner.ConfigFactory;
 
-import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -26,7 +24,7 @@ public class TestData extends DataProvider {
             passwordInvalid = faker.internet().password(1,8),
             errorLoginInfo = "Your login information was incorrect. Please try again.";
 
-    public final int userID = loginConfig.getUserID();
+    public int userID = loginConfig.getUserID();
 
     // test data for actions with translations
     public String[] reversoHeaders = {"Translation","Context","Grammar Check","Synonyms","Conjugation"};
@@ -43,7 +41,7 @@ public class TestData extends DataProvider {
             commentText = "Good example",
             currentDate = dateUtil.getCurrentDate();
 
-    public List<String> translations = getTranslations();
+    public String[] translations = getTranslations();
 
     public String
             example = getExamples().get(exampleNumber).
@@ -59,4 +57,12 @@ public class TestData extends DataProvider {
             langToSymbol = getLangToSymbol(),
             exampleWithTags = getExamples().get(exampleNumber),
             translatedExampleWithTags = getTranslatedExamples().get(exampleNumber);
+
+    // for mobile testing
+    public int exampleNumberMobile = random.nextInt(0,3);
+    public String
+            exampleMobile = getExamples().get(exampleNumberMobile).
+            replace("<em>","").replace("</em>",""),
+            translatedExampleMobile = getTranslatedExamples().get(exampleNumberMobile).
+                    replace("<em>","").replace("</em>","");
 }

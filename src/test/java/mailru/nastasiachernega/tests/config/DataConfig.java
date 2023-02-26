@@ -27,7 +27,7 @@ public interface DataConfig extends Config {
 
     @Config.Separator(" / ")
     @Config.Key("data.translations")
-    LinkedList<String> getTranslations();
+    String[] getTranslations();
 
     @Config.Separator(" / ")
     @Config.Key("data.examples")

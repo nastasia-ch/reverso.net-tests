@@ -1,7 +1,6 @@
 package mailru.nastasiachernega.tests.tests.testsUI;
 
 import io.qameta.allure.*;
-import mailru.nastasiachernega.tests.config.WebDriverProvider;
 import mailru.nastasiachernega.tests.data.apiSteps.AuthorizationApiSteps;
 import mailru.nastasiachernega.tests.data.pages.TranslationPage;
 import mailru.nastasiachernega.tests.data.testData.TestData;
@@ -14,13 +13,14 @@ import static io.qameta.allure.Allure.step;
 @Feature("Перевод текста")
 @Owner("Anastasia Chernega")
 @Link(value = "Ссылка на тестируемый ресурс", url = "https://context.reverso.net/translation/")
-public class TranslationTestsUI extends WebDriverProvider {
+public class TranslationTestsUI extends TestBaseWeb {
 
     AuthorizationApiSteps authApi = new AuthorizationApiSteps();
     TranslationPage translationPage = new TranslationPage();
     TestData data = new TestData();
 
-    @DisplayName("Проверка перевода текста")
+    @Severity(SeverityLevel.BLOCKER)
+    @DisplayName("Перевод текста")
     @Test
     void checkTextTranslations() {
 
@@ -60,7 +60,8 @@ public class TranslationTestsUI extends WebDriverProvider {
         });
     }
 
-    @DisplayName("Проверка отображения примеров")
+    @Severity(SeverityLevel.BLOCKER)
+    @DisplayName("Отображение примеров")
     @Test
     void checkExampleContent() {
 
@@ -97,13 +98,13 @@ public class TranslationTestsUI extends WebDriverProvider {
         step("Проверямем в " + data.exampleNumber + "-м примере содержание " +
                 "текста '" + data.text + "'", ()-> {
             translationPage.
-                    checkExampleConsistInputText(data.exampleNumber, data.text);
+                    checkExampleContainsInputText(data.exampleNumber, data.text);
         });
 
         step("Проверямем в " + data.exampleNumber + "-м примере содержание " +
                 "одного из вариантов перевода", ()-> {
             translationPage.
-                    checkExampleConsistTranslatedText(data.exampleNumber, data.translations);
+                    checkExampleContainsTranslation(data.exampleNumber, data.translations);
         });
     }
 

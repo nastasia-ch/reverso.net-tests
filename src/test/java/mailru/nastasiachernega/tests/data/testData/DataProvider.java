@@ -1,5 +1,6 @@
-package mailru.nastasiachernega.tests.config;
+package mailru.nastasiachernega.tests.data.testData;
 
+import mailru.nastasiachernega.tests.config.DataConfig;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeAll;
 
@@ -26,7 +27,7 @@ public class DataProvider {
         return dataConfig.getLanguageTo();
     }
 
-    public LinkedList<String> getTranslations() {
+    public String[] getTranslations() {
         return dataConfig.getTranslations();
     }
 

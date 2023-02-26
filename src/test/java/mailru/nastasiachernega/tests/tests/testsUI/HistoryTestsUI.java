@@ -1,7 +1,6 @@
 package mailru.nastasiachernega.tests.tests.testsUI;
 
 import io.qameta.allure.*;
-import mailru.nastasiachernega.tests.config.WebDriverProvider;
 import mailru.nastasiachernega.tests.data.pages.HistoryPage;
 import mailru.nastasiachernega.tests.data.pages.TranslationPage;
 import mailru.nastasiachernega.tests.data.testData.TestData;
@@ -17,7 +16,7 @@ import static io.qameta.allure.Allure.step;
 @Feature("История")
 @Owner("Anastasia Chernega")
 @Link(value = "Ссылка на тестируемый ресурс", url = "https://context.reverso.net/history")
-public class HistoryTestsUI extends WebDriverProvider {
+public class HistoryTestsUI extends TestBaseWeb {
 
     AuthorizationApiSteps authApi = new AuthorizationApiSteps();
     TranslationApiSteps translationApi = new TranslationApiSteps();
@@ -102,7 +101,7 @@ public class HistoryTestsUI extends WebDriverProvider {
 
         step("Проверяем в первом результате дату сохранения в " +
                 "историю (текущая дата)", ()-> {
-            historyPage.checkDateOfAddingInHistory(data.currentDate);
+            historyPage.checkAddingDateInHistory(data.currentDate);
         });
 
         step("Очищаем раздел 'История' после теста через Api: " +

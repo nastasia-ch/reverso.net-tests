@@ -4,9 +4,12 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import mailru.nastasiachernega.tests.data.pages.components.MenuComponents;
-import org.openqa.selenium.By;
+import org.assertj.core.condition.AnyOf;
 import org.openqa.selenium.Cookie;
 
+import java.nio.CharBuffer;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.codeborne.selenide.CollectionCondition.exactTextsCaseSensitiveInAnyOrder;
@@ -29,7 +32,8 @@ public class TranslationPage {
             searchButton = $("#search-button");
 
     private ElementsCollection
-            listOfTranslations = $$("#translations-content .translation .display-term"),
+            listOfTranslations = $$("#translations-content " +
+            ".translation .display-term"),
             listOfExamples = $$("#examples-content .example");
 
     public TranslationPage addAuthCookieToWebDriver(String path,
@@ -69,68 +73,62 @@ public class TranslationPage {
         return this;
     };
 
-    public TranslationPage checkTranslations(List<String> translations) {
+    public TranslationPage checkTranslations(String[] translations) {
         listOfTranslations.contains(texts(translations));
         return this;
     };
 
-    public TranslationPage checkExampleConsistInputText(int exampleNumber,
-                                                        String textForTranslate) {
+    public TranslationPage checkExampleContainsInputText(int exampleNumber,
+                                                         String textForTranslate) {
         listOfExamples.get(exampleNumber).$$(".text").first().
                 shouldHave(text(textForTranslate));
         return this;
     };
 
-    public TranslationPage checkExampleConsistTranslatedText(int exampleNumber,
-                                                             List<String> translations) {
-
-        assertThat(listOfExamples.get(exampleNumber).$$(".text").last().getText()).
-                containsAnyOf(translations.toArray(new CharSequence[translations.size()]));
+    public TranslationPage checkExampleContainsTranslation(int exampleNumber,
+                                                           String[] translations) {
+        assertThat(listOfExamples.get(exampleNumber).$$(".text").
+                last().getText()).containsAnyOf(Arrays.asList(translations).
+                        toArray(new CharSequence[Arrays.asList(translations).size()]));
         return this;
     };
 
-        public TranslationPage addInFavourites (int exampleNumber){
-            executeJavaScript("$('#blocked-rude-results-banner').hide();");
-            listOfExamples.get(exampleNumber).hover();
-            executeJavaScript("$('#blocked-rude-results-banner').hide();");
-            listOfExamples.get(exampleNumber).
-                    $("button[title='Mark this example as favourite']").click();
-            return this;
-        };
+    public TranslationPage addInFavourites (int exampleNumber){
+        executeJavaScript("$('#blocked-rude-results-banner').hide();");
+        listOfExamples.get(exampleNumber).hover();
+        executeJavaScript("$('#blocked-rude-results-banner').hide();");
+        listOfExamples.get(exampleNumber).
+                $("button[title='Mark this example as favourite']").click();
+        return this;
+    };
 
-        public TranslationPage openUserMenu () {
-            menuComponents.openUserMenu();
-            return this;
-        };
+    public TranslationPage openUserMenu () {
+        menuComponents.openUserMenu();
+        return this;
+    };
 
-        public TranslationPage goToSectionFavourites () {
-            menuComponents.goToFavouritesSection();
-            return this;
-        };
+    public TranslationPage goToSectionFavourites () {
+        menuComponents.goToFavouritesSection();
+        return this;
+    };
 
-        public TranslationPage goToLoginSection () {
-            menuComponents.goToLoginSection();
-            return this;
-        };
+    public TranslationPage goToLoginSection () {
+        menuComponents.goToLoginSection();
+        return this;
+    };
 
-        public TranslationPage checkReversoHeaders (String[] reversoHeaders){
-            menuComponents.checkHeaders(reversoHeaders);
-            return this;
-        };
+    public TranslationPage checkReversoHeaders (String[] reversoHeaders){
+        menuComponents.checkHeaders(reversoHeaders);
+        return this;
+    };
 
-        public TranslationPage IsThereSectionInMenu(String sectionName) {
-            menuComponents.IsThereSectionInMenu(sectionName);
-            return this;
-        }
+    public TranslationPage IsThereSectionInMenu(String sectionName) {
+        menuComponents.IsThereSectionInMenu(sectionName);
+        return this;
+    }
 
-        public TranslationPage IsThereNotSectionInMenu(String sectionName) {
-            menuComponents.IsThereNotSectionInMenu(sectionName);
-            return this;
-        }
-
-        public TranslationPage logOut() {
-            menuComponents.logOut();
-            return this;
-        };
-
+    public TranslationPage IsThereNotSectionInMenu(String sectionName) {
+        menuComponents.IsThereNotSectionInMenu(sectionName);
+        return this;
+    }
 }

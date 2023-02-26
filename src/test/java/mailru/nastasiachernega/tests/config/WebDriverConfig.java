@@ -3,7 +3,7 @@ package mailru.nastasiachernega.tests.config;
 import org.aeonbits.owner.Config;
 
 @Config.Sources({
-        "classpath:${environment}.properties",
+        "classpath:${environmentWeb}.properties",
         "classpath:chrome-local.properties"
 })
 public interface WebDriverConfig extends Config {

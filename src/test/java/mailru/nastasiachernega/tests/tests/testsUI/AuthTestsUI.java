@@ -1,7 +1,6 @@
 package mailru.nastasiachernega.tests.tests.testsUI;
 
 import io.qameta.allure.*;
-import mailru.nastasiachernega.tests.config.WebDriverProvider;
 import mailru.nastasiachernega.tests.data.pages.LoginPage;
 import mailru.nastasiachernega.tests.data.pages.TranslationPage;
 import mailru.nastasiachernega.tests.data.testData.TestData;
@@ -20,14 +19,14 @@ import static io.qameta.allure.Allure.step;
 @Feature("Авторизация")
 @Owner("Anastasia Chernega")
 @Link(value = "Ссылка на тестируемый ресурс", url = "https://context.reverso.net/translation/")
-public class AuthTestsUI extends WebDriverProvider {
+public class AuthTestsUI extends TestBaseWeb {
 
     LoginPage loginPage = new LoginPage();
     TranslationPage translationPage = new TranslationPage();
     static TestData data = new TestData();
 
     @Severity(SeverityLevel.BLOCKER)
-    @DisplayName("Проверка авторизации с валидными данными")
+    @DisplayName("Авторизация с валидными данными")
     @Test
     @Tag("auth_tests")
     void loginTestWithValidData() {
@@ -72,7 +71,7 @@ public class AuthTestsUI extends WebDriverProvider {
         );
     }
     @Severity(SeverityLevel.BLOCKER)
-    @DisplayName("Проверка авторизации с невалидными данными")
+    @DisplayName("Авторизация с невалидными данными")
     @MethodSource()
     @ParameterizedTest
     @Tag("auth_tests")

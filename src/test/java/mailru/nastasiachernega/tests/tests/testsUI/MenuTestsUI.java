@@ -1,7 +1,6 @@
 package mailru.nastasiachernega.tests.tests.testsUI;
 
 import io.qameta.allure.*;
-import mailru.nastasiachernega.tests.config.WebDriverProvider;
 import mailru.nastasiachernega.tests.data.apiSteps.AuthorizationApiSteps;
 import mailru.nastasiachernega.tests.data.pages.TranslationPage;
 import mailru.nastasiachernega.tests.data.testData.TestData;
@@ -16,7 +15,7 @@ import static io.qameta.allure.Allure.step;
 @Feature("Меню")
 @Owner("Anastasia Chernega")
 @Link(value = "Ссылка на тестируемый ресурс", url = "https://context.reverso.net/translation/")
-public class MenuTestsUI extends WebDriverProvider {
+public class MenuTestsUI extends TestBaseWeb {
 
     AuthorizationApiSteps authApi = new AuthorizationApiSteps();
     TranslationPage translationPage = new TranslationPage();

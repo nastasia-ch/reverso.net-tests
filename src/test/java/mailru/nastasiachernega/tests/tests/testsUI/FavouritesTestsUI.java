@@ -1,8 +1,6 @@
 package mailru.nastasiachernega.tests.tests.testsUI;
 
-import com.codeborne.selenide.Configuration;
 import io.qameta.allure.*;
-import mailru.nastasiachernega.tests.config.WebDriverProvider;
 import mailru.nastasiachernega.tests.data.apiSteps.AuthorizationApiSteps;
 import mailru.nastasiachernega.tests.data.apiSteps.FavouritesApiSteps;
 import mailru.nastasiachernega.tests.data.pages.FavouritesPage;
@@ -18,7 +16,7 @@ import static io.qameta.allure.Allure.step;
 @Feature("Избранное")
 @Owner("Anastasia Chernega")
 @Link(value = "Ссылка на тестируемый ресурс", url = "https://context.reverso.net/favourites")
-public class FavouritesTestsUI extends WebDriverProvider {
+public class FavouritesTestsUI extends TestBaseWeb {
 
     AuthorizationApiSteps authApi = new AuthorizationApiSteps();
     FavouritesApiSteps favouritesApi = new FavouritesApiSteps();
@@ -29,7 +27,7 @@ public class FavouritesTestsUI extends WebDriverProvider {
     TestData data = new TestData();
 
     @Severity(SeverityLevel.NORMAL)
-    @DisplayName("Открытие раздела в 'Избранное' без авторизации")
+    @DisplayName("Открытие раздела 'Избранное' без авторизации")
     @Test
     void openPageWithoutAuth() {
 
@@ -43,7 +41,6 @@ public class FavouritesTestsUI extends WebDriverProvider {
             favouritesPage.
                     checkMessageOpenPageWithoutAuth();
         });
-
     }
 
     @Severity(SeverityLevel.CRITICAL)
@@ -96,14 +93,16 @@ public class FavouritesTestsUI extends WebDriverProvider {
 
         step("Проверяем, добавлен ли " + data.exampleNumber +
                 "-й пример в раздел 'Избранное'", ()-> {
-            favouritesPage.checkAddingExampleInFavourites
-                            (data.example,
-                            data.translatedExample);
+            favouritesPage
+                    .checkAddingExample(data.example)
+                    .checkAddingTranslatedExample(data.translatedExample);
         });
 
         step("Очищаем раздел 'Избранное' после теста через Api", ()-> {
-            int exampleId = favouritesPage.getExampleId(data.example);
-            favouritesApi.deleteFromFavourites(authApi.getRefreshToken
+            int exampleId =
+                    favouritesPage.getExampleId(data.example);
+            favouritesApi
+                    .deleteFromFavourites(authApi.getRefreshToken
                             (data.emailValid, data.passwordValid),
                             exampleId);
         });

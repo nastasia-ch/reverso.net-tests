@@ -12,9 +12,7 @@ public class HistoryPage {
 
     private SelenideElement
             filterTextInput = $("#filter-text"),
-            filterButton = $("#filter"),
-            clearHistoryButton = $("#remove"),
-            acceptClearButton = $(".delete-alert").$(byText("Accept"));
+            filterButton = $("#filter");
 
     private ElementsCollection
             listOfHistoryResults = $$(".entry");
@@ -32,14 +30,16 @@ public class HistoryPage {
     public HistoryPage chooseSourceLanguage(String langFromSymbol) {
         $(byText("Source language")).click();
         $(".src.lang").$(".drop-down").
-                $("span[data-value='"+langFromSymbol+"']").$("span").click();
+                $("span[data-value='"+langFromSymbol+"']").
+                $("span").click();
         return this;
     }
 
     public HistoryPage chooseTargetLanguage(String langToSymbol) {
         $(byText("Target language")).click();
         $(".trg.lang").$(".drop-down").
-                $("span[data-value='"+langToSymbol+"']").$("span").click();
+                $("span[data-value='"+langToSymbol+"']").
+                $("span").click();
         return this;
     }
 
@@ -49,12 +49,14 @@ public class HistoryPage {
     }
 
     public HistoryPage checkAddingTextInHistory(String text) {
-        listOfHistoryResults.get(0).$(".src").equals(text(text));
+        listOfHistoryResults.get(0).
+                $(".src").equals(text(text));
         return this;
     };
 
-    public HistoryPage checkDateOfAddingInHistory(String date) {
-        listOfHistoryResults.get(0).$(".date").equals(text(date));
+    public HistoryPage checkAddingDateInHistory(String date) {
+        listOfHistoryResults.get(0).
+                $(".date").equals(text(date));
         return this;
     };
 
@@ -63,6 +65,4 @@ public class HistoryPage {
                 findBy(text(text)).parent().parent().parent().
                 parent().getAttribute("data-id");
     };
-
-
 }
