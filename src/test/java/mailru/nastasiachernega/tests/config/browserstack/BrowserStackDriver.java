@@ -20,6 +20,7 @@ public class BrowserStackDriver implements WebDriverProvider {
             ConfigFactory.create(BrowserStackConfig.class, System.getProperties());
 
     public static URL getBrowserstackUrl() {
+        System.getProperty("environmentMobile");
         try {
             return new URL(browserStackConfig.getBaseURL());
         } catch (MalformedURLException e) {
@@ -31,6 +32,7 @@ public class BrowserStackDriver implements WebDriverProvider {
     @Override
     public WebDriver createDriver(Capabilities capabilities) {
 
+        System.getProperty("environmentMobile");
         MutableCapabilities mutableCapabilities = new MutableCapabilities();
         mutableCapabilities.merge(capabilities);
 

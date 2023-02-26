@@ -3,7 +3,8 @@ package mailru.nastasiachernega.tests.config.browserstack;
 import org.aeonbits.owner.Config;
 
 @Config.Sources({
-        "classpath:browserstack/{environmentMobile}.properties"
+        "classpath:browserstack/{environmentMobile}.properties",
+        "classpath:browserstack/google-pixel-3-v9.0-remote.properties"
 })
 public interface BrowserStackConfig extends Config {
 

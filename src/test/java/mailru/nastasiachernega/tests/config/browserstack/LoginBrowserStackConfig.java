@@ -3,7 +3,7 @@ package mailru.nastasiachernega.tests.config.browserstack;
 import org.aeonbits.owner.Config;
 
 @Config.Sources({
-        "classpath:browserstack/login-google-pixel-3-v9.0-remote.properties"
+        "classpath:browserstack/login-browserstack.properties"
 })
 public interface LoginBrowserStackConfig extends Config {
 
