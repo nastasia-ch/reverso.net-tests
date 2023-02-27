@@ -3,10 +3,13 @@ package mailru.nastasiachernega.tests.config;
 import org.aeonbits.owner.Config;
 
 @Config.Sources({
-        "classpath:${environmentWeb}.properties",
-        "classpath:chrome-local.properties"
+        "classpath:web/${environmentWeb}.properties",
+        "classpath:web/chrome-local.properties"
 })
-public interface WebDriverConfig extends Config {
+public interface WebConfig extends Config {
+
+    @Key("browser.testType")
+    String getTestType();
 
     @Key("browser.name")
     @DefaultValue("chrome")

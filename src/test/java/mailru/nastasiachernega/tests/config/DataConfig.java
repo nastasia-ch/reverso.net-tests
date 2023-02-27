@@ -5,8 +5,8 @@ import org.aeonbits.owner.Config;
 import java.util.LinkedList;
 
 @Config.Sources({
-        "classpath:${testdata}.properties",
-        "classpath:data-quality-assurance.properties"
+        "classpath:testdata/${testdata}.properties",
+        "classpath:testdata/data-quality-assurance.properties"
 })
 public interface DataConfig extends Config {
 

@@ -3,9 +3,9 @@ package mailru.nastasiachernega.tests.config;
 import org.aeonbits.owner.Config;
 
 @Config.Sources({
-        "classpath:login.properties"
+        "classpath:testdata/login-reverso.properties"
 })
-public interface LoginConfig extends Config {
+public interface LoginReversoConfig extends Config {
 
     @Key("login.email")
     String getEmail();

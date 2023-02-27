@@ -3,27 +3,20 @@ package mailru.nastasiachernega.tests.data.pages;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.collections.TextsInAnyOrder;
 import mailru.nastasiachernega.tests.data.pages.components.MenuComponents;
-import org.assertj.core.condition.AnyOf;
 import org.openqa.selenium.Cookie;
 
-import java.nio.CharBuffer;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import static com.codeborne.selenide.CollectionCondition.exactTextsCaseSensitiveInAnyOrder;
-import static com.codeborne.selenide.CollectionCondition.texts;
+import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byTextCaseInsensitive;
 import static com.codeborne.selenide.Selenide.*;
-import static org.assertj.core.api.Assertions.assertThat;
 
-public class TranslationPage {
+public class TranslatePage {
 
     MenuComponents menuComponents = new MenuComponents();
 
-    private SelenideElement
+    private final SelenideElement
             textToTranslateInput = $("#search-input input"),
             languageFromButton = $("#src-selector"),
             languageFromChoice = $$(".languages").first(),
@@ -31,103 +24,103 @@ public class TranslationPage {
             languageToChoice = $$(".languages").last(),
             searchButton = $("#search-button");
 
-    private ElementsCollection
+    private final ElementsCollection
             listOfTranslations = $$("#translations-content " +
             ".translation .display-term"),
             listOfExamples = $$("#examples-content .example");
 
-    public TranslationPage addAuthCookieToWebDriver(String path,
-                                   String refreshToken) {
+    public TranslatePage addAuthCookieToWebDriver(String path,
+                                                  String refreshToken) {
         open(path);
         Cookie cookie = new Cookie("reverso.net.ReversoRefreshToken", refreshToken);
         WebDriverRunner.getWebDriver().manage().addCookie(cookie);
         return this;
-    };
+    }
 
-    public TranslationPage openPage(String path) {
+    public TranslatePage openPage(String path) {
         open(path);
         executeJavaScript("$('aside').hide();");
         return this;
-    };
+    }
 
-    public TranslationPage setTextToTranslate(String textForTranslate) {
-        textToTranslateInput.setValue(textForTranslate);
+    public TranslatePage setTextForTranslation(String text) {
+        textToTranslateInput.setValue(text);
         return this;
-    };
+    }
 
-    public TranslationPage chooseLanguageFromTranslate(String languageFrom) {
+    public TranslatePage chooseLanguageFrom(String languageFrom) {
         languageFromButton.click();
         languageFromChoice.$(byTextCaseInsensitive(languageFrom)).click();
         return this;
-    };
+    }
 
-    public TranslationPage chooseLanguageToTranslate(String languageTo) {
+    public TranslatePage chooseLanguageTo(String languageTo) {
         languageToButton.click();
         languageToChoice.$(byTextCaseInsensitive(languageTo)).click();
         return this;
-    };
+    }
 
-    public TranslationPage clickOnSearchButton() {
+    public TranslatePage clickOnSearchButton() {
         executeJavaScript("$('aside').hide();");
         searchButton.click();
         return this;
-    };
+    }
 
-    public TranslationPage checkTranslations(String[] translations) {
-        listOfTranslations.contains(texts(translations));
+    public TranslatePage checkTranslations(String[] translations) {
+        listOfTranslations
+                .contains(texts(translations));
         return this;
-    };
+    }
 
-    public TranslationPage checkExampleContainsInputText(int exampleNumber,
-                                                         String textForTranslate) {
+    public TranslatePage checkExampleText(int exampleNumber,
+                                          String example) {
         listOfExamples.get(exampleNumber).$$(".text").first().
-                shouldHave(text(textForTranslate));
+                shouldHave(text(example));
         return this;
-    };
+    }
 
-    public TranslationPage checkExampleContainsTranslation(int exampleNumber,
-                                                           String[] translations) {
-        assertThat(listOfExamples.get(exampleNumber).$$(".text").
-                last().getText()).containsAnyOf(Arrays.asList(translations).
-                        toArray(new CharSequence[Arrays.asList(translations).size()]));
+    public TranslatePage checkTranslatedExampleText(int exampleNumber,
+                                                    String translatedExample) {
+        listOfExamples.get(exampleNumber).$$(".text").last().
+                shouldHave(text(translatedExample));
         return this;
-    };
+    }
 
-    public TranslationPage addInFavourites (int exampleNumber){
+    public TranslatePage addInFavourites(int exampleNumber) {
         executeJavaScript("$('#blocked-rude-results-banner').hide();");
-        listOfExamples.get(exampleNumber).hover();
+        listOfExamples.get(exampleNumber).scrollTo().hover();
         executeJavaScript("$('#blocked-rude-results-banner').hide();");
         listOfExamples.get(exampleNumber).
                 $("button[title='Mark this example as favourite']").click();
         return this;
-    };
+    }
 
-    public TranslationPage openUserMenu () {
+    public TranslatePage openUserMenu() {
         menuComponents.openUserMenu();
         return this;
-    };
+    }
 
-    public TranslationPage goToSectionFavourites () {
+    public TranslatePage goToSectionFavourites() {
         menuComponents.goToFavouritesSection();
         return this;
-    };
+    }
 
-    public TranslationPage goToLoginSection () {
+    public TranslatePage goToLoginSection() {
         menuComponents.goToLoginSection();
         return this;
-    };
+    }
 
-    public TranslationPage checkReversoHeaders (String[] reversoHeaders){
+    public TranslatePage checkReversoHeaders(String[] reversoHeaders) {
         menuComponents.checkHeaders(reversoHeaders);
         return this;
-    };
+    }
 
-    public TranslationPage IsThereSectionInMenu(String sectionName) {
+    public TranslatePage isThereSectionInMenu(String sectionName) {
         menuComponents.IsThereSectionInMenu(sectionName);
         return this;
     }
 
-    public TranslationPage IsThereNotSectionInMenu(String sectionName) {
+    public TranslatePage isThereNotSectionInMenu(String sectionName) {
         menuComponents.IsThereNotSectionInMenu(sectionName);
         return this;
     }

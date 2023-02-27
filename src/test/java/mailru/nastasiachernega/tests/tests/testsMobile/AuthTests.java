@@ -14,7 +14,7 @@ import static io.qameta.allure.Allure.step;
 @Epic("Тесты MOBILE")
 @Feature("Авторизация")
 @Owner("Anastasia Chernega")
-public class AuthTestsMobile extends TestBaseMobile {
+public class AuthTests extends TestBaseMobile {
 
     TestData data = new TestData();
 
@@ -22,24 +22,31 @@ public class AuthTestsMobile extends TestBaseMobile {
     @DisplayName("Авторизация с валидными данными")
     @Test
     @Tag("mobile_tests")
+    @Tag("auth_tests")
     void loginTest() {
+
         step("Нажимаем 'Login or register for free'", () -> {
             $(id("com.softissimo.reverso.context:id/txt_full_name")).click();
         });
+
         step("Выбираем вариант авторизации через email", () -> {
             $(id("com.softissimo.reverso.context:id/btn_sign_in")).click();
         });
+
         step("Вводим email", () -> {
             $(id("com.softissimo.reverso.context:id/et_email"))
                     .sendKeys(data.emailValid);
         });
+
         step("Вводим пароль", () -> {
             $(id("com.softissimo.reverso.context:id/et_password"))
                     .sendKeys(data.passwordValid);
         });
+
         step("Нажимаем кнопку авторизации", () -> {
             $(id("com.softissimo.reverso.context:id/btn_sign_in")).click();
         });
+
         step("Проверяем авторизацию", () -> {
             $(id("com.softissimo.reverso.context:id/et_username_reverso"))
                     .shouldHave(text(data.username));

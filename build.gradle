@@ -46,10 +46,6 @@ dependencies {
             'com.github.javafaker:javafaker:1.0.2',
             'org.slf4j:slf4j-simple:1.7.32',
             'commons-io:commons-io:2.11.0'
-//            'org.apache.commons:commons-lang3:3.12.0',
-//            'org.apache.poi:poi:5.2.3',
-//            'org.apache.poi:poi-ooxml:5.2.3',
-//            'com.codeborne:xls-test:1.4.3',
     )
 }
 
@@ -65,19 +61,51 @@ tasks.withType(Test) {
     }
 }
 
+task UI_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags "UI_tests"
+    }
+}
+
+task API_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags "API_tests"
+    }
+}
+
+task mobile_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags "mobile_tests"
+    }
+}
+
+task translate_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags "translate_tests"
+    }
+}
+
+task favourites_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags "favourites_tests"
+    }
+}
+
+task history_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags "history_tests"
+    }
+}
+
 task auth_tests(type: Test) {
     useJUnitPlatform {
         includeTags "auth_tests"
     }
 }
 
-task add_in_favourites(type: Test) {
+task menu_test(type: Test) {
     useJUnitPlatform {
-        includeTags "add_in_favourites"
+        includeTags "menu_test"
     }
 }
-task mobile_tests(type: Test) {
-    useJUnitPlatform {
-        includeTags "mobile_tests"
-    }
-}
+

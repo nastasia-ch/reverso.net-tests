@@ -1,6 +1,6 @@
 package mailru.nastasiachernega.tests.helpers;
 
-import mailru.nastasiachernega.tests.config.browserstack.LoginBrowserStackConfig;
+import mailru.nastasiachernega.tests.config.LoginBrowserstackConfig;
 import org.aeonbits.owner.ConfigFactory;
 
 import static io.restassured.RestAssured.given;
@@ -8,8 +8,8 @@ import static java.lang.String.format;
 import static mailru.nastasiachernega.tests.helpers.CustomApiListener.withCustomTemplates;
 
 public class Browserstack {
-    static LoginBrowserStackConfig browserStackLoginConfig =
-            ConfigFactory.create(LoginBrowserStackConfig.class, System.getProperties());
+    static LoginBrowserstackConfig loginConfig =
+            ConfigFactory.create(LoginBrowserstackConfig.class, System.getProperties());
 
     public static String getVideoUrlBrowserstack(String sessionId) {
 
@@ -18,7 +18,7 @@ public class Browserstack {
         return given()
                 .log().all()
                 .filter(withCustomTemplates())
-                .auth().basic(browserStackLoginConfig.getUsername(), browserStackLoginConfig.getPassword())
+                .auth().basic(loginConfig.getUsername(), loginConfig.getPassword())
                 .when()
                 .get(url)
                 .then()

@@ -1,7 +1,7 @@
 package mailru.nastasiachernega.tests.data.testData;
 
 import com.github.javafaker.Faker;
-import mailru.nastasiachernega.tests.config.LoginConfig;
+import mailru.nastasiachernega.tests.config.LoginReversoConfig;
 import mailru.nastasiachernega.tests.utils.DateUtil;
 import org.aeonbits.owner.ConfigFactory;
 
@@ -12,7 +12,7 @@ public class TestData extends DataProvider {
 
     ThreadLocalRandom random = ThreadLocalRandom.current();
     Faker faker = new Faker(new Locale("en"));
-    LoginConfig loginConfig = ConfigFactory.create(LoginConfig.class,System.getProperties());
+    LoginReversoConfig loginConfig = ConfigFactory.create(LoginReversoConfig.class, System.getProperties());
     DateUtil dateUtil = new DateUtil();
 
     // login test data
@@ -21,15 +21,15 @@ public class TestData extends DataProvider {
             passwordValid = loginConfig.getPassword(),
             username = loginConfig.getUsername(),
             emailInvalid = faker.internet().emailAddress(),
-            passwordInvalid = faker.internet().password(1,8),
+            passwordInvalid = faker.internet().password(1, 8),
             errorLoginInfo = "Your login information was incorrect. Please try again.";
 
     public int userID = loginConfig.getUserID();
 
     // test data for actions with translations
-    public String[] reversoHeaders = {"Translation","Context","Grammar Check","Synonyms","Conjugation"};
+    public String[] reversoHeaders = {"Translation", "Context", "Grammar Check", "Synonyms", "Conjugation"};
 
-    public int exampleNumber = random.nextInt(0,20);
+    public int exampleNumber = random.nextInt(0, 20);
 
     public String
             translationPath = "/translation",
@@ -45,9 +45,9 @@ public class TestData extends DataProvider {
 
     public String
             example = getExamples().get(exampleNumber).
-                    replace("<em>","").replace("</em>",""),
+            replace("<em>", "").replace("</em>", ""),
             translatedExample = getTranslatedExamples().get(exampleNumber).
-                    replace("<em>","").replace("</em>",""),
+                    replace("<em>", "").replace("</em>", ""),
             contextTranslation = getContextTranslations().get(exampleNumber);
 
     // special test data for API testing favourites
@@ -58,11 +58,11 @@ public class TestData extends DataProvider {
             exampleWithTags = getExamples().get(exampleNumber),
             translatedExampleWithTags = getTranslatedExamples().get(exampleNumber);
 
-    // for mobile testing
-    public int exampleNumberMobile = random.nextInt(0,3);
+    // special test data for mobile testing
+    public int exampleNumberMobile = random.nextInt(0, 1);
     public String
             exampleMobile = getExamples().get(exampleNumberMobile).
-            replace("<em>","").replace("</em>",""),
+            replace("<em>", "").replace("</em>", ""),
             translatedExampleMobile = getTranslatedExamples().get(exampleNumberMobile).
-                    replace("<em>","").replace("</em>","");
+                    replace("<em>", "").replace("</em>", "");
 }
