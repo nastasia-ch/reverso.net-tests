@@ -22,24 +22,26 @@ public class TestBaseMobile {
     static void setUp() {
 //        Configuration.browser = BrowserstackDriver.class.getName();
 //        Configuration.browserSize = null;
-        System.getProperty("environmentMobile");
-        if (mobileConfig.getTestType().equals("browserstack")) {
-            Configuration.browser = BrowserstackDriver.class.getName();
-            Configuration.browserSize = null;
-        }
-        else if (mobileConfig.getTestType().equals("emulator")) {
-            Configuration.browser = MobileDriver.class.getName();
-            Configuration.browserSize = null;
-        }
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-        open();
+        selectDriver();
     }
 
-//    @BeforeEach
-//    void addListener() {
-//        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-//        open();
-//    }
+    private static void selectDriver() {
+        System.getProperty("environmentMobile");
+        switch (mobileConfig.getTestType()) {
+            case "browserstack":
+                Configuration.browser = BrowserstackDriver.class.getName();
+                break;
+            case "emulator":
+                Configuration.browser = MobileDriver.class.getName();
+                break;
+        }
+    }
+
+    @BeforeEach
+    void addListener() {
+        open();
+    }
 
     @AfterEach
     void tearDown() {
