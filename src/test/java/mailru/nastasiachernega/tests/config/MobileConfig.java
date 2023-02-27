@@ -4,8 +4,8 @@ import org.aeonbits.owner.Config;
 
 @Config.Sources({
         "classpath:mobile/{environmentMobile}.properties",
-        "classpath:mobile/google-pixel-4-v11.0-emulator.properties"
-        //"classpath:mobile/google-pixel-4-v11.0-remote.properties"
+        //"classpath:mobile/google-pixel-4-v11.0-emulator.properties"
+        "classpath:mobile/google-pixel-4-v11.0-remote.properties"
 })
 public interface MobileConfig extends Config {
 
