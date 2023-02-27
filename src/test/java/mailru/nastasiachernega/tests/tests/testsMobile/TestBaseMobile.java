@@ -41,7 +41,7 @@ public class TestBaseMobile {
     }
 
     @AfterEach
-    void addAttachments() {
+    void tearDown() {
         System.getProperty("environmentMobile");
         String sessionId = Attach.getSessionId();
         Attach.screenshotAs("Last screenshot");

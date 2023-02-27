@@ -17,7 +17,7 @@ import java.net.URL;
 
 public class BrowserstackDriver implements WebDriverProvider {
 
-    static LoginBrowserstackConfig loginConfig =
+    static LoginBrowserstackConfig loginBrowserstackConfig =
             ConfigFactory.create(LoginBrowserstackConfig.class, System.getProperties());
     static MobileConfig mobileConfig =
             ConfigFactory.create(MobileConfig.class, System.getProperties());
@@ -37,8 +37,8 @@ public class BrowserstackDriver implements WebDriverProvider {
         System.getProperty("environmentMobile");
         MutableCapabilities mutableCapabilities = new MutableCapabilities();
         mutableCapabilities.merge(capabilities);
-        mutableCapabilities.setCapability("browserstack.user", loginConfig.getUsername());
-        mutableCapabilities.setCapability("browserstack.key", loginConfig.getPassword());
+        mutableCapabilities.setCapability("browserstack.user", loginBrowserstackConfig.getUsername());
+        mutableCapabilities.setCapability("browserstack.key", loginBrowserstackConfig.getPassword());
         mutableCapabilities.setCapability("app", mobileConfig.getAppURL());
         mutableCapabilities.setCapability("device", mobileConfig.getDevice());
         mutableCapabilities.setCapability("os_version", mobileConfig.getOsVersion());
