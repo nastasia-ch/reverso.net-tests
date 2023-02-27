@@ -18,7 +18,7 @@ public class TestBaseMobile {
     static MobileConfig mobileConfig =
             ConfigFactory.create(MobileConfig.class, System.getProperties());
 
-    static String typeTest = System.getProperty("environmentMobile");
+    static String typeTest = System.getProperty("environmentMobile","google-pixel-4-v11.0-remote");
 
     @BeforeAll
     static void setUp() {
