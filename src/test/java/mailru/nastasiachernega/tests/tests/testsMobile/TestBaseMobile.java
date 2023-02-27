@@ -18,22 +18,24 @@ public class TestBaseMobile {
     static MobileConfig mobileConfig =
             ConfigFactory.create(MobileConfig.class, System.getProperties());
 
+    static String typeTest = System.getProperty("environmentMobile");
+
     @BeforeAll
     static void setUp() {
 //        Configuration.browser = BrowserstackDriver.class.getName();
 //        Configuration.browserSize = null;
-        System.getProperty("environmentMobile");
         configure();
     }
 
     public static void configure() {
-        System.getProperty("environmentMobile");
-        String testType = mobileConfig.getTestType();
-        if(System.getProperty("environmentMobile").contains("remote")){
+        if(typeTest.contains("remote")){
             Configuration.browser = BrowserstackDriver.class.getName();
         }
-        if(System.getProperty("environmentMobile").contains("emulator")){
+        else if(typeTest.contains("emulator")){
             Configuration.browser = MobileDriver.class.getName();
+        }
+        else {
+            throw new RuntimeException("Incorrect stand name");
         }
         Configuration.browserSize = null;
     }
