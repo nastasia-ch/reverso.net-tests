@@ -23,7 +23,7 @@ public class TestBaseMobile {
         System.getProperty("environmentMobile");
         String testTypeMobile = mobileConfig.getTestType();
         switch (testTypeMobile) {
-            case "mobile":
+            case "browserstack":
                 Configuration.browser = BrowserstackDriver.class.getName();
                 Configuration.browserSize = null;
             case "emulator":
@@ -45,6 +45,6 @@ public class TestBaseMobile {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         closeWebDriver();
-        if(mobileConfig.getTestType() == "mobile") {Attach.addVideoBrowserstack(sessionId);}
+        if(mobileConfig.getTestType() == "browserstack") {Attach.addVideoBrowserstack(sessionId);}
     }
 }
