@@ -21,7 +21,7 @@ public class AuthTests extends TestBaseMobile {
     @Severity(SeverityLevel.BLOCKER)
     @DisplayName("Авторизация с валидными данными")
     @Test
-    @Tag("mobile_tests")
+    //@Tag("mobile_tests")
     @Tag("auth_tests")
     void loginTest() {
 

@@ -67,7 +67,7 @@ public class TranslateTests extends TestBaseMobile {
     @Severity(SeverityLevel.BLOCKER)
     @DisplayName("Контекстный перевод текста")
     @Test
-    @Tag("mobile_tests")
+    //@Tag("mobile_tests")
     @Tag("translate_tests")
     void contextTranslateTest() {
 

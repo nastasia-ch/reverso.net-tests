@@ -20,17 +20,16 @@ public class TestBaseMobile {
 
     @BeforeAll
     static void setUp() {
+//        Configuration.browser = BrowserstackDriver.class.getName();
+//        Configuration.browserSize = null;
         System.getProperty("environmentMobile");
-        String testTypeMobile = mobileConfig.getTestType();
-        switch (testTypeMobile) {
-            case "browserstack":
-                Configuration.browser = BrowserstackDriver.class.getName();
-                Configuration.browserSize = null;
-                break;
-            case "emulator":
-                Configuration.browser = MobileDriver.class.getName();
-                Configuration.browserSize = null;
-                break;
+        if (mobileConfig.getTestType().equals("browserstack")) {
+            Configuration.browser = BrowserstackDriver.class.getName();
+            Configuration.browserSize = null;
+        }
+        else if (mobileConfig.getTestType().equals("emulator")) {
+            Configuration.browser = MobileDriver.class.getName();
+            Configuration.browserSize = null;
         }
     }
 
@@ -47,6 +46,7 @@ public class TestBaseMobile {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         closeWebDriver();
-        if(mobileConfig.getTestType() == "browserstack") {Attach.addVideoBrowserstack(sessionId);}
+//        if(mobileConfig.getTestType() == "browserstack") {Attach.addVideoBrowserstack(sessionId);}
+        Attach.addVideoBrowserstack(sessionId);
     }
 }

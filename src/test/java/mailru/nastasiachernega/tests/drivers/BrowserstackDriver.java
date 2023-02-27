@@ -11,7 +11,6 @@ import org.openqa.selenium.WebDriver;
 
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import javax.annotation.Nonnull;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -33,7 +32,7 @@ public class BrowserstackDriver implements WebDriverProvider {
 
     @SneakyThrows
     @Override
-    public WebDriver createDriver(@Nonnull Capabilities capabilities) {
+    public WebDriver createDriver(Capabilities capabilities) {
         System.getProperty("environmentMobile");
         MutableCapabilities mutableCapabilities = new MutableCapabilities();
         mutableCapabilities.merge(capabilities);
@@ -42,9 +41,9 @@ public class BrowserstackDriver implements WebDriverProvider {
         mutableCapabilities.setCapability("app", mobileConfig.getAppURL());
         mutableCapabilities.setCapability("device", mobileConfig.getDevice());
         mutableCapabilities.setCapability("os_version", mobileConfig.getOsVersion());
-        mutableCapabilities.setCapability("project", "reverso.net");
-        mutableCapabilities.setCapability("build", "browserstack-build");
-        mutableCapabilities.setCapability("name", "reverso-tests");
+        mutableCapabilities.setCapability("project", "First Java Project");
+        mutableCapabilities.setCapability("build", "browserstack-build-1");
+        mutableCapabilities.setCapability("name", "first_test");
         return new RemoteWebDriver(getBrowserstackUrl(), mutableCapabilities);
     }
 }
