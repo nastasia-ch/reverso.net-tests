@@ -22,17 +22,16 @@ public class TestBaseMobile {
     static void setUp() {
 //        Configuration.browser = BrowserstackDriver.class.getName();
 //        Configuration.browserSize = null;
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         configure();
     }
 
     public static void configure() {
         System.getProperty("environmentMobile");
         String testType = mobileConfig.getTestType();
-        if(testType=="browserstack"){
+        if(System.getProperty("environmentMobile").contains("remote")){
             Configuration.browser = BrowserstackDriver.class.getName();
         }
-        if(testType=="emulator"){
+        if(System.getProperty("environmentMobile").contains("emulator")){
             Configuration.browser = MobileDriver.class.getName();
         }
         Configuration.browserSize = null;
@@ -41,6 +40,7 @@ public class TestBaseMobile {
 
     @BeforeEach
     void addListener() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         open();
     }
 
