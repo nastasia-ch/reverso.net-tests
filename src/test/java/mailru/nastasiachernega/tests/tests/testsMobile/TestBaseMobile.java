@@ -18,7 +18,7 @@ public class TestBaseMobile {
     static MobileConfig mobileConfig =
             ConfigFactory.create(MobileConfig.class, System.getProperties());
 
-    static String typeTest = System.getProperty("environmentMobile","google-pixel-4-v11.0-remote");
+    static String typeTest = System.getProperty("type");
 
     @BeforeAll
     static void setUp() {
@@ -28,10 +28,10 @@ public class TestBaseMobile {
     }
 
     public static void configure() {
-        if(typeTest.contains("remote")){
+        if(typeTest.equals("browserstack")){
             Configuration.browser = BrowserstackDriver.class.getName();
         }
-        else if(typeTest.contains("emulator")){
+        else if(typeTest.equals("emulator")){
             Configuration.browser = MobileDriver.class.getName();
         }
         else {
