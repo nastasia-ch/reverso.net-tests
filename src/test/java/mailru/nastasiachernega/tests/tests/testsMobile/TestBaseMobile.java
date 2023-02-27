@@ -22,6 +22,7 @@ public class TestBaseMobile {
     static void setUp() {
 //        Configuration.browser = BrowserstackDriver.class.getName();
 //        Configuration.browserSize = null;
+        System.getProperty("environmentMobile");
         configure();
     }
 
