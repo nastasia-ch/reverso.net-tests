@@ -26,9 +26,11 @@ public class TestBaseMobile {
             case "browserstack":
                 Configuration.browser = BrowserstackDriver.class.getName();
                 Configuration.browserSize = null;
+                break;
             case "emulator":
                 Configuration.browser = MobileDriver.class.getName();
                 Configuration.browserSize = null;
+                break;
         }
     }
 
