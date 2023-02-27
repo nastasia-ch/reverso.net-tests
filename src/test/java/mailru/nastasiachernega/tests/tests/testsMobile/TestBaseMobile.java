@@ -22,7 +22,7 @@ public class TestBaseMobile {
 
     @BeforeAll
     static void setUp() {
-
+        System.getProperty("environmentMobile");
         if(typeTest.equals("browserstack")){
             Configuration.browser = BrowserstackDriver.class.getName();
         }
