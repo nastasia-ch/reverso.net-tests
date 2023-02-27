@@ -31,13 +31,15 @@ public class TestBaseMobile {
             Configuration.browser = MobileDriver.class.getName();
             Configuration.browserSize = null;
         }
-    }
-
-    @BeforeEach
-    void addListener() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         open();
     }
+
+//    @BeforeEach
+//    void addListener() {
+//        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+//        open();
+//    }
 
     @AfterEach
     void tearDown() {
