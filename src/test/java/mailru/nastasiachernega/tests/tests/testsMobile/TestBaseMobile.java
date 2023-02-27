@@ -23,20 +23,21 @@ public class TestBaseMobile {
 //        Configuration.browser = BrowserstackDriver.class.getName();
 //        Configuration.browserSize = null;
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-        selectDriver();
+        configure();
     }
 
-    private static void selectDriver() {
+    public static void configure() {
         System.getProperty("environmentMobile");
-        switch (mobileConfig.getTestType()) {
-            case "browserstack":
-                Configuration.browser = BrowserstackDriver.class.getName();
-                break;
-            case "emulator":
-                Configuration.browser = MobileDriver.class.getName();
-                break;
+        String testType = mobileConfig.getTestType();
+        if(testType=="browserstack"){
+            Configuration.browser = BrowserstackDriver.class.getName();
         }
+        if(testType=="emulator"){
+            Configuration.browser = MobileDriver.class.getName();
+        }
+        Configuration.browserSize = null;
     }
+
 
     @BeforeEach
     void addListener() {
@@ -51,6 +52,6 @@ public class TestBaseMobile {
         Attach.pageSource();
         closeWebDriver();
 //        if(mobileConfig.getTestType() == "browserstack") {Attach.addVideoBrowserstack(sessionId);}
-        Attach.addVideoBrowserstack(sessionId);
+        //Attach.addVideoBrowserstack(sessionId);
     }
 }

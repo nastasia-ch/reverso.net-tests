@@ -1,5 +1,6 @@
 package mailru.nastasiachernega.tests.drivers;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverProvider;
 import lombok.SneakyThrows;
 import mailru.nastasiachernega.tests.config.LoginBrowserstackConfig;
