@@ -1,7 +1,6 @@
 package mailru.nastasiachernega.tests.drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
-import io.appium.java_client.android.AndroidDriver;
 import lombok.SneakyThrows;
 import mailru.nastasiachernega.tests.config.LoginBrowserstackConfig;
 import mailru.nastasiachernega.tests.config.MobileConfig;
@@ -46,6 +45,6 @@ public class BrowserstackDriver implements WebDriverProvider {
         mutableCapabilities.setCapability("project", "reverso.net");
         mutableCapabilities.setCapability("build", "browserstack-build");
         mutableCapabilities.setCapability("name", "reverso-tests");
-        return new AndroidDriver(getBrowserstackUrl(), mutableCapabilities);
+        return new RemoteWebDriver(getBrowserstackUrl(), mutableCapabilities);
     }
 }
