@@ -18,20 +18,15 @@ public class TestBaseMobile {
     static MobileConfig mobileConfig =
             ConfigFactory.create(MobileConfig.class, System.getProperties());
 
-    //static String typeTest = System.getProperty("mobileDeviceHost");
-
-    static String getTypeTest() {
-        System.getProperty("environmentMobile");
-        return mobileConfig.getTestType();
-    }
+    static String typeTest = System.getProperty("typetest");
 
     @BeforeAll
     static void setUp() {
         System.getProperty("environmentMobile");
-        if(getTypeTest().equals("browserstack")){
+        if(typeTest.equals("browserstack")){
             Configuration.browser = BrowserstackDriver.class.getName();
         }
-        else if(getTypeTest().equals("emulator")){
+        else if(typeTest.equals("emulator")){
             Configuration.browser = MobileDriver.class.getName();
         }
         else {
