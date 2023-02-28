@@ -5,7 +5,6 @@ import org.aeonbits.owner.ConfigFactory;
 
 import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
-import static mailru.nastasiachernega.tests.helpers.CustomApiListener.withCustomTemplates;
 
 public class Browserstack {
     static LoginBrowserstackConfig loginConfig =
@@ -17,7 +16,6 @@ public class Browserstack {
 
         return given()
                 .log().all()
-                .filter(withCustomTemplates())
                 .auth().basic(loginConfig.getUsername(), loginConfig.getPassword())
                 .when()
                 .get(url)

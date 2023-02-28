@@ -4,6 +4,7 @@ import com.codeborne.selenide.WebDriverProvider;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import mailru.nastasiachernega.tests.config.MobileConfig;
+import mailru.nastasiachernega.tests.config.ProjectConfig;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
@@ -18,13 +19,14 @@ import static io.appium.java_client.remote.AutomationName.ANDROID_UIAUTOMATOR2;
 import static org.apache.commons.io.FileUtils.copyInputStreamToFile;
 
 
-public class MobileDriver implements WebDriverProvider {
+public class EmulatorDriver implements WebDriverProvider {
 
     static MobileConfig mobileConfig =
             ConfigFactory.create(MobileConfig.class, System.getProperties());
+    static ProjectConfig projectConfig =
+            ConfigFactory.create(ProjectConfig.class, System.getProperties());
 
     public static URL getAppiumServerUrl() {
-        System.getProperty("environmentMobile");
         try {
             return new URL(mobileConfig.getRemoteURL());
         } catch (MalformedURLException e) {
@@ -34,7 +36,6 @@ public class MobileDriver implements WebDriverProvider {
 
     @Override
     public WebDriver createDriver(Capabilities capabilities) {
-        System.getProperty("environmentMobile");
         UiAutomator2Options options = new UiAutomator2Options();
         options.merge(capabilities);
         options.setAutomationName(ANDROID_UIAUTOMATOR2)
@@ -42,15 +43,14 @@ public class MobileDriver implements WebDriverProvider {
                 .setDeviceName(mobileConfig.getDevice())
                 .setPlatformVersion(mobileConfig.getOsVersion())
                 .setApp(getAppPath())
-                .setAppPackage(mobileConfig.getAppPackage())
-                .setAppActivity(mobileConfig.getAppActivity());
+                .setAppPackage(projectConfig.getAppPackageName())
+                .setAppActivity(projectConfig.getAppActivity());
         return new AndroidDriver(getAppiumServerUrl(), options);
     }
 
     private String getAppPath() {
-        System.getProperty("environmentMobile");
-        String appUrl = mobileConfig.getAppURL();
-        String appPath = mobileConfig.getAppPathToSave();
+        String appUrl = projectConfig.getAppURLFile();
+        String appPath = projectConfig.getAppPathToSave();
         File app = new File(appPath);
         if (!app.exists()) {
             try (InputStream in = new URL(appUrl).openStream()) {

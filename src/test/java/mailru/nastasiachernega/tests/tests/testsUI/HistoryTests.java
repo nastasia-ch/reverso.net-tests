@@ -7,6 +7,7 @@ import mailru.nastasiachernega.tests.data.testData.TestData;
 import mailru.nastasiachernega.tests.data.apiSteps.AuthorizationApiSteps;
 import mailru.nastasiachernega.tests.data.apiSteps.HistoryApiSteps;
 import mailru.nastasiachernega.tests.data.apiSteps.TranslationApiSteps;
+import mailru.nastasiachernega.tests.tests.TestBaseWeb;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package mailru.nastasiachernega.tests.tests.testsUI;
+package mailru.nastasiachernega.tests.tests;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -12,8 +12,6 @@ import org.junit.jupiter.api.BeforeAll;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class TestBaseWeb {
-    WebConfig webConfig =
-            ConfigFactory.create(WebConfig.class, System.getProperties());
 
     @BeforeAll
     static void setUp() {
@@ -24,11 +22,23 @@ public class TestBaseWeb {
 
     @AfterEach
     void tearDown() {
-        System.getProperty("environmentWeb");
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
-        if(webConfig.getBrowserName() != "firefox") {Attach.browserConsoleLogs();}
-        if (webConfig.getTestType() == "web_selenoid") {Attach.addVideoSelenoid();}
+        if (getBrowserName().equals("chrome")) {
+            Attach.browserConsoleLogs();
+        }
+        if (getRunIn().equals("selenoid")) {
+            Attach.addVideoSelenoid();
+        }
         closeWebDriver();
     }
+
+    private String getRunIn() {
+        return ConfigFactory.create(WebConfig.class, System.getProperties()).getRunIn();
+    }
+
+    private String getBrowserName() {
+        return ConfigFactory.create(WebConfig.class, System.getProperties()).getBrowserName();
+    }
+
 }

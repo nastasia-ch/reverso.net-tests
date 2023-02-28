@@ -8,8 +8,8 @@ import org.aeonbits.owner.Config;
 })
 public interface WebConfig extends Config {
 
-    @Key("browser.testType")
-    String getTestType();
+    @Key("browser.runIn")
+    String getRunIn();
 
     @Key("browser.name")
     @DefaultValue("chrome")
@@ -23,8 +23,5 @@ public interface WebConfig extends Config {
 
     @Key("browser.remoteURLForTestRun")
     String getRemoteURLForTestRun();
-
-    @Key("browser.baseURL")
-    String getBaseURL();
 
 }

@@ -3,37 +3,24 @@ package mailru.nastasiachernega.tests.config;
 import org.aeonbits.owner.Config;
 
 @Config.Sources({
-        "classpath:mobile/{environmentMobile}.properties",
+        "classpath:mobile/${environmentMobile}.properties",
         "classpath:mobile/google-pixel-4-v11.0-emulator.properties"
-        //"classpath:mobile/google-pixel-4-v11.0-remote.properties"
 })
 public interface MobileConfig extends Config {
 
-    @Key("testType")
-    String getTestType();
+    @Key("mobile.runIn")
+    String getRunIn();
 
-    @Key("platform")
+    @Key("mobile.platform")
     String getPlatform();
 
-    @Key("appURL")
-    String getAppURL();
-
-    @Key("device")
+    @Key("mobile.device")
     String getDevice();
 
-    @Key("osVersion")
+    @Key("mobile.osVersion")
     String getOsVersion();
 
-    @Key("remoteURL")
+    @Key("mobile.remoteURL")
     String getRemoteURL();
-
-    @Key("appPackage")
-    String getAppPackage();
-
-    @Key("appActivity")
-    String getAppActivity();
-
-    @Key("appPathToSave")
-    String getAppPathToSave();
 
 }

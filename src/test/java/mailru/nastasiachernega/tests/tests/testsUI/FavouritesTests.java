@@ -6,6 +6,7 @@ import mailru.nastasiachernega.tests.data.apiSteps.FavouritesApiSteps;
 import mailru.nastasiachernega.tests.data.pages.FavouritesPage;
 import mailru.nastasiachernega.tests.data.pages.TranslatePage;
 import mailru.nastasiachernega.tests.data.testData.TestData;
+import mailru.nastasiachernega.tests.tests.TestBaseWeb;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;

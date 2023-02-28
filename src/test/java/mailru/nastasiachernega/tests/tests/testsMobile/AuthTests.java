@@ -2,6 +2,7 @@ package mailru.nastasiachernega.tests.tests.testsMobile;
 
 import io.qameta.allure.*;
 import mailru.nastasiachernega.tests.data.testData.TestData;
+import mailru.nastasiachernega.tests.tests.TestBaseMobile;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ public class AuthTests extends TestBaseMobile {
     @Severity(SeverityLevel.BLOCKER)
     @DisplayName("Авторизация с валидными данными")
     @Test
-    //@Tag("mobile_tests")
+    @Tag("mobile_tests")
     @Tag("auth_tests")
     void loginTest() {
 
