@@ -112,7 +112,7 @@ public class HistoryTests extends TestBaseWeb {
                     .clickFilterButton();
         });
 
-        step("Проверяем в первом результате отображенный текст:" +
+        step("Проверяем в первом результате отображенный текст: " +
                 "должен быть текст '" + data.text + "'", () -> {
             historyPage
                     .checkAddingTextInHistory(data.text);

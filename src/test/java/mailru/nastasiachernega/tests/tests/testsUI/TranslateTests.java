@@ -60,7 +60,7 @@ public class TranslateTests extends TestBaseWeb {
                     .clickOnSearchButton();
         });
 
-        step("Проверяем в отображаемых результатах список " +
+        step("Проверяем в результатах список " +
                 "вариантов перевода", () -> {
             translationPage
                     .checkTranslations(data.translations);
@@ -105,13 +105,13 @@ public class TranslateTests extends TestBaseWeb {
                     .clickOnSearchButton();
         });
 
-        step("Проверямем в отображаемых результатах текст в " + data.exampleNumber +
-                "-м примере" + data.text + "'", () -> {
+        step("Проверямем в результатах текст в " +
+                data.exampleNumber + "-м примере", () -> {
             translationPage
                     .checkExampleText(data.exampleNumber, data.example);
         });
 
-        step("Проверямем в отображаемых результатах текст перевода в " + data.exampleNumber +
+        step("Проверямем в результатах перевод в " + data.exampleNumber +
                 "-м примере", () -> {
             translationPage
                     .checkTranslatedExampleText(data.exampleNumber, data.translatedExample);

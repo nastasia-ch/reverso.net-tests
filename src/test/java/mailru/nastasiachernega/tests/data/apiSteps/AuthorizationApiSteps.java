@@ -13,7 +13,6 @@ public class AuthorizationApiSteps {
                                   String password) {
 
         String accountAntiforgery = given()
-                .filter(withCustomTemplates())
                 .spec(openAuthPageRequestSpec)
                 .when()
                 .get()
@@ -22,7 +21,6 @@ public class AuthorizationApiSteps {
                 .extract().cookie("Reverso.Account.Antiforgery");
 
         String htmlResponse = given()
-                .filter(withCustomTemplates())
                 .spec(openAuthPageRequestSpec)
                 .cookie("Reverso.Account.Antiforgery",accountAntiforgery)
                 .when()
@@ -37,7 +35,6 @@ public class AuthorizationApiSteps {
                 attr("value");
 
         return given()
-                .filter(withCustomTemplates())
                 .spec(authRequestSpec)
                 .formParam("Email",email)
                 .formParam("Password",password)

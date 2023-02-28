@@ -49,7 +49,7 @@ public class MenuTests extends TestBaseWeb {
             "My contributions"
     })
     @Severity(SeverityLevel.BLOCKER)
-    @DisplayName("Наличие разделов меню пользователя с авторизацией")
+    @DisplayName("Наличие раздела в меню пользователя с авторизацией")
     @ParameterizedTest
     @Tag("UI_tests")
     @Tag("menu_tests")
@@ -79,7 +79,7 @@ public class MenuTests extends TestBaseWeb {
             "My contributions"
     })
     @Severity(SeverityLevel.CRITICAL)
-    @DisplayName("Отсутствие разделов меню пользователя без авторизациии")
+    @DisplayName("Отсутствие раздела в меню пользователя без авторизациии")
     @ParameterizedTest
     @Tag("UI_tests")
     @Tag("menu_tests")
