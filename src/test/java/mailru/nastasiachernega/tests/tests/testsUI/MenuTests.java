@@ -66,7 +66,7 @@ public class MenuTests extends TestBaseWeb {
                     .openPage(data.translationPath);
         });
 
-        step("Проверяем наличие в меню пользователя раздела", () -> {
+        step("Проверяем наличие раздела в меню пользователя", () -> {
             translationPage
                     .openUserMenu()
                     .isThereSectionInMenu(sectionName);
@@ -90,7 +90,7 @@ public class MenuTests extends TestBaseWeb {
                     .openPage(data.translationPath);
         });
 
-        step("Проверяем отсутствие в меню пользователя раздела", () -> {
+        step("Проверяем отсутствие раздела в меню пользователя", () -> {
             translationPage
                     .openUserMenu()
                     .isThereNotSectionInMenu(sectionName);

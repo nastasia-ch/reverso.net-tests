@@ -54,7 +54,7 @@ public class HistoryTests extends TestBaseWeb {
                     .openPage(data.historyPath);
         });
 
-        step("Проверяем в отображаемых результатах наличие " +
+        step("Проверяем в результатах наличие " +
                 "текста перевода: '" + data.text + "'", () -> {
             historyPage
                     .checkAddingTextInHistory(data.text);
@@ -113,7 +113,7 @@ public class HistoryTests extends TestBaseWeb {
         });
 
         step("Проверяем в первом результате отображенный текст: " +
-                "должен быть текст '" + data.text + "'", () -> {
+                "должено быть '" + data.text + "'", () -> {
             historyPage
                     .checkAddingTextInHistory(data.text);
         });

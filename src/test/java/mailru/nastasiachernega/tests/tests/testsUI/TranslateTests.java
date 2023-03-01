@@ -105,14 +105,12 @@ public class TranslateTests extends TestBaseWeb {
                     .clickOnSearchButton();
         });
 
-        step("Проверямем в результатах текст в " +
-                data.exampleNumber + "-м примере", () -> {
+        step("Проверямем в " + data.exampleNumber + "-м примере текст примера", () -> {
             translationPage
                     .checkExampleText(data.exampleNumber, data.example);
         });
 
-        step("Проверямем в результатах перевод в " + data.exampleNumber +
-                "-м примере", () -> {
+        step("Проверямем в " + data.exampleNumber + "-м примере перевод примера", () -> {
             translationPage
                     .checkTranslatedExampleText(data.exampleNumber, data.translatedExample);
         });
