@@ -1,8 +1,7 @@
 package mailru.nastasiachernega.tests.tests;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
-import com.google.common.collect.ImmutableMap;
-import io.qameta.allure.selenide.AllureSelenide;
+import io.qameta.allure.selenide.AllureSelenide;;
 import mailru.nastasiachernega.tests.drivers.WebDriver;
 import mailru.nastasiachernega.tests.config.WebConfig;
 import mailru.nastasiachernega.tests.helpers.Attach;

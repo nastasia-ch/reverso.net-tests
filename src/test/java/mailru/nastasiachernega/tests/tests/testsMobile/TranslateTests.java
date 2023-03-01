@@ -29,8 +29,7 @@ public class TranslateTests extends TestBaseMobile {
     void translateTest() {
 
         step("Нажимаем 'Reverso Translation'", () -> {
-            $$(id("com.softissimo.reverso.context:id/design_menu_item_text")).
-                    findBy(text("Reverso Translation")).click();
+            $(id("com.softissimo.reverso.context:id/button_reverso_translation")).click();
         });
 
         step("Устанавиливаем язык оригинала: " + data.languageFrom, () -> {
@@ -68,8 +67,7 @@ public class TranslateTests extends TestBaseMobile {
     void contextTranslateTest() {
 
         step("Нажимаем 'New Search'", () -> {
-            $$(id("com.softissimo.reverso.context:id/design_menu_item_text"))
-                    .findBy(text("New Search")).click();
+            $(id("com.softissimo.reverso.context:id/button_new_search")).click();
         });
 
         step("В поле поиска вводим текст: '" + data.text + "'", () -> {
