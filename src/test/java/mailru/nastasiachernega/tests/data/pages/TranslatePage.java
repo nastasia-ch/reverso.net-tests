@@ -88,8 +88,8 @@ public class TranslatePage {
 
     public TranslatePage addInFavourites(int exampleNumber) {
         executeJavaScript("$('#blocked-rude-results-banner').hide();");
+        executeJavaScript("$('#blocked-results-banner').hide();");
         listOfExamples.get(exampleNumber).scrollTo().hover();
-        executeJavaScript("$('#blocked-rude-results-banner').hide();");
         listOfExamples.get(exampleNumber).
                 $("button[title='Mark this example as favourite']").click();
         return this;
