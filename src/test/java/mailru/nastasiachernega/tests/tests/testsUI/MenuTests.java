@@ -13,9 +13,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static io.qameta.allure.Allure.step;
 
-@Features({@Feature("Тесты UI"),@Feature("Навигация по меню")})
-//@Epic("Тесты UI")
-//@Feature("Навигация по меню")
+@Epic("Reverso Context")
+@Feature("Тесты UI")
+@Story("Навигация по меню")
 @Owner("Anastasia Chernega")
 @Link(value = "Ссылка на тестируемый ресурс 'Reverso Context'",
         url = "https://context.reverso.net/translation/")

@@ -13,9 +13,9 @@ import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
 
-@Features({@Feature("Тесты UI"),@Feature("Избранное")})
-//@Epic("Тесты UI")
-//@Feature("Избранное")
+@Epic("Reverso Context")
+@Feature("Тесты UI")
+@Story("Избранное")
 @Owner("Anastasia Chernega")
 @Link(value = "Ссылка на тестируемый ресурс 'Reverso Context'",
         url = "https://context.reverso.net/favourites")

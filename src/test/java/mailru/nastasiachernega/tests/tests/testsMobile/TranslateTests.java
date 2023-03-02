@@ -14,9 +14,9 @@ import static io.qameta.allure.Allure.step;
 
 import java.util.Arrays;
 
-//@Epic("Тесты MOBILE")
-@Features({@Feature("Тесты MOBILE"),@Feature("Перевод текста")})
-//@Feature("Перевод текста")
+@Epic("Reverso Context")
+@Feature("Тесты MOBILE")
+@Story("Перевод текста")
 @Owner("Anastasia Chernega")
 public class TranslateTests extends TestBaseMobile {
 

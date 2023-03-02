@@ -14,9 +14,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static io.qameta.allure.Allure.step;
 import static org.hamcrest.Matchers.is;
 
-//@Epic("Тесты API")
-@Features({@Feature("Тесты API"),@Feature("Избранное")})
-//@Feature("Избранное")
+@Epic("Reverso Context")
+@Feature("Тесты API")
+@Story("Избранное")
 @Owner("Anastasia Chernega")
 @Link(value = "Ссылка на тестируемый ресурс 'Reverso Context'",
         url = "https://context.reverso.net/favourites")

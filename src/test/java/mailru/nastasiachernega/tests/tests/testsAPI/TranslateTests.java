@@ -14,9 +14,9 @@ import java.util.List;
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
 
-//@Epic("Тесты API")
-@Features({@Feature("Тесты API"),@Feature("Перевод текста")})
-//@Feature("Перевод текста")
+@Epic("Reverso Context")
+@Feature("Тесты API")
+@Story("Перевод текста")
 @Owner("Anastasia Chernega")
 @Link(value = "Ссылка на тестируемый ресурс",
         url = "https://context.reverso.net/translation/")
