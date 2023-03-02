@@ -11,8 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
 
-@Epic("Тесты UI")
-@Feature("Перевод текста")
+@Features({@Feature("Тесты UI"),@Feature("Перевод текста")})
+//@Epic("Тесты UI")
+//@Feature("Перевод текста")
 @Owner("Anastasia Chernega")
 @Link(value = "Ссылка на тестируемый ресурс 'Reverso Context'",
         url = "https://context.reverso.net/translation/")

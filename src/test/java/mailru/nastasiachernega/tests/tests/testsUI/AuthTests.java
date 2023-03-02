@@ -16,8 +16,9 @@ import java.util.stream.Stream;
 
 import static io.qameta.allure.Allure.step;
 
-@Epic("Тесты UI")
-@Feature("Авторизация")
+@Features({@Feature("Тесты UI"),@Feature("Авторизация")})
+//@Epic("Тесты UI")
+//@Feature("Авторизация")
 @Owner("Anastasia Chernega")
 @Link(value = "Ссылка на тестируемый ресурс 'Reverso Context'",
         url = "https://account.reverso.net/Account/Login")

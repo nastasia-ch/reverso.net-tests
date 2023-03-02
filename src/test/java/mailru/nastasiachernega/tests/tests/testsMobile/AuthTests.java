@@ -12,8 +12,9 @@ import static com.codeborne.selenide.Selenide.$;
 import static io.appium.java_client.AppiumBy.id;
 import static io.qameta.allure.Allure.step;
 
-@Epic("Тесты MOBILE")
-@Feature("Авторизация")
+//@Epic("Тесты MOBILE")
+@Features({@Feature("Тесты MOBILE"),@Feature("Авторизация")})
+//@Feature("Авторизация")
 @Owner("Anastasia Chernega")
 public class AuthTests extends TestBaseMobile {
 
