@@ -209,7 +209,7 @@ gradle clean <TASK>
 После завершения сборки бот, созданный в <code>Telegram</code>, автоматически обрабатывает результаты тестов и отправляет в чат сообщение с отчетом о прохождении тестов и ссылкой на <code>Allure Report</code>.
 
 <p align="center">
-<img src="media/screenshots/Telegram-screenshoot.png" alt="Telegram-screenshot" width="800">
+<img src="media/screenshots/Telegram-screenshot.png" alt="Telegram-screenshot" width="800">
   
 [Вернуться к оглавлению ⬆](#Содержание)
 
