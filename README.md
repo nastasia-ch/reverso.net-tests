@@ -13,9 +13,11 @@
 - [Запуск в Jenkins](#Запуск-в-Jenkins)
 - [Отчет о результатах тестирования в Allure Report](#Отчет-о-результатах-тестирования-в-Allure-Report)
 
+## <a name="Интеграция-с-Allure-TestOps">Интеграция с Allure TestOps</a>
+## <a name="Уведомления-в-Telegram">Уведомления в Telegram</a>
+
 ## <a name="Описание">Описание</a>
 
-[Вернуться к оглавлению ⬆](#Содержание)
 
 ## <a name="Технологии-и-инструменты">Технологии и инструменты</a>
 <p  align="center">
@@ -149,7 +151,7 @@ gradle clean <TASK>
 
 В <code>Allure TestOps</code> есть возможность:
 >- наблюдать за выполнением тестов в реальном времени,
->- просматривать отчеты по прохождении тестов,
+>- просматривать отчеты о прохождении тестов,
 >- автоматически формировать тест-кейсы по результатам сборок,
 >- выполнять из Allure Testops запуск тест-кейсов в Jenkins. 
 
@@ -174,50 +176,51 @@ gradle clean <TASK>
 ### Запуск из Allure Testops тест-кейсов в Jenkins
 
 Для запуска тест-кейсов из <code>Allure TestOps</code> необходимо:
->- необходимо перейти в раздел <code>Test cases</code>,
+>- перейти в раздел <code>Test cases</code>,
 >- выбрать тесты, которые необходимо запустить, и нажать <code>Balk actions</code> -> <code>Run</code>,
 >- в появившемся окне <code>Run</code> перейти во вкладку <code>Jobs</code> нажать <code>Configure parameters</code>,
 >- установить параметры запуска и нажать <code>Submit</code>. 
 
-Значения для запуска необходимо выбрать в соответствии с разделом [Параметры запуска](#Параметры-запуска).
-Параметр <code>TASK</code> указывать не нужно, так как в сборке будут запускаться выбранные тест-кейсы.
-Если не указать остальные параметры, то в сборка будет запущена с дефолтными значенииями в Jenkins:
-<code>TEST_DATA</code> – data-quality-assurance:
-<code>ENVIRONMENT_WEB</code> – chrome-v99-selenoid:
-<code>ENVIRONMENT_MOBILE</code> – google-pixel-4-v11.0-browserstack:
+Значения параметров запуска необходимо выбрать в соответствии с разделом [Параметры запуска](#Параметры-запуска).
+<p>Параметр <code>TASK</code> указывать не нужно, так как сборкой будут запускаться выбранные тест-кейсы.</p>
 
-не выбирать Если параметры не установить
+Если не указать <code>остальные параметры</code>, то сборка будет запущена с дефолтными значенииями в Jenkins:
+>- <code>TEST_DATA</code> – data-quality-assurance
+>- <code>ENVIRONMENT_WEB</code> – chrome-v99-selenoid
+>- <code>ENVIRONMENT_MOBILE</code> – google-pixel-4-v11.0-browserstack
 
 <p align="center">
   <img src="media/screenshots/Allure-TestOps-choose-and-run-test-cases.png" alt="Allure-TestOps-choose-and-run-test-cases" width="800">
 </p>
 
 <p align="center">
-  <img src="media/screenshots/dashboards.PNG" alt="dashboards" width="800">
+  <img src="media/screenshots/Allure-TestOps-config-run.png" alt="Allure-TestOps-config-run" width="800">
 </p>
-
-
 
 [Вернуться к оглавлению ⬆](#Содержание)
 
-## <img width="4%" title="Telegram" src="media/logo/Telegram.svg"> Уведомления в Telegram
-После завершения сборки специальный бот, созданный в <code>Telegram</code>, автоматически обрабатывает и отправляет сообщение с отчетом о прогоне тестов.
+## <a name="Уведомления-в-Telegram">Уведомления в Telegram</a>
+После завершения сборки бот, созданный в <code>Telegram</code>, автоматически обрабатывает результаты тестов и отправляет в чат сообщение с отчетом о прохождении тестов и ссылкой на <code>Allure Report</code>.
 
 <p align="center">
-<img title="Telegram Notifications" src="media/screen/notifications.png">
+<img src="media/screenshots/Telegram-screenshoot.jpg" alt="Telegram-screenshoot" width="800">
+  
+[Вернуться к оглавлению ⬆](#Содержание)
 
-## Видео с прогоном тестов
+## <a name="Примеры-видео-с-прогоном-тестов">Примеры видео с прогоном тестов</a>
 
-В отчетах Allure для каждого теста прикреплен не только скриншот, но и видео прохождения теста
+В отчетах <code>Allure Report</code> и в <code>Allure Testops</code> для каждого теста кроме скриншотов и логов, также прикрепляются видео с прохождением теста.
 
-#### Видео прогона веб-теста в Selenoid
+### Видео прогона веб-теста в Selenoid
   
 <p align="center">
   <img title="Video" src="media/video/Lamoda_tests.gif">
 </p>
 
-#### Видео прогона теста в мобильном приложении в Browserstack
+### Видео прогона теста в мобильном приложении в Browserstack
   
 <p align="center">
   <img title="Video" src="media/video/Lamoda_tests.gif">
 </p>
+
+[Вернуться к оглавлению ⬆](#Содержание)
