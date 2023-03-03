@@ -1,25 +1,20 @@
-# Проект по автоматизации тестирования поисковой системы для перевода в контексте [Reverso Context](https://context.reverso.net/translation/)
-
+# <h2 align="center">Дипломный проект по автоматизации тестирования поисковой системы контекстного перевода текста [Reverso Context](https://context.reverso.net/translation/)</code></h2>
 <p align="center">
-<img src="media/icons/context-reverso-logo.png">
+<a href="https://context.reverso.net/translation/"><img src="media/icons/context-reverso-logo.png" width="500"></a>
 </p>
 
 ## <a name="Содержание">Содержание</a>
-- [Описание](#Описание)
-- [Технологии и инструменты](#Технологии-и-инструменты)
+- [Описание проекта и стек технологий](#Описание-проекта-и-стек-технологий)
 - [Тест кейсы](#Тест-кейсы)
 - [Команда Gradle для запуска тестов](#Команда-Gradle-для-запуска-тестов)
 - [Параметры запуска](#Параметры-запуска)
 - [Запуск в Jenkins](#Запуск-в-Jenkins)
 - [Отчет о результатах тестирования в Allure Report](#Отчет-о-результатах-тестирования-в-Allure-Report)
+- [Интеграция с Allure TestOps](#Интеграция-с-Allure-TestOps)
+- [Уведомления в Telegram](#Уведомления-в-Telegram)
+- [Примеры видео с прогоном тестов](#Примеры-видео-с-прогоном-тестов)
 
-## <a name="Интеграция-с-Allure-TestOps">Интеграция с Allure TestOps</a>
-## <a name="Уведомления-в-Telegram">Уведомления в Telegram</a>
-
-## <a name="Описание">Описание</a>
-
-
-## <a name="Технологии-и-инструменты">Технологии и инструменты</a>
+## <a name="Описание-проекта-и-стек-технологий">Описание проекта и стек технологий</a>
 <p  align="center">
 <img width="5%" title="Java" src="media/icons/java-logo.svg">
 <img width="5%" title="IntelliJ IDEA" src="media/icons/IDEA-logo.svg">
@@ -38,6 +33,15 @@
 <img width="5%" title="Allure TestOps" src="media/icons/allure-testops-logo.svg">
 <img width="5%" title="Telegram" src="media/icons/telegram-logo.svg">
 </p>
+
+Дипломный проект состоит из 3х блоков: <code>UI-тесты веб-приложения</code>, <code>API-тесты веб-приложения</code> и <code>UI-тесты Android-приложения</code>
+<p>При создании проекта использовалась среда разработки <code>IntelliJ Idea</code>, язык программирования <code>Java</code>, инструмент сборки проекта <code>Gradle</code>, тестовый фреймворк <code>JUnit5</code>.</p>
+<p>Для написания веб UI-тестов использовалась библиотека <code>Selenide</code> с реализацией предусловий и постусловий через API-запросы, API-тестов - фреймворк <code>Rest Assured</code>, мобильных UI-тестов - библиотеки <code>Selenide</code> и <code>Appium</code>.</p>
+
+Запуск UI-тестов выполняется:
+- локально: для веб-приложения - в <code>браузере</code>, для мобильного приложения - на эмуляторе Android-приложения через <code>Appium Server</code> с использованием инструментов <code>Android Studio</code> и <code>Appium Inspector</code>.
+- удаленно в <code>Jenkins</code>: для веб-приложения в <code>Selenoid</code> в изолированных Doker-контейнерах, для мобильного приложения - в <code>Browserstack</code> на реальных Android-устройствах.
+<p>Для визуализации результатов тестирования используется инструменты <code>Allure Report</code>, <code>Allure TestOps</code>, <code>Telegram Bot</code>.</p>
 
 [Вернуться к оглавлению ⬆](#Содержание)
 
@@ -124,7 +128,7 @@ gradle clean <TASK>
 [Вернуться к оглавлению ⬆](#Содержание)
 
 ## <a name="Отчет-о-результатах-тестирования-в-Allure-Report">Отчет о результатах тестирования в Allure Report</a>
-Пример отчета можно посмотреть [здесь]().
+Пример отчета можно посмотреть [здесь](https://jenkins.autotests.cloud/job/016-anastasia_chernega-context_reverso.net_tests/18/allure/).
 
 ### Главная страница Allure Report
 
@@ -158,33 +162,33 @@ gradle clean <TASK>
 ### Ход выполнения тестов
 
 <p align="center">
-  <img src="media/screenshots/Allure-TestOps-test-run.png" alt="Allure-TestOps-test-run" width="800">
+  <img src="media/screenshots/Allure-TestOps-test-run.png" alt="Allure-TestOps-test-run" width="1000">
 </p>
 
 ### Отчет о результатах тестирования 
 
 <p align="center">
-  <img src="media/screenshots/Allure-TestOps-test-results.png" alt="Allure-TestOps-test-results" width="800">
+  <img src="media/screenshots/Allure-TestOps-test-results.png" alt="Allure-TestOps-test-results" width="1600">
 </p>
 
 ### Дашборды
 
 <p align="center">
-  <img src="media/screenshots/Allure-TestOps-Dashboards.png" alt="Allure-TestOps-Dashboards" width="800">
+  <img src="media/screenshots/Allure-TestOps-Dashboards.png" alt="Allure-TestOps-Dashboards" width="1000">
 </p>
 
 ### Запуск из Allure Testops тест-кейсов в Jenkins
 
 Для запуска тест-кейсов из <code>Allure TestOps</code> необходимо:
 >- перейти в раздел <code>Test cases</code>,
->- выбрать тесты, которые необходимо запустить, и нажать <code>Balk actions</code> -> <code>Run</code>,
+>- выбрать тесты для прогона и нажать <code>Bulk actions</code> -> <code>Run</code>,
 >- в появившемся окне <code>Run</code> перейти во вкладку <code>Jobs</code> нажать <code>Configure parameters</code>,
 >- установить параметры запуска и нажать <code>Submit</code>. 
 
 Значения параметров запуска необходимо выбрать в соответствии с разделом [Параметры запуска](#Параметры-запуска).
-<p>Параметр <code>TASK</code> указывать не нужно, так как сборкой будут запускаться выбранные тест-кейсы.</p>
-
-Если не указать <code>остальные параметры</code>, то сборка будет запущена с дефолтными значенииями в Jenkins:
+<br/>Параметры с пометкой local и emulator не используем - они предназначены для локального запуска.
+<br/>Параметр <code>TASK</code> указывать не нужно, так как сборкой будут запускаться выбранные тест-кейсы.
+<br/>Если не указать <code>остальные параметры</code>, то сборка будет запущена с дефолтными значенииями в Jenkins:
 >- <code>TEST_DATA</code> – data-quality-assurance
 >- <code>ENVIRONMENT_WEB</code> – chrome-v99-selenoid
 >- <code>ENVIRONMENT_MOBILE</code> – google-pixel-4-v11.0-browserstack
@@ -203,7 +207,7 @@ gradle clean <TASK>
 После завершения сборки бот, созданный в <code>Telegram</code>, автоматически обрабатывает результаты тестов и отправляет в чат сообщение с отчетом о прохождении тестов и ссылкой на <code>Allure Report</code>.
 
 <p align="center">
-<img src="media/screenshots/Telegram-screenshoot.jpg" alt="Telegram-screenshot" width="800">
+<img src="media/screenshots/Telegram-screenshot.png" alt="Telegram-screenshot" width="45%">
   
 [Вернуться к оглавлению ⬆](#Содержание)
 
