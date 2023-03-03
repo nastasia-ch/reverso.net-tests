@@ -29,7 +29,6 @@ public class AuthTests extends TestBaseMobile {
     void loginTest() {
 
         step("Нажимаем 'Login or register for free'", () -> {
-            sleep(5000);
             $(id("com.softissimo.reverso.context:id/txt_full_name")).click();
         });
 
