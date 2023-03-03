@@ -1,15 +1,13 @@
 package mailru.nastasiachernega.tests.tests.testsMobile;
 
 import io.qameta.allure.*;
+import mailru.nastasiachernega.tests.data.pagesMobile.LoginPage;
 import mailru.nastasiachernega.tests.data.testData.TestData;
 import mailru.nastasiachernega.tests.tests.TestBaseMobile;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static io.appium.java_client.AppiumBy.id;
 import static io.qameta.allure.Allure.step;
 
 @Epic("Reverso Context")
@@ -19,6 +17,7 @@ import static io.qameta.allure.Allure.step;
 public class AuthTests extends TestBaseMobile {
 
     TestData data = new TestData();
+    LoginPage loginPage = new LoginPage();
 
     @Severity(SeverityLevel.BLOCKER)
     @DisplayName("Авторизация с валидными данными")
@@ -27,33 +26,35 @@ public class AuthTests extends TestBaseMobile {
     @Tag("auth_tests")
     void loginTest() {
 
-        step("Нажимаем 'Login or register for free'", () -> {
-            $(id("com.softissimo.reverso.context:id/txt_full_name")).click();
-        });
+        step("Тестовые шаги", () -> {
+            step("Нажимаем 'Login or register for free'", () -> {
+                loginPage
+                        .clickUserProfile();
+            });
 
-        step("Выбираем вариант авторизации через email", () -> {
-            $(id("com.softissimo.reverso.context:id/btn_sign_in")).click();
-        });
+            step("Выбираем вариант авторизации через email", () -> {
+                loginPage
+                        .clickLoginButtonWithEmail();
+            });
 
-        step("Вводим email", () -> {
-            $(id("com.softissimo.reverso.context:id/et_email"))
-                    .sendKeys(data.emailValid);
-        });
+            step("Вводим email", () -> {
+                loginPage
+                        .setEmail(data.emailValid);
+            });
 
-        step("Вводим пароль", () -> {
-            $(id("com.softissimo.reverso.context:id/et_password"))
-                    .sendKeys(data.passwordValid);
-        });
+            step("Вводим пароль", () -> {
+                loginPage
+                        .setPassword(data.passwordValid);
+            });
 
-        step("Нажимаем кнопку авторизации", () -> {
-            $(id("com.softissimo.reverso.context:id/btn_sign_in")).click();
-        });
+            step("Нажимаем кнопку авторизации", () -> {
+                loginPage
+                        .clickLoginButtonWithEmail();
+            });
 
-        step("Проверяем авторизацию", () -> {
-            $(id("com.softissimo.reverso.context:id/et_username_reverso"))
-                    .shouldHave(text(data.username));
-            $(id("com.softissimo.reverso.context:id/et_email_reverso"))
-                    .shouldHave(text(data.emailValid));
+            step("Проверяем авторизацию", () -> {
+                loginPage.checkLogin(data.username);
+            });
         });
     }
 }

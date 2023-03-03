@@ -1,8 +1,8 @@
 package mailru.nastasiachernega.tests.tests.testsUI;
 
 import io.qameta.allure.*;
-import mailru.nastasiachernega.tests.data.pages.HistoryPage;
-import mailru.nastasiachernega.tests.data.pages.TranslatePage;
+import mailru.nastasiachernega.tests.data.pagesWeb.HistoryPage;
+import mailru.nastasiachernega.tests.data.pagesWeb.TranslatePage;
 import mailru.nastasiachernega.tests.data.testData.TestData;
 import mailru.nastasiachernega.tests.data.apiSteps.AuthorizationApiSteps;
 import mailru.nastasiachernega.tests.data.apiSteps.HistoryApiSteps;
@@ -18,7 +18,7 @@ import static io.qameta.allure.Allure.step;
 @Feature("Тесты UI")
 @Story("История")
 @Owner("Anastasia Chernega")
-@Link(value = "Ссылка на тестируемый ресурс 'Reverso Context'",
+@Link(value = "Тестируемый ресурс 'Reverso Context'",
         url = "https://context.reverso.net/history")
 public class HistoryTests extends TestBaseWeb {
 
@@ -38,34 +38,40 @@ public class HistoryTests extends TestBaseWeb {
     @Tag("history_tests")
     void addInHistory() {
 
-        step("Отправляем запрос на перевод через Api", () -> {
-            translationApi
-                    .translateText(authApi.getRefreshToken(data.emailValid, data.passwordValid),
-                            data.languageFromTo, data.text);
+        step("Предусловия", () -> {
+            step("Отправляем запрос на перевод через Api", () -> {
+                translationApi
+                        .translateText(authApi.getRefreshToken(data.emailValid, data.passwordValid),
+                                data.languageFromTo, data.text);
+            });
+
+            step("Авторизуемся через Api", () -> {
+                translationPage
+                        .addAuthCookieToWebDriver(data.translationPath,
+                                authApi.getRefreshToken(data.emailValid, data.passwordValid));
+            });
         });
 
-        step("Авторизуемся через Api", () -> {
-            translationPage
-                    .addAuthCookieToWebDriver(data.translationPath,
-                            authApi.getRefreshToken(data.emailValid, data.passwordValid));
+        step("Тестовые шаги", () -> {
+            step("Открываем страницу раздела 'История'", () -> {
+                historyPage
+                        .openPage(data.historyPath);
+            });
+
+            step("Проверяем в результатах наличие " +
+                    "текста перевода: '" + data.text + "'", () -> {
+                historyPage
+                        .checkAddingTextInHistory(data.text);
+            });
         });
 
-        step("Открываем страницу раздела 'История'", () -> {
-            historyPage
-                    .openPage(data.historyPath);
-        });
-
-        step("Проверяем в результатах наличие " +
-                "текста перевода: '" + data.text + "'", () -> {
-            historyPage
-                    .checkAddingTextInHistory(data.text);
-        });
-
-        step("Очищаем раздел 'История' после теста через Api: " +
-                "удаляем сохраненный запрос", () -> {
-            historyApi
-                    .deleteFromHistory(authApi.getRefreshToken(data.emailValid, data.passwordValid),
-                            historyPage.getHistoryId(data.text));
+        step("Постусловия", () -> {
+            step("Очищаем раздел 'История' после теста через Api: " +
+                    "удаляем сохраненный запрос", () -> {
+                historyApi
+                        .deleteFromHistory(authApi.getRefreshToken(data.emailValid, data.passwordValid),
+                                historyPage.getHistoryId(data.text));
+            });
         });
     }
 
@@ -76,61 +82,67 @@ public class HistoryTests extends TestBaseWeb {
     @Tag("history_tests")
     void checkFilterInHistory() {
 
-        step("Отправляем запрос на перевод через Api", () -> {
-            translationApi
-                    .translateText(authApi.getRefreshToken(data.emailValid, data.passwordValid),
-                            data.languageFromTo, data.text);
+        step("Предусловия", () -> {
+            step("Отправляем запрос на перевод через Api", () -> {
+                translationApi
+                        .translateText(authApi.getRefreshToken(data.emailValid, data.passwordValid),
+                                data.languageFromTo, data.text);
+            });
+
+            step("Авторизуемся через Api", () -> {
+                translationPage
+                        .addAuthCookieToWebDriver(data.translationPath,
+                                authApi.getRefreshToken(data.emailValid, data.passwordValid));
+            });
         });
 
-        step("Авторизуемся через Api", () -> {
-            translationPage
-                    .addAuthCookieToWebDriver(data.translationPath,
-                            authApi.getRefreshToken(data.emailValid, data.passwordValid));
+        step("Тестовые шаги", () -> {
+            step("Открываем страницу раздела 'История'", () -> {
+                historyPage
+                        .openPage(data.historyPath);
+            });
+
+            step("В поле поиска вводим текст поиска: '" + data.text + "'", () -> {
+                historyPage
+                        .setFilteredText(data.text);
+            });
+
+            step("Выбираем язык оригинала: " + data.languageFrom, () -> {
+                historyPage
+                        .chooseLanguageFrom(data.langFromSymbol);
+            });
+
+            step("Выбираем язык перевода: " + data.languageTo, () -> {
+                historyPage
+                        .chooseLanguageTo(data.langToSymbol);
+            });
+
+            step("Нажимаем кнопку применения фильтра", () -> {
+                historyPage
+                        .clickFilterButton();
+            });
+
+            step("Проверяем в первом результате отображенный текст: " +
+                    "должено быть '" + data.text + "'", () -> {
+                historyPage
+                        .checkAddingTextInHistory(data.text);
+            });
+
+            step("Проверяем в первом результате дату сохранения в историю: " +
+                    "должна быть текущая дата " + data.currentDate, () -> {
+                historyPage
+                        .checkAddingDateInHistory(data.currentDate);
+            });
         });
 
-        step("Открываем страницу раздела 'История'", () -> {
-            historyPage
-                    .openPage(data.historyPath);
-        });
-
-        step("В поле поиска вводим текст поиска: '" + data.text + "'", () -> {
-            historyPage
-                    .setFilteredText(data.text);
-        });
-
-        step("Выбираем язык оригинала: " + data.languageFrom, () -> {
-            historyPage
-                    .chooseLanguageFrom(data.langFromSymbol);
-        });
-
-        step("Выбираем язык перевода: " + data.languageTo, () -> {
-            historyPage
-                    .chooseLanguageTo(data.langToSymbol);
-        });
-
-        step("Нажимаем кнопку применения фильтра", () -> {
-            historyPage
-                    .clickFilterButton();
-        });
-
-        step("Проверяем в первом результате отображенный текст: " +
-                "должено быть '" + data.text + "'", () -> {
-            historyPage
-                    .checkAddingTextInHistory(data.text);
-        });
-
-        step("Проверяем в первом результате дату сохранения в историю: " +
-                "должна быть текущая дата " + data.currentDate, () -> {
-            historyPage
-                    .checkAddingDateInHistory(data.currentDate);
-        });
-
-        step("Очищаем раздел 'История' после теста через Api: " +
-                "удаляем сохраненный запрос", () -> {
-            historyApi
-                    .deleteFromHistory
-                            (authApi.getRefreshToken(data.emailValid, data.passwordValid),
-                                    historyPage.getHistoryId(data.text));
+        step("Постусловия", () -> {
+            step("Очищаем раздел 'История' после теста через Api: " +
+                    "удаляем сохраненный запрос", () -> {
+                historyApi
+                        .deleteFromHistory
+                                (authApi.getRefreshToken(data.emailValid, data.passwordValid),
+                                        historyPage.getHistoryId(data.text));
+            });
         });
     }
 }

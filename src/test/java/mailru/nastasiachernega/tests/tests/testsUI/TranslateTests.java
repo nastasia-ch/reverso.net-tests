@@ -2,7 +2,7 @@ package mailru.nastasiachernega.tests.tests.testsUI;
 
 import io.qameta.allure.*;
 import mailru.nastasiachernega.tests.data.apiSteps.AuthorizationApiSteps;
-import mailru.nastasiachernega.tests.data.pages.TranslatePage;
+import mailru.nastasiachernega.tests.data.pagesWeb.TranslatePage;
 import mailru.nastasiachernega.tests.data.testData.TestData;
 import mailru.nastasiachernega.tests.tests.TestBaseWeb;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +15,7 @@ import static io.qameta.allure.Allure.step;
 @Feature("Тесты UI")
 @Story("Перевод текста")
 @Owner("Anastasia Chernega")
-@Link(value = "Ссылка на тестируемый ресурс 'Reverso Context'",
+@Link(value = "Тестируемый ресурс 'Reverso Context'",
         url = "https://context.reverso.net/translation/")
 public class TranslateTests extends TestBaseWeb {
 
@@ -30,41 +30,45 @@ public class TranslateTests extends TestBaseWeb {
     @Tag("translate_tests")
     void checkTextTranslations() {
 
-        step("Авторизуемся через Api", () -> {
-            translationPage
-                    .addAuthCookieToWebDriver(data.translationPath,
-                            authApi.getRefreshToken(data.emailValid, data.passwordValid));
+        step("Предусловия", () -> {
+            step("Авторизуемся через Api", () -> {
+                translationPage
+                        .addAuthCookieToWebDriver(data.translationPath,
+                                authApi.getRefreshToken(data.emailValid, data.passwordValid));
+            });
         });
 
-        step("Открываем страницу", () -> {
-            translationPage
-                    .openPage(data.translationPath);
-        });
+        step("Тестовые шаги", () -> {
+            step("Открываем страницу", () -> {
+                translationPage
+                        .openPage(data.translationPath);
+            });
 
-        step("Вводим текст для перевода: " + data.text, () -> {
-            translationPage
-                    .setTextForTranslation(data.text);
-        });
+            step("Вводим текст для перевода: " + data.text, () -> {
+                translationPage
+                        .setTextForTranslation(data.text);
+            });
 
-        step("Устанавливаем язык оригинала: " + data.languageFrom, () -> {
-            translationPage
-                    .chooseLanguageFrom(data.languageFrom);
-        });
+            step("Устанавливаем язык оригинала: " + data.languageFrom, () -> {
+                translationPage
+                        .chooseLanguageFrom(data.languageFrom);
+            });
 
-        step("Устанавливаем язык перевода: " + data.languageTo, () -> {
-            translationPage
-                    .chooseLanguageTo(data.languageTo);
-        });
+            step("Устанавливаем язык перевода: " + data.languageTo, () -> {
+                translationPage
+                        .chooseLanguageTo(data.languageTo);
+            });
 
-        step("Нажимаем на кнопку поиска", () -> {
-            translationPage
-                    .clickOnSearchButton();
-        });
+            step("Нажимаем на кнопку поиска", () -> {
+                translationPage
+                        .clickOnSearchButton();
+            });
 
-        step("Проверяем в результатах список " +
-                "вариантов перевода", () -> {
-            translationPage
-                    .checkTranslations(data.translations);
+            step("Проверяем в результатах список " +
+                    "вариантов перевода", () -> {
+                translationPage
+                        .checkTranslations(data.translations);
+            });
         });
     }
 
@@ -75,45 +79,49 @@ public class TranslateTests extends TestBaseWeb {
     @Tag("translate_tests")
     void checkExampleContent() {
 
-        step("Авторизуемся через Api", () -> {
-            translationPage
-                    .addAuthCookieToWebDriver(data.translationPath,
-                            authApi.getRefreshToken(data.emailValid, data.passwordValid));
+        step("Предусловия", () -> {
+            step("Авторизуемся через Api", () -> {
+                translationPage
+                        .addAuthCookieToWebDriver(data.translationPath,
+                                authApi.getRefreshToken(data.emailValid, data.passwordValid));
+            });
         });
 
-        step("Открываем страницу", () -> {
-            translationPage
-                    .openPage(data.translationPath);
-        });
+        step("Тестовые шаги", () -> {
+            step("Открываем страницу", () -> {
+                translationPage
+                        .openPage(data.translationPath);
+            });
 
-        step("Вводим текст для перевода: " + data.text, () -> {
-            translationPage
-                    .setTextForTranslation(data.text);
-        });
+            step("Вводим текст для перевода: " + data.text, () -> {
+                translationPage
+                        .setTextForTranslation(data.text);
+            });
 
-        step("Устанавливаем язык оригинала: " + data.languageFrom, () -> {
-            translationPage
-                    .chooseLanguageFrom(data.languageFrom);
-        });
+            step("Устанавливаем язык оригинала: " + data.languageFrom, () -> {
+                translationPage
+                        .chooseLanguageFrom(data.languageFrom);
+            });
 
-        step("Устанавливаем язык перевода: " + data.languageTo, () -> {
-            translationPage
-                    .chooseLanguageTo(data.languageTo);
-        });
+            step("Устанавливаем язык перевода: " + data.languageTo, () -> {
+                translationPage
+                        .chooseLanguageTo(data.languageTo);
+            });
 
-        step("Нажимаем на кнопку поиска", () -> {
-            translationPage
-                    .clickOnSearchButton();
-        });
+            step("Нажимаем на кнопку поиска", () -> {
+                translationPage
+                        .clickOnSearchButton();
+            });
 
-        step("Проверямем в " + data.exampleNumber + "-м примере текст примера", () -> {
-            translationPage
-                    .checkExampleText(data.exampleNumber, data.example);
-        });
+            step("Проверямем в " + data.exampleNumber + "-м примере текст примера", () -> {
+                translationPage
+                        .checkExampleText(data.exampleNumber, data.example);
+            });
 
-        step("Проверямем в " + data.exampleNumber + "-м примере перевод примера", () -> {
-            translationPage
-                    .checkTranslatedExampleText(data.exampleNumber, data.translatedExample);
+            step("Проверямем в " + data.exampleNumber + "-м примере перевод примера", () -> {
+                translationPage
+                        .checkTranslatedExampleText(data.exampleNumber, data.translatedExample);
+            });
         });
     }
 

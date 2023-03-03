@@ -3,8 +3,8 @@ package mailru.nastasiachernega.tests.tests.testsUI;
 import io.qameta.allure.*;
 import mailru.nastasiachernega.tests.data.apiSteps.AuthorizationApiSteps;
 import mailru.nastasiachernega.tests.data.apiSteps.FavouritesApiSteps;
-import mailru.nastasiachernega.tests.data.pages.FavouritesPage;
-import mailru.nastasiachernega.tests.data.pages.TranslatePage;
+import mailru.nastasiachernega.tests.data.pagesWeb.FavouritesPage;
+import mailru.nastasiachernega.tests.data.pagesWeb.TranslatePage;
 import mailru.nastasiachernega.tests.data.testData.TestData;
 import mailru.nastasiachernega.tests.tests.TestBaseWeb;
 import org.junit.jupiter.api.DisplayName;
@@ -17,7 +17,7 @@ import static io.qameta.allure.Allure.step;
 @Feature("Тесты UI")
 @Story("Избранное")
 @Owner("Anastasia Chernega")
-@Link(value = "Ссылка на тестируемый ресурс 'Reverso Context'",
+@Link(value = "Тестируемый ресурс 'Reverso Context'",
         url = "https://context.reverso.net/favourites")
 public class FavouritesTests extends TestBaseWeb {
 
@@ -36,15 +36,17 @@ public class FavouritesTests extends TestBaseWeb {
     @Tag("favourites_tests")
     void openPageWithoutAuth() {
 
-        step("Открываем страницу 'Избранное' без авторизации", () -> {
-            favouritesPage
-                    .openPage(data.favouritesPath);
-        });
+        step("Тестовые шаги", () -> {
+            step("Открываем страницу 'Избранное' без авторизации", () -> {
+                favouritesPage
+                        .openPage(data.favouritesPath);
+            });
 
-        step("Проверяем на странице наличие сообщения " +
-                "о необходимости авторизации для пользования контентом", () -> {
-            favouritesPage
-                    .checkMessageOpenPageWithoutAuth();
+            step("Проверяем на странице наличие сообщения " +
+                    "о необходимости авторизации для пользования контентом", () -> {
+                favouritesPage
+                        .checkMessageOpenPageWithoutAuth();
+            });
         });
     }
 
@@ -55,63 +57,69 @@ public class FavouritesTests extends TestBaseWeb {
     @Tag("favourites_tests")
     void addInFavourites() {
 
-        step("Авторизуемся через Api", () -> {
-            translationPage
-                    .addAuthCookieToWebDriver(data.translationPath,
-                            authApi.getRefreshToken(data.emailValid, data.passwordValid));
+        step("Предусловия", () -> {
+            step("Авторизуемся через Api", () -> {
+                translationPage
+                        .addAuthCookieToWebDriver(data.translationPath,
+                                authApi.getRefreshToken(data.emailValid, data.passwordValid));
+            });
         });
 
-        step("Открываем страницу", () -> {
-            translationPage
-                    .openPage(data.translationPath);
+        step("Тестовые шаги", () -> {
+            step("Открываем страницу", () -> {
+                translationPage
+                        .openPage(data.translationPath);
+            });
+
+            step("Вводим текст для перевода: " + data.text, () -> {
+                translationPage
+                        .setTextForTranslation(data.text);
+            });
+
+            step("Устанавливаем язык оригинала: " + data.languageFrom, () -> {
+                translationPage
+                        .chooseLanguageFrom(data.languageFrom);
+            });
+
+            step("Устанавливаем язык перевода: " + data.languageTo, () -> {
+                translationPage
+                        .chooseLanguageTo(data.languageTo);
+            });
+
+            step("Нажимаем на кнопку поиска", () -> {
+                translationPage
+                        .clickOnSearchButton();
+            });
+
+            step("Добавляем " + data.exampleNumber +
+                    "-й пример в раздел 'Избранное'", () -> {
+                translationPage
+                        .addInFavourites(data.exampleNumber);
+            });
+
+            step("Переходим в раздел 'Избранное'", () -> {
+                translationPage
+                        .openUserMenu()
+                        .goToSectionFavourites();
+            });
+
+            step("Проверяем, добавлен ли " + data.exampleNumber +
+                    "-й пример в раздел 'Избранное'", () -> {
+                favouritesPage
+                        .checkAddingExample(data.example)
+                        .checkAddingTranslatedExample(data.translatedExample);
+            });
         });
 
-        step("Вводим текст для перевода: " + data.text, () -> {
-            translationPage
-                    .setTextForTranslation(data.text);
-        });
-
-        step("Устанавливаем язык оригинала: " + data.languageFrom, () -> {
-            translationPage
-                    .chooseLanguageFrom(data.languageFrom);
-        });
-
-        step("Устанавливаем язык перевода: " + data.languageTo, () -> {
-            translationPage
-                    .chooseLanguageTo(data.languageTo);
-        });
-
-        step("Нажимаем на кнопку поиска", () -> {
-            translationPage
-                    .clickOnSearchButton();
-        });
-
-        step("Добавляем " + data.exampleNumber +
-                "-й пример в раздел 'Избранное'", () -> {
-            translationPage
-                    .addInFavourites(data.exampleNumber);
-        });
-
-        step("Переходим в раздел 'Избранное'", () -> {
-            translationPage
-                    .openUserMenu()
-                    .goToSectionFavourites();
-        });
-
-        step("Проверяем, добавлен ли " + data.exampleNumber +
-                "-й пример в раздел 'Избранное'", () -> {
-            favouritesPage
-                    .checkAddingExample(data.example)
-                    .checkAddingTranslatedExample(data.translatedExample);
-        });
-
-        step("Очищаем раздел 'Избранное' после теста через Api", () -> {
-            int exampleId =
-                    favouritesPage.getExampleId(data.example);
-            favouritesApi
-                    .deleteFromFavourites(authApi.getRefreshToken
-                            (data.emailValid, data.passwordValid),
-                            exampleId);
+        step("Постусловия", () -> {
+            step("Очищаем раздел 'Избранное' после теста через Api", () -> {
+                int exampleId =
+                        favouritesPage.getExampleId(data.example);
+                favouritesApi
+                        .deleteFromFavourites(authApi.getRefreshToken
+                                        (data.emailValid, data.passwordValid),
+                                exampleId);
+            });
         });
     }
 

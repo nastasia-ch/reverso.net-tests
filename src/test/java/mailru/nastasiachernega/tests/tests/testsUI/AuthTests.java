@@ -1,8 +1,8 @@
 package mailru.nastasiachernega.tests.tests.testsUI;
 
 import io.qameta.allure.*;
-import mailru.nastasiachernega.tests.data.pages.LoginPage;
-import mailru.nastasiachernega.tests.data.pages.TranslatePage;
+import mailru.nastasiachernega.tests.data.pagesWeb.LoginPage;
+import mailru.nastasiachernega.tests.data.pagesWeb.TranslatePage;
 import mailru.nastasiachernega.tests.data.testData.TestData;
 import mailru.nastasiachernega.tests.tests.TestBaseWeb;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +20,7 @@ import static io.qameta.allure.Allure.step;
 @Feature("Тесты UI")
 @Story("Перевод текста")
 @Owner("Anastasia Chernega")
-@Link(value = "Ссылка на тестируемый ресурс 'Reverso Context'",
+@Link(value = "Тестируемый ресурс 'Reverso Context'",
         url = "https://account.reverso.net/Account/Login")
 public class AuthTests extends TestBaseWeb {
 
@@ -35,37 +35,39 @@ public class AuthTests extends TestBaseWeb {
     @Tag("auth_tests")
     void loginTestWithValidData() {
 
-        step("Открываем страницу", () -> {
-            translationPage
-                    .openPage(data.translationPath);
-        });
+        step("Тестовые шаги", () -> {
+            step("Открываем страницу", () -> {
+                translationPage
+                        .openPage(data.translationPath);
+            });
 
-        step("Переходим в раздел авторизации", () -> {
-            translationPage
-                    .openUserMenu()
-                    .goToLoginSection();
-        });
+            step("Переходим в раздел авторизации", () -> {
+                translationPage
+                        .openUserMenu()
+                        .goToLoginSection();
+            });
 
-        step("Вводим валидный электронный адрес", () -> {
-            loginPage
-                    .setEmail(data.emailValid);
-        });
+            step("Вводим валидный электронный адрес", () -> {
+                loginPage
+                        .setEmail(data.emailValid);
+            });
 
-        step("Вводим валидный пароль", () -> {
-            loginPage
-                    .setPassword(data.passwordValid);
-        });
+            step("Вводим валидный пароль", () -> {
+                loginPage
+                        .setPassword(data.passwordValid);
+            });
 
-        step("Нажимаем кнопку авторизации", () -> {
-            loginPage
-                    .clickLoginButton();
-        });
+            step("Нажимаем кнопку авторизации", () -> {
+                loginPage
+                        .clickLoginButton();
+            });
 
-        step("Проверяем авторизацию", () -> {
+            step("Проверяем авторизацию", () -> {
 
-            translationPage
-                    .openUserMenu()
-                    .isThereSectionInMenu(data.username);
+                translationPage
+                        .openUserMenu()
+                        .isThereSectionInMenu(data.username);
+            });
         });
     }
 
@@ -87,35 +89,37 @@ public class AuthTests extends TestBaseWeb {
     void loginTestWithInvalidData(String emailType, String email,
                                   String passwordType, String password) {
 
-        step("Открываем страницу", () -> {
-            translationPage
-                    .openPage(data.translationPath);
-        });
+        step("Тестовые шаги", () -> {
+            step("Открываем страницу", () -> {
+                translationPage
+                        .openPage(data.translationPath);
+            });
 
-        step("Переходим в раздел авторизации", () -> {
-            translationPage
-                    .openUserMenu()
-                    .goToLoginSection();
-        });
+            step("Переходим в раздел авторизации", () -> {
+                translationPage
+                        .openUserMenu()
+                        .goToLoginSection();
+            });
 
-        step("Вводим " + emailType + " электронный адрес", () -> {
-            loginPage
-                    .setEmail(email);
-        });
+            step("Вводим " + emailType + " электронный адрес", () -> {
+                loginPage
+                        .setEmail(email);
+            });
 
-        step("Вводим " + passwordType + " пароль", () -> {
-            loginPage
-                    .setPassword(password);
-        });
+            step("Вводим " + passwordType + " пароль", () -> {
+                loginPage
+                        .setPassword(password);
+            });
 
-        step("Нажимаем кнопку авторизации", () -> {
-            loginPage
-                    .clickLoginButton();
-        });
+            step("Нажимаем кнопку авторизации", () -> {
+                loginPage
+                        .clickLoginButton();
+            });
 
-        step("Проверяем отображение информации об ошибке", () -> {
-            loginPage
-                    .checkLoginError(data.errorLoginInfo);
+            step("Проверяем отображение информации об ошибке", () -> {
+                loginPage
+                        .checkLoginError(data.errorLoginInfo);
+            });
         });
     }
 

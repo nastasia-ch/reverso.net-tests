@@ -1,10 +1,9 @@
-package mailru.nastasiachernega.tests.data.pages;
+package mailru.nastasiachernega.tests.data.pagesWeb;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
-import com.codeborne.selenide.collections.TextsInAnyOrder;
-import mailru.nastasiachernega.tests.data.pages.components.MenuComponents;
+import mailru.nastasiachernega.tests.data.pagesWeb.components.MenuComponents;
 import org.openqa.selenium.Cookie;
 
 import static com.codeborne.selenide.CollectionCondition.*;

@@ -1,15 +1,14 @@
 package mailru.nastasiachernega.tests.tests.testsMobile;
 
 import io.qameta.allure.*;
+import mailru.nastasiachernega.tests.data.pagesMobile.ContextTranslatePage;
+import mailru.nastasiachernega.tests.data.pagesMobile.TranslatePage;
 import mailru.nastasiachernega.tests.data.testData.TestData;
 import mailru.nastasiachernega.tests.tests.TestBaseMobile;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.*;
-import static io.appium.java_client.AppiumBy.id;
 import static io.qameta.allure.Allure.step;
 
 import java.util.Arrays;
@@ -21,6 +20,8 @@ import java.util.Arrays;
 public class TranslateTests extends TestBaseMobile {
 
     TestData data = new TestData();
+    TranslatePage translatePage = new TranslatePage();
+    ContextTranslatePage contextTranslatePage = new ContextTranslatePage();
 
     @Severity(SeverityLevel.BLOCKER)
     @DisplayName("Перевод текста")
@@ -29,34 +30,37 @@ public class TranslateTests extends TestBaseMobile {
     @Tag("translate_tests")
     void translateTest() {
 
-        step("Нажимаем 'Reverso Translation'", () -> {
-            $(id("com.softissimo.reverso.context:id/button_reverso_translation")).click();
-        });
+        step("Тестовые шаги", () -> {
+            step("Нажимаем 'Reverso Translation'", () -> {
+                translatePage
+                        .clickReversoTranslation();
+            });
 
-        step("Устанавиливаем язык оригинала: " + data.languageFrom, () -> {
-            $(id("com.softissimo.reverso.context:id/button_source_language")).click();
-            $$(id("com.softissimo.reverso.context:id/tv_language"))
-                    .findBy(text(data.languageFrom)).click();
-        });
+            step("Устанавиливаем язык оригинала: " + data.languageFrom, () -> {
+                translatePage
+                        .clickButtonLanguageFrom()
+                        .chooseLanguageFrom(data.languageFrom);
+            });
 
-        step("Устанавиливаем язык перевода: " + data.languageTo, () -> {
-            $(id("com.softissimo.reverso.context:id/button_target_language")).click();
-            $$(id("com.softissimo.reverso.context:id/tv_language"))
-                    .findBy(text(data.languageTo)).click();
-        });
+            step("Устанавиливаем язык перевода: " + data.languageTo, () -> {
+                translatePage
+                        .clickButtonLanguageTo()
+                        .chooseLanguageTo(data.languageTo);
+            });
 
-        step("В поле поиска вводим текст: '" + data.text + "'", () -> {
-            $(id("com.softissimo.reverso.context:id/textInputTranslator"))
-                    .sendKeys(data.text);
-        });
+            step("В поле поиска вводим текст: '" + data.text + "'", () -> {
+                translatePage
+                        .setTextForTranslation(data.text);
+            });
 
-        step("Запускаем поиск", () -> {
-            $(id("com.softissimo.reverso.context:id/translateInputTranslator")).click();
-        });
+            step("Запускаем перевод", () -> {
+                translatePage
+                        .clickTranslateButton();
+            });
 
-        step("Проверяем перевод текста: " + Arrays.asList(data.translations).get(0) + "'", () -> {
-            $(id("com.softissimo.reverso.context:id/responseTextTranslator")).
-                    shouldHave(text(Arrays.asList(data.translations).get(0)));
+            step("Проверяем перевод текста: " + Arrays.asList(data.translations).get(0) + "'", () -> {
+                translatePage.checkTranslation(data.translations);
+            });
         });
     }
 
@@ -67,41 +71,40 @@ public class TranslateTests extends TestBaseMobile {
     @Tag("translate_tests")
     void contextTranslateTest() {
 
-        step("Нажимаем 'New Search'", () -> {
-            $(id("com.softissimo.reverso.context:id/button_new_search")).click();
-        });
+        step("Тестовые шаги", () -> {
+            step("Нажимаем 'New Search'", () -> {
+                contextTranslatePage
+                        .clickNewSearch();
+            });
 
-        step("В поле поиска вводим текст: '" + data.text + "'", () -> {
-            $(id("com.softissimo.reverso.context:id/edit_search")).click();
-            $(id("com.softissimo.reverso.context:id/edit_search")).
-                    sendKeys(data.text);
-        });
+            step("В поле поиска вводим текст: '" + data.text + "'", () -> {
+                contextTranslatePage
+                        .setTextForTranslation(data.text);
+            });
 
-        step("Устанавиливаем язык оригинала: " + data.languageFrom, () -> {
-            $(id("com.softissimo.reverso.context:id/button_source_language")).click();
-            $$(id("com.softissimo.reverso.context:id/tv_language"))
-                    .findBy(text(data.languageFrom)).click();
-        });
+            step("Устанавиливаем язык оригинала: " + data.languageFrom, () -> {
+                contextTranslatePage
+                        .clickButtonLanguageFrom()
+                        .chooseLanguageFrom(data.languageFrom);
+            });
 
-        step("Устанавиливаем язык перевода: " + data.languageTo, () -> {
-            $(id("com.softissimo.reverso.context:id/button_target_language")).click();
-            $$(id("com.softissimo.reverso.context:id/tv_language"))
-                    .findBy(text(data.languageTo)).click();
-        });
+            step("Устанавиливаем язык перевода: " + data.languageTo, () -> {
+                contextTranslatePage
+                        .clickButtonLanguageTo()
+                        .chooseLanguageTo(data.languageTo);
+            });
 
-        step("Проверяем в результатах наличие примера с текстом: '" +
-                data.exampleMobile + "'", () -> {
-            $$(id("com.softissimo.reverso.context:id/text_source"))
-                    .get(data.exampleNumberMobile)
-                    .shouldHave(text(data.exampleMobile));
-        });
+            step("Проверяем в результатах наличие примера с текстом: '" +
+                    data.exampleMobile + "'", () -> {
+                contextTranslatePage
+                        .checkExampleText(data.exampleNumberMobile, data.exampleMobile);
+            });
 
-        step("Проверяем в результатах наличие перевода примера с текстом: '" +
-                data.translatedExampleMobile + "'", () -> {
-            $$(id("com.softissimo.reverso.context:id/text_target"))
-                    .get(data.exampleNumberMobile)
-                    .shouldHave(text(data.translatedExampleMobile));
+            step("Проверяем в результатах наличие перевода примера с текстом: '" +
+                    data.translatedExampleMobile + "'", () -> {
+                contextTranslatePage.checkTranslatedExampleText(data.exampleNumberMobile,
+                                                                data.translatedExampleMobile);
+            });
         });
     }
-
 }

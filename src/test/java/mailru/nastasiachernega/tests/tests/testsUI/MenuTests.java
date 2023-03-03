@@ -2,7 +2,7 @@ package mailru.nastasiachernega.tests.tests.testsUI;
 
 import io.qameta.allure.*;
 import mailru.nastasiachernega.tests.data.apiSteps.AuthorizationApiSteps;
-import mailru.nastasiachernega.tests.data.pages.TranslatePage;
+import mailru.nastasiachernega.tests.data.pagesWeb.TranslatePage;
 import mailru.nastasiachernega.tests.data.testData.TestData;
 import mailru.nastasiachernega.tests.tests.TestBaseWeb;
 import org.junit.jupiter.api.DisplayName;
@@ -17,7 +17,7 @@ import static io.qameta.allure.Allure.step;
 @Feature("Тесты UI")
 @Story("Навигация по меню")
 @Owner("Anastasia Chernega")
-@Link(value = "Ссылка на тестируемый ресурс 'Reverso Context'",
+@Link(value = "Тестируемый ресурс 'Reverso Context'",
         url = "https://context.reverso.net/translation/")
 public class MenuTests extends TestBaseWeb {
 
@@ -32,15 +32,17 @@ public class MenuTests extends TestBaseWeb {
     @Tag("menu_tests")
     void checkReversoHeaders() {
 
-        step("Открываем страницу", () -> {
-            translationPage
-                    .openPage(data.translationPath);
-        });
+        step("Тестовые шаги", () -> {
+            step("Открываем страницу", () -> {
+                translationPage
+                        .openPage(data.translationPath);
+            });
 
-        step("Проверяем наличие в меню следующих заголовков разделов " +
-                "сайта Reverso Context", () -> {
-            translationPage
-                    .checkReversoHeaders(data.reversoHeaders);
+            step("Проверяем наличие в меню следующих заголовков разделов " +
+                    "сайта Reverso Context", () -> {
+                translationPage
+                        .checkReversoHeaders(data.reversoHeaders);
+            });
         });
     }
 
@@ -56,21 +58,25 @@ public class MenuTests extends TestBaseWeb {
     @Tag("menu_tests")
     void checkUserMenuWithAuth(String sectionName) {
 
-        step("Авторизуемся через Api", () -> {
-            translationPage
-                    .addAuthCookieToWebDriver(data.translationPath,
-                            authApi.getRefreshToken(data.emailValid, data.passwordValid));
+        step("Предусловия", () -> {
+            step("Авторизуемся через Api", () -> {
+                translationPage
+                        .addAuthCookieToWebDriver(data.translationPath,
+                                authApi.getRefreshToken(data.emailValid, data.passwordValid));
+            });
         });
 
-        step("Открываем страницу", () -> {
-            translationPage
-                    .openPage(data.translationPath);
-        });
+        step("Тестовые шаги", () -> {
+            step("Открываем страницу", () -> {
+                translationPage
+                        .openPage(data.translationPath);
+            });
 
-        step("Проверяем наличие раздела в меню пользователя", () -> {
-            translationPage
-                    .openUserMenu()
-                    .isThereSectionInMenu(sectionName);
+            step("Проверяем наличие раздела в меню пользователя", () -> {
+                translationPage
+                        .openUserMenu()
+                        .isThereSectionInMenu(sectionName);
+            });
         });
     }
 
@@ -86,15 +92,17 @@ public class MenuTests extends TestBaseWeb {
     @Tag("menu_tests")
     void checkUserMenuWithoutAuth(String sectionName) {
 
-        step("Открываем страницу", () -> {
-            translationPage
-                    .openPage(data.translationPath);
-        });
+        step("Тестовые шаги", () -> {
+            step("Открываем страницу", () -> {
+                translationPage
+                        .openPage(data.translationPath);
+            });
 
-        step("Проверяем отсутствие раздела в меню пользователя", () -> {
-            translationPage
-                    .openUserMenu()
-                    .isThereNotSectionInMenu(sectionName);
+            step("Проверяем отсутствие раздела в меню пользователя", () -> {
+                translationPage
+                        .openUserMenu()
+                        .isThereNotSectionInMenu(sectionName);
+            });
         });
 
     }
