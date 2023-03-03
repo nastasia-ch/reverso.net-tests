@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.sleep;
 import static io.appium.java_client.AppiumBy.id;
 import static io.qameta.allure.Allure.step;
 
@@ -28,6 +29,7 @@ public class AuthTests extends TestBaseMobile {
     void loginTest() {
 
         step("Нажимаем 'Login or register for free'", () -> {
+            sleep(5000);
             $(id("com.softissimo.reverso.context:id/txt_full_name")).click();
         });
 

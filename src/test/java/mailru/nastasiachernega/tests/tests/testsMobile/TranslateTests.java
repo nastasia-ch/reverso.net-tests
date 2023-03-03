@@ -30,6 +30,7 @@ public class TranslateTests extends TestBaseMobile {
     void translateTest() {
 
         step("Нажимаем 'Reverso Translation'", () -> {
+            sleep(5000);
             $(id("com.softissimo.reverso.context:id/button_reverso_translation")).click();
         });
 
@@ -68,6 +69,7 @@ public class TranslateTests extends TestBaseMobile {
     void contextTranslateTest() {
 
         step("Нажимаем 'New Search'", () -> {
+            sleep(5000);
             $(id("com.softissimo.reverso.context:id/button_new_search")).click();
         });
 
