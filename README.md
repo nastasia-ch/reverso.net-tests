@@ -4,23 +4,23 @@
 <img src="media/icons/context-reverso-logo.png">
 </p>
 
-## Содержание
+## <a name="Содержание">Содержание</a>
+- [Описание](#Описание)
+- [Технологии и инструменты](#Технологии-и-инструменты)
+- [Тест кейсы](#Тест-кейсы)
+- [Команда Gradle для запуска тестов](#Команда-Gradle-для-запуска-тестов)
+- [Параметры запуска](#Параметры-запуска)
+- [Запуск в Jenkins](#Запуск-в-Jenkins)
+- [Отчет о результатах тестирования в Allure Report](#Отчет-о-результатах-тестирования-в-Allure-Report)
 
-- [Технологии и инструменты](#технологии-и-инструменты)
-- [Реализованныe проверки](#реализованные-проверки)
-- [Запуск тестов из терминала](#запуск-тестов-из-терминала)
-- [Запуск тестов в Jenkins](#запуск-тестов-в-jenkins)
-- [Отчет о результатах тестирования в Allure Report](#отчет-о-результатах-тестирования-в-Allure-report)
-- [Интеграция с Allure TestOps](#интеграция-с-allure-testops)
-- [Уведомления в Telegram с использованием бота](#уведомления-в-telegram-с-использованием-бота)
-- [Пример запуска теста](#пример-запуска-теста)
-     + [в Selenoid](#в-Selenoid)
-     + [в Browserstack](#в-Browserstack)
+## <a name="Интеграция-с-Allure-TestOps">Интеграция с Allure TestOps</a>
+## <a name="Уведомления-в-Telegram">Уведомления в Telegram</a>
 
-## Технологии и инструменты
+## <a name="Описание">Описание</a>
 
+
+## <a name="Технологии-и-инструменты">Технологии и инструменты</a>
 <p  align="center">
-
 <img width="5%" title="Java" src="media/icons/java-logo.svg">
 <img width="5%" title="IntelliJ IDEA" src="media/icons/IDEA-logo.svg">
 <img width="5%" title="Gradle" src="media/icons/gradle-logo.svg">
@@ -39,7 +39,10 @@
 <img width="5%" title="Telegram" src="media/icons/telegram-logo.svg">
 </p>
 
-## <a name="Тест кейсы"></a> Тест кейсы
+[Вернуться к оглавлению ⬆](#Содержание)
+
+## <a name="Тест-кейсы">Тест кейсы</a>
+
 - ### WEB
 <p align="center">
 <img title="Web" src="media/screenshots/Test_cases_UI.png">
@@ -55,7 +58,9 @@
 <img title="Mobile" src="media/screenshots/Test_cases_mobile.png">
 </p>
 
-## Команда Gradle для запуска тестов
+[Вернуться к оглавлению ⬆](#Содержание)
+
+## <a name="Команда-Gradle-для-запуска-тестов">Команда Gradle для запуска тестов</a>
 
 Для запуска локально и в Jenkins используется следующая команда:
 ```bash
@@ -64,7 +69,9 @@ gradle clean <TASK>
 -DenvironmentMobile=<ENVIRONMENT_MOBILE>
 -Dtestdata=<TEST_DATA>
 ```
-## Параметры запуска
+[Вернуться к оглавлению ⬆](#Содержание)
+
+## <a name="Параметры-запуска">Параметры запуска</a>
 
 <code>TASK</code> – определяет набор тестов для запуска:
 >- *test* (_по умолчанию_)
@@ -94,79 +101,126 @@ gradle clean <TASK>
 >- *data-quality-assurance* (_по умолчанию_)
 >- *data-software-testing*
 
-## <img width="4%" title="Jenkins" src="media/logo/Jenkins.svg"> [Jenkins](https://jenkins.autotests.cloud/job/016-anastasia_chernega-context_reverso.net_tests/)
-Для запуска сборки необходимо перейти в раздел <code>Собрать с параметрами</code>, выбрать параметры сборки и нажать кнопку <code>Собрать</code>.
+[Вернуться к оглавлению ⬆](#Содержание)
+
+## <a name="Запуск-в-Jenkins">Запуск в Jenkins</a> 
+Сборку проекта в Jenkins можно посмотреть [здесь](https://jenkins.autotests.cloud/job/016-anastasia_chernega-context_reverso.net_tests/).
+
+Для запуска сборки необходимо:
+>- перейти в раздел <code>Собрать с параметрами</code>,
+>- выбрать параметры сборки,
+>- нажать кнопку <code>Собрать</code>.
 
 <p align="center">
-  <img src="media/screen/start_jenkins.png" alt="Jenkins" width="800">
+  <img src="media/screenshots/Jenkins_build.png" alt="Jenkins_build" width="800">
 </p>
 
-После выполнения сборки, в блоке <code>История сборок</code> напротив номера сборки появятся
+После выполнения сборки, в блоке <code>История сборок</code> в поле информации о сборке появятся
 значки:
 >- <img width="2%" align="center" title="Allure Report" src="media/icons/allure-report-logo.svg"> <code>Allure Report</code>
 >- <img width="2%" align="center" title="Allure TestOps" src="media/icons/allure-testops-logo.svg"> <code>Allure TestOps</code>
 <p> Нажав на них можно посмотреть результаты сборки.</p>
 
-## <img width="4%" title="Allure Report" src="media/logo/Allure_Report.svg"> Отчет о результатах тестирования в [Allure Report]()
+[Вернуться к оглавлению ⬆](#Содержание)
 
-#### Главная страница Allure Report
+## <a name="Отчет-о-результатах-тестирования-в-Allure-Report">Отчет о результатах тестирования в Allure Report</a>
+Пример отчета можно посмотреть [здесь]().
+
+### Главная страница Allure Report
 
 <p align="center">
-  <img src="media/screen/allure_main.PNG" alt="allure_main" width="800">
+  <img src="media/screenshots/Allure_Report_main_page.png" alt="Allure_Report_main_page" width="800">
 </p>
 
-#### Тесты
+### Тесты
 
 <p align="center">
-  <img src="media/screen/allure-tests.PNG" alt="allure_tests" width="800">
+  <img src="media/screenshots/Allure_Report_test_cases.png" alt="Allure_Report_test_cases" width="800">
 </p>
 
-#### Графики
+### Графики
 
 <p align="center">
-  <img src="media/screen/allure_graphs.PNG" alt="allure_graphs" width="800">
+  <img src="media/screenshots/Allure_Report_graphs.png" alt="Allure_Report_graphs" width="800">
 </p>
 
-## <img width="4%" title="Allure TestOPS" src="media/logo/Allure_TO.svg"> Интеграция с [Allure TestOps]()
+[Вернуться к оглавлению ⬆](#Содержание)
 
-В <code><strong>*Allure TestOps*</strong></code> есть возможность наблюдать за выполнением тестов в реальном времени.
+## <a name="Интеграция-с-Allure-TestOps">Интеграция с Allure TestOps</a>
+Пример интеграции можно посмотреть [здесь](https://allure.autotests.cloud/launch/19873/tree?treeId=3740).
 
-#### Ход выполнения теста
+В <code>Allure TestOps</code> есть возможность:
+>- наблюдать за выполнением тестов в реальном времени,
+>- просматривать отчеты о прохождении тестов,
+>- автоматически формировать тест-кейсы по результатам сборок,
+>- выполнять из Allure Testops запуск тест-кейсов в Jenkins. 
+
+### Ход выполнения тестов
 
 <p align="center">
-  <img src="media/screen/testops_launches.png" alt="testops_launches" width="800">
+  <img src="media/screenshots/Allure-TestOps-test-run.png" alt="Allure-TestOps-test-run" width="800">
 </p>
 
-#### Тест-кейсы
+### Отчет о результатах тестирования 
 
 <p align="center">
-  <img src="media/screen/testops_tests.PNG" alt="testops_tests" width="800">
+  <img src="media/screenshots/Allure-TestOps-test-results.png" alt="Allure-TestOps-test-results" width="800">
 </p>
 
-#### Дашборды
+### Дашборды
 
 <p align="center">
-  <img src="media/screen/dashboards.PNG" alt="dashboards" width="800">
+  <img src="media/screenshots/Allure-TestOps-Dashboards.png" alt="Allure-TestOps-Dashboards" width="800">
 </p>
 
-## <img width="4%" title="Telegram" src="media/logo/Telegram.svg"> Уведомления в Telegram
-После завершения сборки специальный бот, созданный в <code>Telegram</code>, автоматически обрабатывает и отправляет сообщение с отчетом о прогоне тестов.
+### Запуск из Allure Testops тест-кейсов в Jenkins
+
+Для запуска тест-кейсов из <code>Allure TestOps</code> необходимо:
+>- перейти в раздел <code>Test cases</code>,
+>- выбрать тесты, которые необходимо запустить, и нажать <code>Balk actions</code> -> <code>Run</code>,
+>- в появившемся окне <code>Run</code> перейти во вкладку <code>Jobs</code> нажать <code>Configure parameters</code>,
+>- установить параметры запуска и нажать <code>Submit</code>. 
+
+Значения параметров запуска необходимо выбрать в соответствии с разделом [Параметры запуска](#Параметры-запуска).
+<p>Параметр <code>TASK</code> указывать не нужно, так как сборкой будут запускаться выбранные тест-кейсы.</p>
+
+Если не указать <code>остальные параметры</code>, то сборка будет запущена с дефолтными значенииями в Jenkins:
+>- <code>TEST_DATA</code> – data-quality-assurance
+>- <code>ENVIRONMENT_WEB</code> – chrome-v99-selenoid
+>- <code>ENVIRONMENT_MOBILE</code> – google-pixel-4-v11.0-browserstack
 
 <p align="center">
-<img title="Telegram Notifications" src="media/screen/notifications.png">
+  <img src="media/screenshots/Allure-TestOps-choose-and-run-test-cases.png" alt="Allure-TestOps-choose-and-run-test-cases" width="800">
+</p>
 
-## Видео с прогоном тестов
+<p align="center">
+  <img src="media/screenshots/Allure-TestOps-config-run.png" alt="Allure-TestOps-config-run" width="800">
+</p>
 
-В отчетах Allure для каждого теста прикреплен не только скриншот, но и видео прохождения теста
+[Вернуться к оглавлению ⬆](#Содержание)
 
-#### Видео прогона веб-теста в Selenoid
+## <a name="Уведомления-в-Telegram">Уведомления в Telegram</a>
+После завершения сборки бот, созданный в <code>Telegram</code>, автоматически обрабатывает результаты тестов и отправляет в чат сообщение с отчетом о прохождении тестов и ссылкой на <code>Allure Report</code>.
+
+<p align="center">
+<img src="media/screenshots/Telegram-screenshoot.jpg" alt="Telegram-screenshoot" width="800">
+  
+[Вернуться к оглавлению ⬆](#Содержание)
+
+## <a name="Примеры-видео-с-прогоном-тестов">Примеры видео с прогоном тестов</a>
+
+В отчетах <code>Allure Report</code> и в <code>Allure Testops</code> для каждого теста кроме скриншотов и логов, также прикрепляются видео с прохождением теста.
+
+### Видео прогона веб-теста в Selenoid
   
 <p align="center">
-  <img title="Video" src="media/video/Lamoda_tests.gif">
+  <img title="Video" src="media/video/Video-selenoid.gif">
 </p>
 
-#### Видео прогона теста в мобильном приложении в Browserstack
+### Видео прогона теста в мобильном приложении в Browserstack
   
 <p align="center">
-  <img title="Video" src="media/video/Lamoda_tests.gif">
+  <img title="Video" src="media/video/Video-browserstack.gif">
 </p>
+
+[Вернуться к оглавлению ⬆](#Содержание)
