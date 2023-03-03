@@ -214,13 +214,13 @@ gradle clean <TASK>
 ### Видео прогона веб-теста в Selenoid
   
 <p align="center">
-  <img title="Video" src="media/video/Lamoda_tests.gif">
+  <img title="Video" src="media/video/Video-selenoid.gif">
 </p>
 
 ### Видео прогона теста в мобильном приложении в Browserstack
   
 <p align="center">
-  <img title="Video" src="media/video/Lamoda_tests.gif">
+  <img title="Video" src="media/video/Video-browserstack.gif">
 </p>
 
 [Вернуться к оглавлению ⬆](#Содержание)
