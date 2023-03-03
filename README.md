@@ -5,22 +5,18 @@
 </p>
 
 ## Содержание
-
-- [Технологии и инструменты](#технологии-и-инструменты)
-- [Реализованныe проверки](#реализованные-проверки)
-- [Запуск тестов из терминала](#запуск-тестов-из-терминала)
+- [Описание](#Описание)
+- [Технологии и инструменты](#Технологии-и-инструменты)
+- [Тест кейсы](#Тест-кейсы)
+- [Команда Gradle для запуска тестов](#Команда-Gradle-для-запуска-тестов)
 - [Запуск тестов в Jenkins](#запуск-тестов-в-jenkins)
-- [Отчет о результатах тестирования в Allure Report](#отчет-о-результатах-тестирования-в-Allure-report)
-- [Интеграция с Allure TestOps](#интеграция-с-allure-testops)
-- [Уведомления в Telegram с использованием бота](#уведомления-в-telegram-с-использованием-бота)
-- [Пример запуска теста](#пример-запуска-теста)
-     + [в Selenoid](#в-Selenoid)
-     + [в Browserstack](#в-Browserstack)
+- [Параметры запуска](#Параметры запуска)
+- [Запуск в Jenkins](#Запуск-в-Jenkins)
 
-## Технологии и инструменты
+## <a name="Описание">Описание</a>
 
+## <a name="Технологии-и-инструменты">Технологии и инструменты</a>
 <p  align="center">
-
 <img width="5%" title="Java" src="media/icons/java-logo.svg">
 <img width="5%" title="IntelliJ IDEA" src="media/icons/IDEA-logo.svg">
 <img width="5%" title="Gradle" src="media/icons/gradle-logo.svg">
@@ -39,7 +35,8 @@
 <img width="5%" title="Telegram" src="media/icons/telegram-logo.svg">
 </p>
 
-## <a name="Тест кейсы"></a> Тест кейсы
+## <a name="Тест-кейсы">Тест кейсы</a>
+
 - ### WEB
 <p align="center">
 <img title="Web" src="media/screenshots/Test_cases_UI.png">
@@ -55,7 +52,7 @@
 <img title="Mobile" src="media/screenshots/Test_cases_mobile.png">
 </p>
 
-## Команда Gradle для запуска тестов
+## <a name="Команда-Gradle-для-запуска-тестов">Команда Gradle для запуска тестов</a>
 
 Для запуска локально и в Jenkins используется следующая команда:
 ```bash
@@ -64,7 +61,7 @@ gradle clean <TASK>
 -DenvironmentMobile=<ENVIRONMENT_MOBILE>
 -Dtestdata=<TEST_DATA>
 ```
-## Параметры запуска
+## <a name="Параметры-запуска">Параметры запуска</a>
 
 <code>TASK</code> – определяет набор тестов для запуска:
 >- *test* (_по умолчанию_)
@@ -94,7 +91,10 @@ gradle clean <TASK>
 >- *data-quality-assurance* (_по умолчанию_)
 >- *data-software-testing*
 
-## <img width="4%" title="Jenkins" src="media/logo/Jenkins.svg"> [Jenkins](https://jenkins.autotests.cloud/job/016-anastasia_chernega-context_reverso.net_tests/)
+## <a name="Запуск-в-Jenkins">Запуск в Jenkins</a> 
+Сборку проекта в Jenkins можно посмотреть [здесь]().
+
+[Jenkins](https://jenkins.autotests.cloud/job/016-anastasia_chernega-context_reverso.net_tests/)
 Для запуска сборки необходимо перейти в раздел <code>Собрать с параметрами</code>, выбрать параметры сборки и нажать кнопку <code>Собрать</code>.
 
 <p align="center">
