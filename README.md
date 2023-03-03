@@ -1,7 +1,6 @@
-# Проект по автоматизации тестирования поисковой системы для перевода в контексте [Reverso Context](https://context.reverso.net/translation/)
-
+# <h2 align="center">Дипломный проект по автоматизации тестирования продукта [Reverso Context](https://context.reverso.net/translation/)</code></h2>
 <p align="center">
-<img src="media/icons/context-reverso-logo.png">
+<a href="https://context.reverso.net/translation/"><img src="media/icons/context-reverso-logo.png" width="500"></a>
 </p>
 
 ## <a name="Содержание">Содержание</a>
@@ -12,12 +11,19 @@
 - [Параметры запуска](#Параметры-запуска)
 - [Запуск в Jenkins](#Запуск-в-Jenkins)
 - [Отчет о результатах тестирования в Allure Report](#Отчет-о-результатах-тестирования-в-Allure-Report)
-
-## <a name="Интеграция-с-Allure-TestOps">Интеграция с Allure TestOps</a>
-## <a name="Уведомления-в-Telegram">Уведомления в Telegram</a>
+- [Интеграция с Allure TestOps](#Интеграция-с-Allure-TestOps)
+- [Уведомления в Telegram](#Уведомления-в-Telegram)
+- [Примеры видео с прогоном тестов](#Примеры-видео-с-прогоном-тестов)
 
 ## <a name="Описание">Описание</a>
+[Reverso Context](https://context.reverso.net/translation/) - поисковая система для контектсного перевода текста с одного языка на другой.
 
+Дипломный проект по автоматизации тестирования Reverso Context состоит из 3х блоков:
+>- UI-тесты веб-приложения 
+>- API-тесты веб-приложения
+>- UI тесты мобильного приложения на Android
+
+[Вернуться к оглавлению ⬆](#Содержание)
 
 ## <a name="Технологии-и-инструменты">Технологии и инструменты</a>
 <p  align="center">
@@ -164,7 +170,7 @@ gradle clean <TASK>
 ### Отчет о результатах тестирования 
 
 <p align="center">
-  <img src="media/screenshots/Allure-TestOps-test-results.png" alt="Allure-TestOps-test-results" width="800">
+  <img src="media/screenshots/Allure-TestOps-test-results.png" alt="Allure-TestOps-test-results" width="1600">
 </p>
 
 ### Дашборды
@@ -203,7 +209,7 @@ gradle clean <TASK>
 После завершения сборки бот, созданный в <code>Telegram</code>, автоматически обрабатывает результаты тестов и отправляет в чат сообщение с отчетом о прохождении тестов и ссылкой на <code>Allure Report</code>.
 
 <p align="center">
-<img src="media/screenshots/Telegram-screenshoot.jpg" alt="Telegram-screenshot" width="800">
+<img src="media/screenshots/Telegram-screenshoot.png" alt="Telegram-screenshot" width="800">
   
 [Вернуться к оглавлению ⬆](#Содержание)
 
