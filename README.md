@@ -43,9 +43,9 @@
 >>- для веб-приложения - в <code>браузере</code>, 
 >>- для мобильного приложения - на эмуляторе Android-устройства с использованием <code>Appium Server</code>.
 >- удаленно в <code>Jenkins</code>: 
->>- для веб-приложения в <code>Selenoid</code> в изолированных Doker-контейнерах, 
+>>- для веб-приложения - в <code>Selenoid</code> в изолированных Doker-контейнерах, 
 >>- для мобильного приложения - в <code>Browserstack</code> на реальных Android-устройствах.
-<p>Для визуализации результатов тестирования используется инструменты <code>Allure Report</code>, <code>Allure TestOps</code>, <code>Telegram Bot</code>.</p>
+<p>Для визуализации результатов тестирования используются инструменты <code>Allure Report</code>, <code>Allure TestOps</code>, <code>Telegram Bot</code>.</p>
 
 [Вернуться к оглавлению ⬆](#Содержание)
 
@@ -82,7 +82,7 @@ gradle clean <TASK>
 ## <a name="Параметры-запуска">Параметры запуска</a>
 
 <code>TASK</code> – определяет набор тестов для запуска:
->- *test* (_по умолчанию_)
+>- *test* (_по умолчанию_ - _запуск всех тестов_)
 >- *UI_tests*
 >- *API_tests*
 >- *mobile_tests*
@@ -225,7 +225,7 @@ gradle clean <TASK>
   <img title="Video" src="media/video/Video-selenoid.gif">
 </p>
 
-#### Видео прогона теста в мобильном приложении в Browserstack (проверка контекстного перевода текста)
+#### Видео прогона теста в мобильном приложении для Android в Browserstack (проверка контекстного перевода текста)
   
 <p align="center">
   <img title="Video" src="media/video/Video-browserstack.gif">
