@@ -22,7 +22,8 @@
 <img width="5%" title="Junit5" src="media/icons/junit5-logo.svg">
 <img width="5%" title="Selenide" src="media/icons/selenide-logo.svg">
 <img width="5%" title="Rest-Assured" src="media/icons/rest-assured-logo.svg">
-<img width="5%" title="Allure Report" src="media/icons/allure-report-logo.svg">
+<img width="5%" title="Allure Report" src="media/icons/allure-report-logo.svg">![image](https://user-images.githubusercontent.com/113386493/222858677-be434792-f75f-4eee-ba25-c14be6f57eb5.png)
+
 <img width="5%" title="GitHub" src="media/icons/github-logo.svg">
 <img width="5%" title="Jenkins" src="media/icons/jenkins-logo.svg">
 <img width="5%" title="Selenoid" src="media/icons/selenoid-logo.svg">
@@ -39,25 +40,29 @@
 <p>Для написания веб UI-тестов использовалась библиотека <code>Selenide</code> с реализацией предусловий и постусловий через API-запросы, API-тестов - фреймворк <code>Rest Assured</code>, мобильных UI-тестов - библиотеки <code>Selenide</code> и <code>Appium</code>.</p>
 
 Запуск UI-тестов выполняется:
-- локально: для веб-приложения - в <code>браузере</code>, для мобильного приложения - на эмуляторе Android-приложения через <code>Appium Server</code> с использованием инструментов <code>Android Studio</code> и <code>Appium Inspector</code>.
-- удаленно в <code>Jenkins</code>: для веб-приложения в <code>Selenoid</code> в изолированных Doker-контейнерах, для мобильного приложения - в <code>Browserstack</code> на реальных Android-устройствах.
+>- локально: 
+>>- для веб-приложения - в <code>браузере</code>, 
+>>- для мобильного приложения - на эмуляторе Android-приложения через <code>Appium Server</code> с использованием инструментов <code>Android Studio</code> и <code>Appium Inspector</code>.
+>- удаленно в <code>Jenkins</code>: 
+>>- для веб-приложения в <code>Selenoid</code> в изолированных Doker-контейнерах, 
+>>- для мобильного приложения - в <code>Browserstack</code> на реальных Android-устройствах.
 <p>Для визуализации результатов тестирования используется инструменты <code>Allure Report</code>, <code>Allure TestOps</code>, <code>Telegram Bot</code>.</p>
 
 [Вернуться к оглавлению ⬆](#Содержание)
 
 ## <a name="Тест-кейсы">Тест кейсы</a>
 
-- ### WEB
+#### <p align="center">**UI тест-кейсы для веб-приложения**</p>
 <p align="center">
 <img title="Web" src="media/screenshots/Test_cases_UI.png">
 </p>
 
-- ### API
+#### <p align="center">**API тест-кейсы для веб-приложения**</p>
 <p align="center">
 <img title="Api" src="media/screenshots/Test_cases_API.png">
 </p>
 
-- ### MOBILE
+#### <p align="center">**UI тест-кейсы для мобильного Android-приложения**</p>
 <p align="center">
 <img title="Mobile" src="media/screenshots/Test_cases_mobile.png">
 </p>
@@ -89,16 +94,16 @@ gradle clean <TASK>
 >- *menu_tests*
 
 <code>ENVIRONMENT_WEB</code> – определяет окружение для запуска веб-тестов:
->- *chrome-local* (_по умолчанию_)
+>- *chrome-local* (_по умолчанию локально_)
 >- *firefox-local*
->- *chrome-v99-selenoid*
+>- *chrome-v99-selenoid* (_по умолчанию в Jenkins_)
 >- *chrome-v100-selenoid*
 >- *firefox-v97-selenoid*
 >- *firefox-v98-selenoid*
 
 <code>ENVIRONMENT_MOBILE</code> – определяет окружение для запуска тестов мобильного приложения:
->- *google-pixel-4-v11.0-emulator* (_по умолчанию_)
->- *google-pixel-4-v11.0-browserstack*
+>- *google-pixel-4-v11.0-emulator* (_по умолчанию локально_)
+>- *google-pixel-4-v11.0-browserstack* (_по умолчанию в Jenkins_)
 >- *samsung-galaxy-S21-v11.0-browserstack*
 
 <code>TEST_DATA</code> - определяет набор тестовых данных:
