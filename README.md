@@ -22,8 +22,7 @@
 <img width="5%" title="Junit5" src="media/icons/junit5-logo.svg">
 <img width="5%" title="Selenide" src="media/icons/selenide-logo.svg">
 <img width="5%" title="Rest-Assured" src="media/icons/rest-assured-logo.svg">
-<img width="5%" title="Allure Report" src="media/icons/allure-report-logo.svg">![image](https://user-images.githubusercontent.com/113386493/222858677-be434792-f75f-4eee-ba25-c14be6f57eb5.png)
-
+<img width="5%" title="Allure Report" src="media/icons/allure-report-logo.svg">
 <img width="5%" title="GitHub" src="media/icons/github-logo.svg">
 <img width="5%" title="Jenkins" src="media/icons/jenkins-logo.svg">
 <img width="5%" title="Selenoid" src="media/icons/selenoid-logo.svg">
@@ -141,7 +140,7 @@ gradle clean <TASK>
   <img src="media/screenshots/Allure_Report_main_page.png" alt="Allure_Report_main_page" width="800">
 </p>
 
-### Тесты
+### Отчет о результатах тестирования
 
 <p align="center">
   <img src="media/screenshots/Allure_Report_test_cases.png" alt="Allure_Report_test_cases" width="800">
