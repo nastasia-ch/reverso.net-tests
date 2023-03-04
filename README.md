@@ -202,7 +202,7 @@ gradle clean <TASK>
 </p>
 
 <p align="center">
-  <img src="media/screenshots/Allure-TestOps-config-run.png" alt="Allure-TestOps-config-run" width="800">
+  <img src="media/screenshots/Allure-TestOps-config-run.png" alt="Allure-TestOps-config-run" width="400">
 </p>
 
 [Вернуться к оглавлению ⬆](#Содержание)
@@ -219,13 +219,13 @@ gradle clean <TASK>
 
 В отчетах <code>Allure Report</code> и в <code>Allure Testops</code> для каждого теста кроме скриншотов и логов, также прикрепляются видео с прохождением теста.
 
-### Видео прогона веб-теста в Selenoid
+#### Видео прогона веб-теста в Selenoid (добавление примера перевода в Избранное)
   
 <p align="center">
   <img title="Video" src="media/video/Video-selenoid.gif">
 </p>
 
-### Видео прогона теста в мобильном приложении в Browserstack
+#### Видео прогона теста в мобильном приложении в Browserstack (проверка контекстного перевода текста)
   
 <p align="center">
   <img title="Video" src="media/video/Video-browserstack.gif">
