@@ -41,7 +41,7 @@
 Запуск UI-тестов выполняется:
 >- локально: 
 >>- для веб-приложения - в <code>браузере</code>, 
->>- для мобильного приложения - на эмуляторе Android-приложения через <code>Appium Server</code> с использованием инструментов <code>Android Studio</code> и <code>Appium Inspector</code>.
+>>- для мобильного приложения - на эмуляторе Android-устройства с использованием <code>Appium Server</code>.
 >- удаленно в <code>Jenkins</code>: 
 >>- для веб-приложения в <code>Selenoid</code> в изолированных Doker-контейнерах, 
 >>- для мобильного приложения - в <code>Browserstack</code> на реальных Android-устройствах.
@@ -219,7 +219,7 @@ gradle clean <TASK>
 
 В отчетах <code>Allure Report</code> и в <code>Allure Testops</code> для каждого теста кроме скриншотов и логов, также прикрепляются видео с прохождением теста.
 
-#### Видео прогона веб-теста в Selenoid (добавление примера перевода в Избранное)
+#### Видео прогона веб-теста в Selenoid (добавление примера контекстного перевода в Избранное)
   
 <p align="center">
   <img title="Video" src="media/video/Video-selenoid.gif">
