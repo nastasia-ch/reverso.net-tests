@@ -67,7 +67,8 @@ public class HistoryPage {
     }
 
     public HistoryPage policyAgreement() {
-        $("button #didomi-notice-agree-button").click();
+        //$("button #didomi-notice-agree-button").click();
+        $("div .didomi-popup-view").$(byText("Agree and close")).click();
         return this;
     }
 }
