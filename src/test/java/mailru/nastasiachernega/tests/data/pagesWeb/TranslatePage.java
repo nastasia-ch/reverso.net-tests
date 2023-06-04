@@ -50,6 +50,7 @@ public class TranslatePage {
     }
 
     public TranslatePage chooseLanguageFrom(String languageFrom) {
+        privacyPolicy.clickAgreeAndClose();
         languageFromButton.click();
         languageFromChoice.$(byTextCaseInsensitive(languageFrom)).click();
         return this;
@@ -97,6 +98,7 @@ public class TranslatePage {
     }
 
     public TranslatePage openUserMenu() {
+        privacyPolicy.clickAgreeAndClose();
         menuComponents.openUserMenu();
         return this;
     }

@@ -1,14 +1,11 @@
 package mailru.nastasiachernega.tests.data.pagesWeb;
 
 import com.codeborne.selenide.ElementsCollection;
-import mailru.nastasiachernega.tests.data.pagesWeb.components.PrivacyPolicy;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class FavouritesPage {
-
-    PrivacyPolicy privacyPolicy = new PrivacyPolicy();
 
     private final ElementsCollection
             listOfFavourites = $$(".examples");
@@ -37,11 +34,6 @@ public class FavouritesPage {
     public FavouritesPage checkMessageOpenPageWithoutAuth() {
         $("#not-logged").
                 shouldHave(text("You should be logged in to save and view your favourites."));
-        return this;
-    }
-
-    public FavouritesPage agreePrivacyPolicy() {
-        privacyPolicy.clickAgreeAndClose();
         return this;
     }
 

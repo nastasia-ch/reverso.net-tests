@@ -31,6 +31,7 @@ public class HistoryPage {
     }
 
     public HistoryPage chooseLanguageFrom(String langFromSymbol) {
+        privacyPolicy.clickAgreeAndClose();
         $(byText("Source language")).click();
         $(".src.lang").$(".drop-down").
                 $("span[data-value='" + langFromSymbol + "']").
@@ -69,8 +70,4 @@ public class HistoryPage {
                 parent().getAttribute("data-id");
     }
 
-    public HistoryPage agreePrivacyPolicy() {
-        privacyPolicy.clickAgreeAndClose();
-        return this;
-    }
 }
