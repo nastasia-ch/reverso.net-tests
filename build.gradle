@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'io.qameta.allure' version '2.10.0'
+    id 'io.qameta.allure' version '2.11.2'
     id "io.freefair.lombok" version "6.5.1"
 }
 
@@ -8,7 +8,7 @@ repositories {
     mavenCentral()
 }
 
-def allureVersion = "2.19.0"
+def allureVersion = "2.22.1"
 
 allure {
     report {
@@ -26,20 +26,20 @@ allure {
 
 dependencies {
     testImplementation (
-            'com.codeborne:selenide:6.5.2',
+            'com.codeborne:selenide:6.12.3',
             "io.qameta.allure:allure-selenide:$allureVersion",
             'io.rest-assured:rest-assured:5.3.0',
             "io.qameta.allure:allure-rest-assured:$allureVersion",
-            'io.appium:java-client:8.0.0',
-            'org.junit.jupiter:junit-jupiter:5.9.1',
+            'io.appium:java-client:8.3.0',
+            'org.junit.jupiter:junit-jupiter:5.9.2',
             'commons-io:commons-io:2.11.0',
-            'com.fasterxml.jackson.core:jackson-databind:2.14.1',
-            'com.fasterxml.jackson.core:jackson-annotations:2.13.2',
-            'org.assertj:assertj-core:3.23.1',
-            'org.jsoup:jsoup:1.7.2',
-            'org.aeonbits.owner:owner:1.0.11',
+            'com.fasterxml.jackson.core:jackson-databind:2.15.1',
+            'com.fasterxml.jackson.core:jackson-annotations:2.15.1',
+            'org.assertj:assertj-core:3.24.2',
+            'org.jsoup:jsoup:1.15.4',
+            'org.aeonbits.owner:owner:1.0.12',
             'com.github.javafaker:javafaker:1.0.2',
-            'org.slf4j:slf4j-simple:1.7.32'
+            'org.slf4j:slf4j-simple:2.0.5'
     )
 }
 
