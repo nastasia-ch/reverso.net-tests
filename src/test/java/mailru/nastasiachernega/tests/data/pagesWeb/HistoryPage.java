@@ -2,6 +2,7 @@ package mailru.nastasiachernega.tests.data.pagesWeb;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import mailru.nastasiachernega.tests.data.pagesWeb.components.PrivacyPolicy;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -9,6 +10,8 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
 
 public class HistoryPage {
+
+    PrivacyPolicy privacyPolicy = new PrivacyPolicy();
 
     private final SelenideElement
             filterTextInput = $("#filter-text"),
@@ -66,9 +69,8 @@ public class HistoryPage {
                 parent().getAttribute("data-id");
     }
 
-    public HistoryPage policyAgreement() {
-        //$("button #didomi-notice-agree-button").click();
-        $("div .didomi-popup-view").$(byText("Agree and close")).click();
+    public HistoryPage agreePrivacyPolicy() {
+        privacyPolicy.clickAgreeAndClose();
         return this;
     }
 }

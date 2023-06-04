@@ -78,6 +78,7 @@ public class FavouritesTests extends TestBaseWeb {
 
             step("Устанавливаем язык оригинала: " + data.languageFrom, () -> {
                 translationPage
+                        .agreePrivacyPolicy()
                         .chooseLanguageFrom(data.languageFrom);
             });
 

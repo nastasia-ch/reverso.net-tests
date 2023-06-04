@@ -4,6 +4,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import mailru.nastasiachernega.tests.data.pagesWeb.components.MenuComponents;
+import mailru.nastasiachernega.tests.data.pagesWeb.components.PrivacyPolicy;
 import org.openqa.selenium.Cookie;
 
 import static com.codeborne.selenide.CollectionCondition.*;
@@ -14,6 +15,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class TranslatePage {
 
     MenuComponents menuComponents = new MenuComponents();
+    PrivacyPolicy privacyPolicy = new PrivacyPolicy();
 
     private final SelenideElement
             textToTranslateInput = $("#search-input input"),
@@ -121,6 +123,11 @@ public class TranslatePage {
 
     public TranslatePage isThereNotSectionInMenu(String sectionName) {
         menuComponents.IsThereNotSectionInMenu(sectionName);
+        return this;
+    }
+
+    public TranslatePage agreePrivacyPolicy() {
+        privacyPolicy.clickAgreeAndClose();
         return this;
     }
 }
