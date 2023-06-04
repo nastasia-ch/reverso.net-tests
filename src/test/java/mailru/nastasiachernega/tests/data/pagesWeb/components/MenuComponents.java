@@ -6,6 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.CollectionCondition.exactTextsCaseSensitiveInAnyOrder;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byLinkText;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class MenuComponents {
@@ -23,6 +24,7 @@ public class MenuComponents {
 
     public MenuComponents openUserMenu () {
         userMenuButton.click();
+        $(byText("Agree and close")).click();
         return this;
     };
 
