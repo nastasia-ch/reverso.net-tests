@@ -24,7 +24,6 @@ public class MenuComponents {
 
     public MenuComponents openUserMenu () {
         userMenuButton.click();
-        $(byText("Agree and close")).click();
         return this;
     };
 
