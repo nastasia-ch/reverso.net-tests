@@ -22,8 +22,7 @@
 <img width="5%" title="Junit5" src="media/icons/junit5-logo.svg">
 <img width="5%" title="Selenide" src="media/icons/selenide-logo.svg">
 <img width="5%" title="Rest-Assured" src="media/icons/rest-assured-logo.svg">
-<img width="5%" title="Allure Report" src="media/icons/allure-report-logo.svg">![image](https://user-images.githubusercontent.com/113386493/222858677-be434792-f75f-4eee-ba25-c14be6f57eb5.png)
-
+<img width="5%" title="Allure Report" src="media/icons/allure-report-logo.svg">
 <img width="5%" title="GitHub" src="media/icons/github-logo.svg">
 <img width="5%" title="Jenkins" src="media/icons/jenkins-logo.svg">
 <img width="5%" title="Selenoid" src="media/icons/selenoid-logo.svg">
@@ -42,11 +41,11 @@
 Запуск UI-тестов выполняется:
 >- локально: 
 >>- для веб-приложения - в <code>браузере</code>, 
->>- для мобильного приложения - на эмуляторе Android-приложения через <code>Appium Server</code> с использованием инструментов <code>Android Studio</code> и <code>Appium Inspector</code>.
+>>- для мобильного приложения - на эмуляторе Android-устройства с использованием <code>Appium Server</code>.
 >- удаленно в <code>Jenkins</code>: 
->>- для веб-приложения в <code>Selenoid</code> в изолированных Doker-контейнерах, 
+>>- для веб-приложения - в <code>Selenoid</code> в изолированных Doker-контейнерах, 
 >>- для мобильного приложения - в <code>Browserstack</code> на реальных Android-устройствах.
-<p>Для визуализации результатов тестирования используется инструменты <code>Allure Report</code>, <code>Allure TestOps</code>, <code>Telegram Bot</code>.</p>
+<p>Для визуализации результатов тестирования используются инструменты <code>Allure Report</code>, <code>Allure TestOps</code>, <code>Telegram Bot</code>.</p>
 
 [Вернуться к оглавлению ⬆](#Содержание)
 
@@ -83,7 +82,7 @@ gradle clean <TASK>
 ## <a name="Параметры-запуска">Параметры запуска</a>
 
 <code>TASK</code> – определяет набор тестов для запуска:
->- *test* (_по умолчанию_)
+>- *test* (_по умолчанию_ - _запуск всех тестов_)
 >- *UI_tests*
 >- *API_tests*
 >- *mobile_tests*
@@ -141,7 +140,7 @@ gradle clean <TASK>
   <img src="media/screenshots/Allure_Report_main_page.png" alt="Allure_Report_main_page" width="800">
 </p>
 
-### Тесты
+### Отчет о результатах тестирования
 
 <p align="center">
   <img src="media/screenshots/Allure_Report_test_cases.png" alt="Allure_Report_test_cases" width="800">
@@ -203,7 +202,7 @@ gradle clean <TASK>
 </p>
 
 <p align="center">
-  <img src="media/screenshots/Allure-TestOps-config-run.png" alt="Allure-TestOps-config-run" width="800">
+  <img src="media/screenshots/Allure-TestOps-config-run.png" alt="Allure-TestOps-config-run" width="400">
 </p>
 
 [Вернуться к оглавлению ⬆](#Содержание)
@@ -220,13 +219,13 @@ gradle clean <TASK>
 
 В отчетах <code>Allure Report</code> и в <code>Allure Testops</code> для каждого теста кроме скриншотов и логов, также прикрепляются видео с прохождением теста.
 
-### Видео прогона веб-теста в Selenoid
+#### Видео прогона веб-теста в Selenoid (добавление примера контекстного перевода в Избранное)
   
 <p align="center">
   <img title="Video" src="media/video/Video-selenoid.gif">
 </p>
 
-### Видео прогона теста в мобильном приложении в Browserstack
+#### Видео прогона теста в мобильном приложении для Android в Browserstack (проверка контекстного перевода текста)
   
 <p align="center">
   <img title="Video" src="media/video/Video-browserstack.gif">
