@@ -98,7 +98,6 @@ public class TranslatePage {
     }
 
     public TranslatePage openUserMenu() {
-        privacyPolicy.clickAgreeAndClose();
         menuComponents.openUserMenu();
         return this;
     }
@@ -132,4 +131,5 @@ public class TranslatePage {
         privacyPolicy.clickAgreeAndClose();
         return this;
     }
+
 }

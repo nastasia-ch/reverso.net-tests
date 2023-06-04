@@ -74,6 +74,7 @@ public class MenuTests extends TestBaseWeb {
 
             step("Проверяем наличие раздела в меню пользователя", () -> {
                 translationPage
+                        .agreePrivacyPolicy()
                         .openUserMenu()
                         .isThereSectionInMenu(sectionName);
             });
@@ -100,6 +101,7 @@ public class MenuTests extends TestBaseWeb {
 
             step("Проверяем отсутствие раздела в меню пользователя", () -> {
                 translationPage
+                        .agreePrivacyPolicy()
                         .openUserMenu()
                         .isThereNotSectionInMenu(sectionName);
             });

@@ -43,6 +43,7 @@ public class AuthTests extends TestBaseWeb {
 
             step("Переходим в раздел авторизации", () -> {
                 translationPage
+                        .agreePrivacyPolicy()
                         .openUserMenu()
                         .goToLoginSection();
             });
@@ -97,6 +98,7 @@ public class AuthTests extends TestBaseWeb {
 
             step("Переходим в раздел авторизации", () -> {
                 translationPage
+                        .agreePrivacyPolicy()
                         .openUserMenu()
                         .goToLoginSection();
             });
