@@ -109,6 +109,7 @@ public class HistoryTests extends TestBaseWeb {
 
             step("Выбираем язык оригинала: " + data.languageFrom, () -> {
                 historyPage
+                        .policyAgreement()
                         .chooseLanguageFrom(data.langFromSymbol);
             });
 

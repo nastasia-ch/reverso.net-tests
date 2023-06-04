@@ -65,4 +65,9 @@ public class HistoryPage {
                 findBy(text(text)).parent().parent().parent().
                 parent().getAttribute("data-id");
     }
+
+    public HistoryPage policyAgreement() {
+        $("button #didomi-notice-agree-button").click();
+        return this;
+    }
 }
