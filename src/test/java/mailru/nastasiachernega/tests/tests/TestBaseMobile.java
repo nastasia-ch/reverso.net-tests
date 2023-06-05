@@ -43,12 +43,12 @@ public class TestBaseMobile {
 
     @AfterEach
     void tearDown() {
-        //String sessionId = Attach.getSessionId();
+        String sessionId = Attach.getSessionId();
         //Attach.screenshotAs("Last screenshot");
         //Attach.pageSource();
         closeWebDriver();
-        //if (getRunIn().equals("browserstack")) {
-        //    Attach.addVideoBrowserstack(sessionId);
-       // }
+        if (getRunIn().equals("browserstack")) {
+            Attach.addVideoBrowserstack(sessionId);
+        }
     }
 }
