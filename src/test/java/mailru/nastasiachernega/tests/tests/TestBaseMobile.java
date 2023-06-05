@@ -45,7 +45,7 @@ public class TestBaseMobile {
     void tearDown() {
         String sessionId = Attach.getSessionId();
         //Attach.screenshotAs("Last screenshot");
-        //Attach.pageSource();
+        Attach.pageSource();
         closeWebDriver();
         if (getRunIn().equals("browserstack")) {
             Attach.addVideoBrowserstack(sessionId);
